@@ -1,0 +1,50 @@
+<div class="hamburger" id="hamburger" (click)="toggleMenu('0')">
+    <div class="hamburger-box">
+        <div class="hamburger-inner"></div>
+    </div>
+</div>
+
+<nav class="responsive-menu w-100 h-100 position-fixed" id="responsive-menu">
+    <div class="d-flex flex-column h-100">
+        <div class="d-flex justify-content-between">
+            <h4 class="text-primary ft-45 font-helvetica-bold mb-0">Menú</h4>
+            <img class="cursor-pointer" src="./assets/images/svg/close.svg" alt="close" (click)="toggleMenu('-100%')" id="close">
+        </div>
+
+        <div class="menu d-flex flex-grow-1 justify-content-center align-items-center flex-column">
+
+            <div class="menu-link text-center" *ngFor="let item of items">
+                <a class="nav-link ft-24 font-helvetica-bold text-white" *ngIf="item.id === 'home'" [routerLink]="item.route" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">{{item.title}}</a>
+                <a class="nav-link ft-24 font-helvetica-bold text-white" *ngIf="item.id !== 'home'" [routerLink]="item.route" routerLinkActive="active">{{item.title}}</a>
+            </div>
+
+            <div class="text-center" *ngIf="!($isLoggedIn | async)">
+                <button class="btn btn-primary font-helvetica-medium" id="responsive-register" (click)="register()">Registrar</button>
+
+                <p class="text-white font-weight-bold">¿Ya posees una cuenta en Cinestar?</p>
+
+                <div class="text-secondary font-helvetica-bold ft-20" id="responsive-login" (click)="login()">Ingresar</div>
+            </div>
+
+            <div class="logout font-weight-bold ft-17 text-white" *ngIf="($isLoggedIn | async)" (click)="logOut()">
+                <img class="mr-2" src="./assets/images/svg/logout.svg" alt="" id="responsive-logout">
+                Cerrar Sesión
+            </div>
+
+            <div class="social-icons d-flex">
+                <a href="https://www.instagram.com/multicines_cinestar/" target="_blank" class="mr-4 text-white" id="responsive-icon-instagram">
+                    <span class="icon-instagram ft-29" title="Instagram"></span>
+                </a>
+
+                <a href="https://www.facebook.com/multicinestar/" target="_blank" class="mr-3 text-white" id="responsive-icon-facebook">
+                    <span class="icon-facebook ft-29" title="Facebook"></span>
+                </a>
+                <a href="https://www.linkedin.com/company/cine-star-multicines/" target="_blank" class="mr-3 text-white"
+                   id="responsive-icon-linkedin">
+                    <img src="assets/images/svg/linkedin.svg" style="width: 29px;">
+                </a>
+            </div>
+        </div>
+    </div>
+
+</nav>

@@ -1,0 +1,10 @@
+<div class="modal-header border-bottom-0 pb-0 mx-4 pt-4">
+    <small class="font-helvetica-bold ft-20 color-title">Agregar Tarjeta</small>
+    <img class="close cursor-pointer pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body mx-4 pb-4">
+    <app-form-add-credit-card
+        (onAddCard)="creditCardAdded()">
+    </app-form-add-credit-card>
+</div>

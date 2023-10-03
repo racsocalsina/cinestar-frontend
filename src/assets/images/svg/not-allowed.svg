@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="89" height="89" viewBox="0 0 89 89">
+    <defs>
+        <style>
+            .cls-1,.cls-2{fill:#d9000d}.cls-1{fill-rule:evenodd}
+        </style>
+    </defs>
+    <g id="Grupo_6104" transform="translate(-13865 5594)">
+        <g id="Grupo_6051" transform="translate(13882.772 -5566.141)">
+            <g id="Grupo_4437">
+                <g id="noun_Coupon_550622">
+                    <g id="Grupo_4421">
+                        <g id="Grupo_4420">
+                            <g id="Grupo_4419">
+                                <path id="Trazado_1521" d="M1.144 11.442a5.721 5.721 0 1 1 0 11.442A1.144 1.144 0 0 0 0 24.029v6.865a1.144 1.144 0 0 0 1.144 1.144H51.49a1.144 1.144 0 0 0 1.144-1.144V1.144A1.144 1.144 0 0 0 51.49 0H1.144A1.144 1.144 0 0 0 0 1.144V10.3a1.144 1.144 0 0 0 1.144 1.142zm1.144-9.154h48.058V29.75H2.288l.005-4.659A8.011 8.011 0 0 0 2.28 9.234z" class="cls-1"/>
+                                <path id="Rectángulo_1223" d="M0 0H2V6H0z" class="cls-2" transform="translate(13.228 8.141)"/>
+                                <path id="Rectángulo_1224" d="M0 0H2V5H0z" class="cls-2" transform="translate(13.228 .141)"/>
+                                <path id="Rectángulo_1225" d="M0 0H2V3H0z" class="cls-2" transform="translate(13.228 19.141)"/>
+                                <path id="Rectángulo_1226" d="M0 0H2V5H0z" class="cls-2" transform="translate(13.228 28.141)"/>
+                                <path id="Trazado_1522" d="M20.077 16.654a4.577 4.577 0 1 0-4.577-4.577 4.577 4.577 0 0 0 4.577 4.577zm0-2.288a2.288 2.288 0 1 0-2.288-2.288 2.288 2.288 0 0 0 2.288 2.287z" class="cls-1" transform="translate(19.971 9.663)"/>
+                                <path id="Trazado_1523" d="M10.795 20.552l1.738 1.489 15.22-17.757-1.738-1.489z" class="cls-1" transform="translate(13.909 3.601)"/>
+                                <path id="Trazado_1524" d="M14.077 11.654A4.577 4.577 0 1 0 9.5 7.077a4.577 4.577 0 0 0 4.577 4.577zm0-2.288a2.288 2.288 0 1 0-2.288-2.288 2.288 2.288 0 0 0 2.288 2.287z" class="cls-1" transform="translate(12.24 3.221)"/>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <g id="Elipse_537" fill="none" stroke="#c82921" stroke-width="3px" transform="translate(13865 -5594)">
+            <circle cx="44.5" cy="44.5" r="44.5" stroke="none"/>
+            <circle cx="44.5" cy="44.5" r="43"/>
+        </g>
+        <path id="Línea_229" fill="none" stroke="#c82921" stroke-width="4px" d="M0 58.505L58.505 0" transform="translate(13883.108 -5575.891)"/>
+    </g>
+</svg>

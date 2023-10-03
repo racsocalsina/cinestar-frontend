@@ -1,0 +1,33 @@
+<app-header-home></app-header-home>
+
+<div class="content-complaints-book">
+    <div class="container p-md-0">
+        <div class="section-title mb-3 mt-5">
+            <h1>Libro de Reclamaciones</h1>
+        </div>
+
+        <ng-container [ngSwitch]="step">
+
+            <app-step1 *ngSwitchCase="1"
+                       (step)="step = step + $event"
+                       [form]="form1"
+                       [claimParameters]="claimParameters">
+            </app-step1>
+
+            <app-step2 *ngSwitchCase="2"
+                       (step)="send($event)"
+                       [form]="form2"
+                       [error]="error"
+                       [isLoading]="isLoading"
+                       [claimParameters]="claimParameters">
+            </app-step2>
+
+            <app-step3 *ngSwitchCase="3"
+                       (step)="step = step + $event"
+                       [claimId]="this.claimId"></app-step3>
+        </ng-container>
+    </div>
+
+</div>
+
+<app-footer></app-footer>

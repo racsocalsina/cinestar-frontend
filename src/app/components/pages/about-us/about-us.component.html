@@ -1,0 +1,36 @@
+<app-header-home></app-header-home>
+<div class="content-about-us">
+    <div class="container" *ngIf="content">
+        <div class="section-title mb-4 mb-lg-0">
+            <h1>{{content.title}}</h1>
+        </div>
+        <ng-container *ngFor="let item of content.items; let i = index">
+
+            <div class="row d-flex align-items-center mt-4 mt-lg-0 mb-5" *ngIf="i%2==0">
+                <div class="col-md-6">
+                    <div class="content font-helvetica">
+                        {{item.description}}
+                    </div>
+                </div>
+                <div class="col-md-6 mt-5 mt-lg-0">
+                    <div class="content-img background-style p-5 m-auto"
+                         [style.background-image]="'url(' + item.image + ')'"></div>
+                </div>
+            </div>
+            <div class="row d-flex align-items-center mt-4 mt-lg-0 mb-5" *ngIf="i%2!=0">
+                <div class="col-md-6 order-md-1">
+                    <div class="content font-helvetica">
+                        {{item.description}}
+                    </div>
+                </div>
+                <div class="col-md-6 order-md-0  mt-5 mt-lg-0">
+                    <div class="content-img background-style p-5 m-auto"
+                         [style.background-image]="'url(' + item.image + ')'"></div>
+                </div>
+            </div>
+        </ng-container>
+
+
+    </div>
+</div>
+<app-footer></app-footer>

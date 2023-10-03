@@ -1,0 +1,39 @@
+.quantity-picker {
+    .picker {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+        background-size: cover;
+
+        &.down {
+            background-image: url("~assets/images/svg/picker_down.svg");
+        }
+
+        &.up {
+            background-image: url("~assets/images/svg/picker_up.svg");
+        }
+
+        &.disabled {
+            background-image: url("~assets/images/svg/picker_down_disabled.svg");
+            cursor: not-allowed;
+        }
+    }
+
+    .value {
+        min-width: 22px;
+        font-size: 20px;
+    }
+
+    &.sm {
+        .picker {
+            width: 10px;
+            height: 10px;
+        }
+
+        .value {
+            min-width: 16px;
+            font-size: 16px;
+        }
+    }
+}
+

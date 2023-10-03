@@ -1,0 +1,179 @@
+<app-header-home></app-header-home>
+<app-time-remaining></app-time-remaining>
+
+<div class="container-fluid d-flex justify-content-between">
+    <div class="sidebar">
+        <span class="back font-helvetica-bold ft-15 color-title cursor-pointer d-flex align-items-center" (click)="back()">
+            <img class="mr-2" src="./assets/images/svg/arrow-left-yellow.svg" alt="volver">
+            Volver
+        </span>
+        <div class="steps mt-5 d-flex flex-column justify-content-between">
+
+            <div class="step d-flex align-items-center" [class.active]="step >= 1">
+                <div class="icon mr-2 d-flex justify-content-center align-items-center" [class.bg-secondary]="step === 1">
+                    <span class="icon-ticket ft-21"></span>
+                </div>
+                <span class="title ft-15">Tickets</span>
+            </div>
+
+            <div class="step d-flex align-items-center" [class.active]="step >= 2">
+                <div class="icon mr-2 d-flex justify-content-center align-items-center" [class.bg-secondary]="step === 2">
+                    <img src="./assets/images/svg/butaca.svg" alt="">
+                </div>
+                <span class="title ft-15">Butacas</span>
+            </div>
+
+            <div class="step d-flex align-items-center" [class.active]="step >= 3">
+                <div class="icon mr-2 d-flex justify-content-center align-items-center" [class.bg-secondary]="step === 3">
+                    <img src="./assets/images/svg/dulceria.svg" alt="">
+                </div>
+                <span class="title ft-15">Chocolatería</span>
+            </div>
+
+            <div class="step d-flex align-items-center" [class.active]="step === 4">
+                <div class="icon mr-2 d-flex justify-content-center align-items-center" [class.bg-secondary]="step === 4">
+                    <span class="icon-card"></span>
+                </div>
+                <span class="title ft-15">Pago</span>
+            </div>
+
+            <div class="line position-absolute"></div>
+        </div>
+    </div>
+
+    <div class="content flex-grow-1">
+        <div class="d-flex flex-column lh-1" *ngIf="step < 3">
+            <span class="font-helvetica-bold ft-15 text-primary">Película</span>
+            <h3 class="movie-title font-helvetica-bold ft-25 color-title">{{movie.name}}</h3>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+
+    <div class="sidebar-right">
+        <div class="position-fixed">
+            <perfect-scrollbar class="buy-details-scroll">
+                <div class="buy-details w-100 d-flex flex-column">
+                    <p class="font-helvetica-bold color-title ft-15 mb-1">Detalle de la compra</p>
+
+                    <img class="poster img-fluid"
+                         [src]="movie.image"
+                         onError="this.src='./assets/images/no-image-movie.png';"
+                         [alt]="movie.name"
+                         [title]="movie.name">
+
+                    <div class="d-flex flex-column lh-1 mt-3">
+                        <div class="address font-helvetica-bold ft-17 color-title">
+                            <img class="mr-1" src="./assets/images/svg/cine-icon.svg" alt="">
+                            <ng-container *ngIf="showTime">
+                                {{ showTime.name }}
+                              </ng-container>
+                              <ng-container *ngIf="!showTime">
+                                {{name}}
+                            </ng-container>
+                        </div>
+                        <span class="color-gray ft-15">
+                            <ng-container *ngIf="showTime">
+                              {{ showTime.address }}
+                            </ng-container>
+                            <ng-container *ngIf="!showTime">
+                              {{address}}
+                            </ng-container>
+                          </span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-3" *ngIf="movieTime">
+                        <div class="d-flex flex-column lh-1">
+                            <span class="font-helvetica-bold ft-12 color-title">Fecha</span>
+                            <span class="color-gray ft-15">{{movieTime.date_start | date: 'dd/MM/yy'}}</span>
+                        </div>
+                        <div class="d-flex flex-column lh-1">
+                            <span class="font-helvetica-bold ft-12 color-title">Hora</span>
+                            <span class="color-gray ft-15">{{movieTime.time_start | time}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="my-3" style="border-bottom: solid 1px #D6D6D6;"></div>
+
+                <div class="buy-details w-100 d-flex flex-column">
+                    <div class="d-flex flex-column lh-1">
+                        <span class="font-helvetica-bold ft-12 color-title mb-1">Cantidad y tipo de entradas</span>
+                        <span class="color-gray ft-15 d-block mb-1" *ngFor="let tariif of buyTicketService.tariffs">
+                            {{tariif.quantity}} {{tariif.name}}
+                        </span>
+                        <ng-container *ngFor="let award of buyTicketService.ticketAwards">
+                            <span class="color-gray ft-15 d-block mb-1" *ngIf="award.quantity && award.quantity > 0">
+                                {{award.quantity}} {{award.name}}
+                            </span>
+                        </ng-container>
+                        <span class="color-gray ft-15 d-block mb-1" *ngFor="let code of buyTicketService.codes">
+                            {{code.quantity}} {{code.name}} ({{code.code_promotion}})
+                        </span>
+                        <span class="color-gray ft-15 d-block" *ngIf="buyTicketService.tickets_number <= 0">-</span>
+
+                        <small class="color-gray ft-14 mt-1" *ngIf="buyTicketService.tickets_number > 0">
+                            ({{buyTicketService.tickets_number}} {{Utils.isSingular( buyTicketService.tickets_number ) ? 'ticket' : 'tickets'}})
+                        </small>
+                    </div>
+
+                    <div class="d-flex flex-column lh-1 mt-3" *ngIf="step > 1">
+                        <span class="font-helvetica-bold ft-12 color-title">Butacas Seleccionadas</span>
+                        <span class="color-gray ft-15">{{Utils.arrToString( { arr: seats, field: 'position' } )}}</span>
+                    </div>
+
+                </div>
+
+                <div class="buy-details w-100 d-flex flex-column pl-0">
+                    <div *ngIf="step > 2 && showChocolateria()" class="mt-4">
+                        <p class="text-center ft-18 color-title font-helvetica-bold">Chocolatería</p>
+
+                        <div class="ml-1 mb-2" *ngFor="let product of candyService.selectedProducts">
+                            <app-candy-card [product]="product"
+                                            [step]="step"
+                                            [headquarter_id]="buyTicketService.selectedOption?.cinema"
+                                            [isLoggedIn]="isLoggedIn">
+                            </app-candy-card>
+                        </div>
+
+                        <div class="ml-1 mb-2" *ngFor="let choco of candyService.chocoAwards">
+                            <app-candy-card *ngIf="choco.quantity && choco.quantity > 0"
+                                            [isPromo]="true"
+                                            [step]="step"
+                                            [product]="choco"
+                                            [isLoggedIn]="isLoggedIn">
+                            </app-candy-card>
+                        </div>
+
+                    </div>
+
+                    <div class="totales d-flex flex-column lh-1 mt-3 mt-lg-4">
+                        <span class="total font-helvetica-bold ft-17 text-secondary">Total</span>
+                        <span class="amount color-title ft-20">S/ {{totalPayment + candyService.paymentAmount | number: '.2'}}</span>
+                    </div>
+
+                </div>
+            </perfect-scrollbar>
+
+            <div class="buttons position-absolute">
+                <div class="w-100 text-center mt-4">
+                    <button class="btn btn-primary px-5" (click)="nextStep()"
+                            [disabled]="step === 2 && buyTicketService.tickets_number !== buyTicketService.seats.length || isLoading">
+                        <!--                <button class="btn btn-primary px-5" (click)="nextStep()" [disabled]="totalPayment <= 0">-->
+                        <span class="bouncingLoader" *ngIf="isLoading">
+                        <span></span>
+                    </span>
+                        <span *ngIf="!isLoading">
+                          {{step < 4 ? 'Continuar' : 'Pagar'}}
+                    </span>
+                    </button>
+                </div>
+
+                <div class="w-100 text-center mt-lg-2">
+                    <button class="btn btn-default text-primary" (click)="cancel()" [disabled]="isLoading">Cancelar compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

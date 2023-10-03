@@ -1,0 +1,145 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+
+.container-fluid {
+    padding-top: 67px;
+    height: 100vh;
+}
+
+.tabs {
+    min-height: 55px;
+    flex-wrap: wrap;
+
+    @include for-min-width(1000px) {
+        flex-wrap: nowrap;
+    }
+
+    .tab {
+        &.active {
+            border-bottom: solid 2.5px $primary;
+        }
+    }
+}
+
+ng-select {
+    max-width: auto;
+}
+
+.products {
+    display: grid;
+    //grid-template-columns: 1fr;
+    gap: 10px;
+    justify-content: center;
+    padding-bottom: 120px !important;
+
+    @include for-min-width(600px) {
+        grid-template-columns: 1fr 1fr;
+
+    }
+}
+
+.no-content {
+    height: 40vh;
+}
+
+.bottom {
+    z-index: 1;
+    background: white;
+    width: 100%;
+    box-shadow: 0 -2px 6px 0 rgba(137, 154, 201, 0.16);
+    padding: 10px 20px;
+    position: fixed;
+    left: 0;
+    bottom: -72px;
+    transition: all .5s;
+
+    .btn {
+        height: 40px;
+        width: 150px;
+    }
+
+    &.active {
+        bottom: 0;
+    }
+}
+
+.my-purchase,
+.candy-filters {
+    left: 0;
+    bottom: -100px;
+    box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.16);
+    transition: all .5s;
+    max-height: 0;
+    overflow: hidden;
+    z-index: 2;
+
+    &.active {
+        bottom: 0;
+        max-height: 70vh;
+    }
+
+    .options {
+        span {
+            border: solid 1px #d5d5d5;
+            border-radius: 14px;
+            padding: 3px 10px;
+            margin-bottom: 5px;
+            margin-right: 15px;
+
+            &.active {
+                background-color: $secondary;
+                border-color: $secondary;
+                color: $color-title;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.my-purchase {
+    &.active {
+        max-height: 90vh;
+    }
+
+}
+
+::ng-deep {
+    perfect-scrollbar.filters-scroll {
+        .ps-content {
+            max-height: 35vh;
+        }
+
+    }
+
+    perfect-scrollbar.my-purchase-scroll {
+        .ps-content {
+            max-height: 55vh;
+        }
+
+    }
+}
+
+.icon-calendar {
+    right: 12px;
+    top: 15px;
+}
+
+.md-input input:not(:placeholder-shown) + label, .md-input input:focus + label {
+    top: 6px;
+    left: 40px;
+    color: #161615;
+    padding: 0 12px;
+    font-size: 0.75rem !important;
+    font-family: "HelveticaNeue-Bold", sans-serif;
+}
+
+.md-input label {
+    font-family: "HelveticaNeue-Medium", sans-serif;
+    font-size: 0.9375rem;
+    color: #161615;
+    padding-left: 30px;
+}
+.md-input input:not(:placeholder-shown) + label, .md-input input:focus + label {
+    left: 40px;
+    color: #424242;
+}

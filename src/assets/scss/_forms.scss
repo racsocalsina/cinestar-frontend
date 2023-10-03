@@ -1,0 +1,16 @@
+.form-control {
+    border-radius: 23px;
+    height: 50px;
+    box-shadow: none !important;
+    border: solid 1px #dddddd;
+
+    &:focus {
+        border: solid 1px #dddddd;
+    }
+
+    &.form-control-1 {
+        border-left: 1px solid #dddddd !important;
+        height: auto !important;
+        border-radius: 0;
+    }
+}

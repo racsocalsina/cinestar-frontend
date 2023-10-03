@@ -1,0 +1,30 @@
+.card {
+    border-radius: 13px;
+    border: none;
+    box-shadow: 0 1px 6px 0 rgba(78, 124, 149, 0.16);
+    max-width: 350px;
+
+    .card-body {
+        padding: 1.1rem;
+    }
+}
+
+img {
+    min-width: 85px;
+    height: 85px;
+}
+
+.btn-secondary {
+    width: 100px;
+    height: 28px;
+}
+
+.icon-close-solid {
+    color: #bebebe;
+}
+
+.icon-close-solid,
+.icon-star {
+    right: -10px;
+    top: -10px;
+}

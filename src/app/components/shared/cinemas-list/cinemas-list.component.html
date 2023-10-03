@@ -1,0 +1,80 @@
+<!--<div class="card mx-1" *ngFor="let cinema of cinemas; trackBy: cinemaTrackBy" [class.active]="cinema.id === selectedCinema?.id || cinema.id === cinemaId">
+    <div class="card-body d-flex">
+      <img class="img-fluid cinema cursor-pointer" [src]="cinema.main_photo" [alt]="cinema.name" (click)="cinemaDetails(cinema)" onError="this.src='./assets/images/svg/no-image-cinema.svg';">
+      <div class="d-flex flex-column w-100 pl-3 pr-2 py-2">
+        <div class="d-flex justify-content-between">
+          <h3 class="color-title ft-12 font-helvetica-bold cursor-pointer" (click)="cinemaDetails(cinema)">
+            <img src="./assets/images/svg/cine-icon.svg" alt="cine">
+            {{ cinema.name }},
+            <br>
+            <span class="color-gray font-helvetica font-weight-normal">{{ cinema.address }}</span>
+          </h3>
+          <span class="icon-star cursor-pointer" [class.favorite]="cinema.is_favorite" [title]="cinema.is_favorite ? 'Quitar de mis favoritos' : 'Agregar a mis favoritos'" (click)="toggleFavorite(cinema)"></span>
+        </div>
+
+        <div class="formats d-flex cursor-pointer" (click)="cinemaDetails(cinema)">
+          <span *ngFor="let format of cinema.movie_formats" class="text-primary font-helvetica-bold ft-10 mr-2">{{ format.short }}</span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-block">
+            <button class="btn btn-secondary mt-2 view-details ft-12 color-title px-3 d-none d-md-block" (click)="showModalCinemaDetails(cinema)">Ver detalle</button>
+          </div>
+
+          <img class="cursor-pointer" src="./assets/images/svg/arrow_right_black.svg" alt="detalles" (click)="cinemaDetails(cinema)">
+        </div>
+      </div>
+    </div>
+  </div>-->
+<!--Dicseño pc-->
+
+<!--Diseño Movil-->
+
+
+<div class="card-container pc-design" *ngFor="let cinema of cinemas; trackBy: cinemaTrackBy" [class.active]="cinema.id === selectedCinema?.id || cinema.id === cinemaId" (click)="cinemaDetails(cinema)" style="cursor: pointer;">
+    <!-- contenido del diseño PC -->
+        <img class="card-image" [src]="cinema.main_photo" [alt]="cinema.name" (click)="cinemaDetails(cinema)" onError="this.src='./assets/images/svg/no-image-cinema.svg';" />
+        <div class="card-content">
+          <div class="card-title">{{ cinema.name }}</div>
+          <div class="card-subtitle">{{ cinema.address }}</div>
+          <div class="card-details">
+            <ng-container *ngIf="cinema.movie_formats && cinema.movie_formats.length > 0">
+              <div class="format" *ngFor="let format of cinema.movie_formats">{{ format.short }}</div>
+            </ng-container>
+            <ng-container *ngIf="!cinema.movie_formats || cinema.movie_formats.length === 0">
+              <div class="format">2D</div>
+            </ng-container>
+            <div class="arrow">
+              <img class="cursor-pointer arrow-image" src="./assets/images/svg/arrow_forward_ios.svg" alt="detalles">
+            </div>
+          </div>
+        </div>
+</div>
+
+<!-- contenido del diseño móvil -->
+
+<div class="container mobile-design" *ngFor="let cinema of cinemas; trackBy: cinemaTrackBy" [class.active]="cinema.id === selectedCinema?.id || cinema.id === cinemaId" (click)="cinemaDetails(cinema)">
+    <div class="container">
+        <div class="content">
+        <div class="logo">
+            <img src="./assets/images/icon_cinestar.png" alt="Logo">
+        </div>
+        <div class="details">
+            <div class="title">{{ cinema.name }}</div>
+            <div class="address">{{ cinema.address }}</div>
+            <ng-container *ngIf="cinema.movie_formats && cinema.movie_formats.length > 0">
+              <div class="format" *ngFor="let format of cinema.movie_formats">{{ format.short }}</div>
+            </ng-container>
+            <ng-container *ngIf="!cinema.movie_formats || cinema.movie_formats.length === 0">
+              <div class="format">2D</div>
+            </ng-container>
+        </div>
+        </div>
+        <div class="icon">
+            <div class="arrow">
+                <img class="cursor-pointer arrow-image" src="./assets/images/svg/arrow_forward_ios.svg" alt="detalles" (click)="cinemaDetails(cinema)">
+            </div>
+        </div>
+    </div>
+</div>
+

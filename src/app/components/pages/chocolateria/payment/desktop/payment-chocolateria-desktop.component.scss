@@ -1,0 +1,27 @@
+@import "~assets/scss/breakpoints";
+
+.container-fluid {
+    height: auto;
+}
+
+.sidebar {
+    padding-top: 50px;
+    min-width: 120px;
+
+    @include min-width-1200 {
+        width: 150px;
+    }
+}
+
+.content {
+    .card {
+        //max-width: 590px;
+        border-radius: 25px;
+        box-shadow: 0 1px 6px 0 rgba(78, 124, 149, 0.16);
+    }
+}
+
+.sidebar-right {
+    width: 50vw;
+    min-height: calc(100vh - 67px);
+}

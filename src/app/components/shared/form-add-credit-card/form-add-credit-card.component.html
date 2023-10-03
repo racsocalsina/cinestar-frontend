@@ -1,0 +1,63 @@
+<form class="row" [formGroup]="form">
+    <div class="col-12 mb-4 d-flex justify-content-around justify-content-between">
+        <div class="card-icon" [class.active]="creditCardInfo?.type === creditCards.Visa">
+            <img src="./assets/images/svg/visa.svg" alt="">
+        </div>
+        <div class="card-icon" [class.active]="creditCardInfo?.type === creditCards.Mastercard">
+            <img src="./assets/images/svg/master-card.svg" alt="">
+        </div>
+        <div class="card-icon" [class.active]="creditCardInfo?.type === creditCards.Amex">
+            <img src="./assets/images/svg/american-express.svg" alt="">
+        </div>
+        <div class="card-icon" [class.active]="creditCardInfo?.type === creditCards.Diners">
+            <img src="./assets/images/svg/diners.png" alt="">
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="form-group md-input">
+            <app-control-messages [control]="form.get('number')" [showMessage]="false">
+                <input (ngModelChange)="onChange()"
+                       formControlName="number" type="text" class="form-control font-helvetica"
+                       [mask]="creditCardInfo?.mask || '0000-0000-0000-0000'"
+                       placeholder="Número de tarjeta" autocomplete="false">
+
+                <label class="">Número de tarjeta</label>
+            </app-control-messages>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="form-group md-input">
+            <app-control-messages [control]="form.get('expiration_date')" >
+                <input formControlName="expiration_date" type="text" class="form-control font-helvetica" id="date"
+                       mask="M0/00"
+                       placeholder="Fecha de vencimiento MM/AA" autocomplete="false" alphaNumeric alphaNumericType="n">
+                <label for="date">Fecha de vencimiento MM/AA</label>
+            </app-control-messages>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="form-group md-input">
+            <app-control-messages [control]="form.get('full_name')" >
+                <input formControlName="full_name" type="text" class="form-control font-helvetica" id="full-name"
+                       alphaNumeric alphaNumericType="a"
+                       placeholder="Nombre completo" autocomplete="false">
+                <label for="full-name" class="">Nombre completo</label>
+            </app-control-messages>
+        </div>
+    </div>
+
+    <div class="col-12 my-3 text-danger" *ngIf="error">{{error}}</div>
+
+    <div class="col-12 mt-4 d-flex justify-content-around">
+        <button *ngIf="showCancel" class="btn btn-outline-primary mr-2" (click)="onCancel.emit()">Cancelar</button>
+        <button class="btn btn-primary" (click)="addCard()">
+            <span class="bouncingLoader" *ngIf="isLoading">
+                <span></span>
+            </span>
+            <span *ngIf="!isLoading">Agregar</span>
+        </button>
+    </div>
+</form>

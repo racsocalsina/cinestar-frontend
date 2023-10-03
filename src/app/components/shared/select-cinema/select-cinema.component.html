@@ -1,0 +1,158 @@
+<div class="filters d-flex justify-content-between">
+    <ng-container *ngIf="!onSearch; else search">
+        <div class="inputs w-100 d-flex mt-lg-2" [formGroup]="form">
+            <div class="search flex-grow-1 input-group d-none d-lg-flex mb-4 mr-2" *ngIf="!cinemaId">
+                <div class="input-group-prepend d-flex justify-content-center align-items-center border-right-0">
+                    <span class="icon-search text-secondary ft-20"></span>
+                </div>
+                <input type="text" class="form-control pl-0" #seachTerm
+                       id="inlineFormInputGroup" placeholder="Buscar cine..." (keyup)="searchShow(seachTerm.value)">
+            </div>
+
+            <ng-select formControlName="cinema" class="custom filter cine responsive mr-2"
+                       placeholder="Cine" [items]="allShowTimes" *ngIf="cinemaId"
+                       (change)="selectCinema($event)"
+                       bindLabel="name" bindValue="id" [searchable]="false">
+                <ng-template ng-option-tmp let-item="item">
+                    <div class="template">
+                        <img src="./assets/images/svg/cine2.svg" alt="cine">
+                        <div class="d-flex flex-column">
+                            <span class="bank">{{item.name}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-select>
+
+            <ng-select formControlName="city_id" class="custom responsive filter map mr-2"
+                       placeholder="Ciudad" [items]="cities" (change)="filterShows()"
+                       [searchable]="false" bindValue="id" bindLabel="name" *ngIf="!cinemaId">
+                <ng-template ng-option-tmp let-item="item">
+                    <div class="template">
+                        <img src="./assets/images/svg/map-marker.svg" alt="map">
+                        <div class="d-flex flex-column">
+                            <span class="bank">{{item.name}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-select>
+
+            <ng-select formControlName="date" class="custom filter fecha w-100" (change)="filterShows()"
+                       placeholder="Fecha" [items]="billboardDates" [clearable]="false"
+                       bindValue="date" bindLabel="name" [searchable]="false">
+                <ng-template ng-option-tmp let-item="item">
+                    <div class="template">
+                        <img src="./assets/images/svg/fecha2.svg" alt="fecha">
+                        <div class="d-flex flex-column">
+                            <span class="bank">{{item.name}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-select>
+        </div>
+
+        <div class="icon cursor-pointer d-none d-sm-flex d-lg-none justify-content-center align-items-center" (click)="onSearch = true" *ngIf="!cinemaId">
+            <span class="icon-search text-secondary ft-20"></span>
+        </div>
+    </ng-container>
+
+    <ng-template #search>
+        <div class="on-search input-group mb-3">
+            <input id="responsive-movie-search" type="text"
+                   class="form-control font-helvetica-medium border-right-0"
+                   placeholder="Buscar cine..."
+                   #searchTermResponsive (keyup)="searchShow(searchTermResponsive.value)">
+            <div class="input-group-append border-left-0">
+                <img src="./assets/images/svg/close_black.svg" alt="close" (click)="onSearch = false">
+            </div>
+        </div>
+    </ng-template>
+
+</div>
+<perfect-scrollbar>
+
+    <div *ngIf="loadingShows" class="d-flex justify-content-center align-items-center flex-column"
+         style="height: 250px">
+        Cargando...
+        <span class="bouncingLoader">
+            <span></span>
+        </span>
+    </div>
+
+    <div *ngIf="!loadingShows && !showTimes.length" class="d-flex justify-content-center align-items-center flex-column"
+         style="height: 250px">
+        No hay funciones disponibles
+    </div>
+
+    <div class="cinemas" *ngIf="!loadingShows">
+        <ng-container>
+            <div class="cinema pb-3 pt-3 pt-lg-4 d-flex align-items-center" *ngFor="let cinema of showTimes">
+                <div class="d-flex">
+                    <div class="icon mr-2">
+                        <img src="./assets/images/svg/cine-icon.svg" alt="cine">
+                    </div>
+                    <div class="info w-100">
+                        <div class="name d-flex flex-wrap align-items-center">
+                            <h3 class="ft-18 color-title font-helvetica-bold mb-0 mr-2">{{cinema.name}},</h3>
+                            <span class="ft-14 color-gray">{{cinema.address}}</span>
+                        </div>
+                        <div class="formats my-3 d-flex justify-content-between justify-content-sm-start align-items-center">
+                            <label class="ft-10 text-primary font-helvetica-bold mb-0 mr-sm-4">SELECCIONE EL HORARIO:</label>
+                            <!-- <div class="options">
+                                 &lt;!&ndash;active&ndash;&gt;
+                                 <span *ngFor="let format of cinema.movie_formats"
+                                       class="ft-15 cursor-pointer font-helvetica-bold mr-2"
+                                       (click)="selectFormat(format, cinema)"
+                                       [class.active]="selectedOption.format === format.id && selectedOption.cinema === cinema.id">
+                                     {{format.name}}
+                                 </span>
+                             </div>-->
+                        </div>
+
+                        <!--                    <div class="schedule d-flex align-items-center">-->
+                        <div class="schedule d-flex align-items-start flex-wrap flex-lg-grow-1 pb-lg-3">
+                            <!--active-->
+                            <span class="ft-11 color-gray cursor-pointer font-helvetica-medium"
+                                  *ngFor="let time of cinema.movie_times"
+                                  (click)="selectTime(time, cinema.id)"
+                                  [class.active]="selectedOption.movie_time === time.id && selectedOption.cinema === cinema.id">
+                                {{time.time_start | time}}
+                            </span>
+                        </div>
+
+                        <!-- <div class="d-none d-lg-flex justify-content-start w-25">
+                             <button class="btn btn-primary px-5 d-none" [class.d-lg-block]="selectedCinema" (click)="buy()">Comprar</button>
+                         </div>-->
+
+                        <!--                    </div>-->
+                    </div>
+
+
+                </div>
+
+                <div class="d-none d-lg-flex justify-content-end w-25">
+                    <button class="btn btn-primary px-5 d-none"
+                            [class.d-lg-block]="selectedOption.cinema === cinema.id && selectedOption.movie_time"
+                            (click)="buy()" [disabled]="isLoading">
+                            <span class="bouncingLoader" *ngIf="isLoading">
+                                <span></span>
+                            </span>
+                        <span *ngIf="!isLoading">Comprar</span>
+                    </button>
+                </div>
+
+            </div>
+        </ng-container>
+
+    </div>
+</perfect-scrollbar>
+
+
+<div class="buy bg-white position-fixed w-100 d-flex justify-content-center align-items-center"
+     [class.active]="!loadingShows && selectedOption.cinema && selectedOption.movie_time">
+    <button class="btn btn-primary px-5" (click)="buy()" [disabled]="isLoading">
+        <span class="bouncingLoader" *ngIf="isLoading">
+            <span></span>
+        </span>
+        <span *ngIf="!isLoading">Comprar</span>
+    </button>
+</div>

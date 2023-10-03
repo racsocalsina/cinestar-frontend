@@ -1,0 +1,144 @@
+<app-header-home></app-header-home>
+<div class="content-corporate">
+    <app-carousel-banner [banners]="banners" class="d-sm-none" [class.d-sm-block]="type() == 'banners_desktop'"></app-carousel-banner>
+    <div class="container">
+        <div class="corporate-sales mt-5 pt-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="text-center text-md-left">
+                        <div class="section-title mb-4">
+                            <h1 class="color-title mx-auto mx-md-0">Ventas Corporativas</h1>
+                        </div>
+                        <p class="font-helvetica w-100 ft-20 color-gray">Te ofrecemos excelentes alternativas para anunciar y hacer crecer tu marca.</p>
+                        <div class="mt-5 mb-5">
+                            <h5 class="font-helvetica-bold mb-0 ft-20 text-primary">Contáctanos:</h5>
+                            <p class="font-helvetica color-gray w-100 ft-20">ventascorporativas@cinestar.com.pe</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="content-img background-style p-5 m-auto" [style.background-image]="'url(' + './assets/images/qs-3.png' + ')'"></div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="services mt-5 mt-md-4 mt-xl-0 pt-5">
+            <div class="section-title mb-5">
+                <h1 class="color-title mx-auto mx-md-0">Servicios</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 mb-5 p-md-0" id="salas">
+                        <div class="box d-flex align-items-center flex-wrap flex-md-nowrap">
+                            <div class="box-image d-flex justify-content-center align-items-center  m-auto m-md-0"><img src="./assets/images/svg/salas.svg" class="img-fluid" alt=""></div>
+                            <div class="box-content ml-md-5 mt-4 ml-md-5">
+                                <h5 class="font-helvetica-medium color-title">Alquiler de Salas para eventos</h5>
+                                <p>Ideales para realizar conferencias, seminarios de capacitación, lanzamientos de productos, presentaciones o conferencias.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-5 p-md-0" id="funciones-privadas">
+                        <div class="box d-flex align-items-center flex-wrap flex-md-nowrap">
+                            <div class="box-image d-flex justify-content-center align-items-center  m-auto m-md-0"><img src="./assets/images/svg/funciones-privadas.svg" class="img-fluid" alt=""></div>
+                            <div class="box-content ml-md-5 mt-4 ml-md-5">
+                                <h5 class="font-helvetica-medium color-title">Funciones Privadas</h5>
+                                <p>Funciones exclusivas, para celebrar cumpleaños, agasajar clientes y colaboradores, con la película de cartelera que elijas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-xl-6 mb-5 p-md-0">
+                        <div class="box d-flex align-items-center flex-wrap flex-md-nowrap">
+                            <div class="box-image d-flex justify-content-center align-items-center  m-auto m-md-0"><img src="./assets/images/svg/publicidad.svg" class="img-fluid" alt=""></div>
+                            <div class="box-content ml-md-5 mt-4 ml-md-5">
+                                <h5 class="font-helvetica-medium color-title">Publicidad en Pagina web</h5>
+                                <p>Una forma efectiva de llegar a los espectadores, quienes a través de nuestra página consultan la programación de cada semana, nuestras promociones y próximos estrenos.</p>
+                            </div>
+                        </div>
+                    </div>-->
+
+                    <div class="col-xl-6 mb-5 p-md-0" id="activacion">
+                        <div class="box d-flex align-items-center flex-wrap flex-md-nowrap">
+                            <div class="box-image d-flex justify-content-center align-items-center  m-auto m-md-0">
+                                <img src="./assets/images/svg/activacion.svg" class="img-fluid" alt="">
+                            </div>
+                            <div class="box-content ml-md-5 mt-4 ml-md-5">
+                                <h5 class="font-helvetica-medium color-title">Activación de Marca</h5>
+                                <p>Realza tu marca en los espacios de nuestros lobbies, generando experiencias de entretenimiento a tu cliente.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 mb-5 p-md-0" id="pantallas">
+                        <div class="box d-flex align-items-center flex-wrap flex-md-nowrap">
+                            <div class="box-image d-flex justify-content-center align-items-center m-auto m-md-0">
+                                <img src="./assets/images/svg/pantallas.svg" class="img-fluid" alt="">
+                            </div>
+                            <div class="box-content ml-md-5 mt-4 ml-md-5">
+                                <h5 class="font-helvetica-medium color-title">Alquiler de Pantallas</h5>
+                                <p>Una forma directa y efectiva de llegar a miles
+                                    de clientes potenciales a través de slides publicitarios de tu empresa.
+                                    Consulte nuestros precios incomparables.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 mb-5 p-md-0" id="banners">
+                        <div class="box d-flex align-items-center flex-wrap flex-md-nowrap">
+                            <div class="box-image d-flex justify-content-center align-items-center m-auto m-md-0"><img src="./assets/images/svg/banners.svg" class="img-fluid" alt=""></div>
+                            <div class="box-content ml-md-5 mt-4 ml-md-5">
+                                <h5 class="font-helvetica-medium color-title">Banners y Módulos de Servicio</h5>
+                                <p>Publicidad en lobbies, obteniendo presencia constante de tu marca.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--    <div class="container" *ngIf="content">-->
+<!--        <div class="corporate-sales mt-5 pt-4">-->
+<!--            <div class="row align-items-center">-->
+<!--                <div class="col-md-6">-->
+<!--                    <div class="text-center text-md-left">-->
+<!--                        <div class="section-title mb-4">-->
+<!--                            <h1 class="color-title mx-auto mx-md-0">{{content.title}}</h1>-->
+<!--                        </div>-->
+<!--                        <p class="font-helvetica w-100 ft-20 color-gray">{{content.description}}</p>-->
+<!--                        <div class="mt-5 mb-5">-->
+<!--                            <h5 class="font-helvetica-bold mb-0 ft-20 text-primary">Contáctanos:</h5>-->
+<!--                            <p class="font-helvetica color-gray w-100 ft-20">{{content.email}}</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-md-6">-->
+<!--                    <div class="content-img background-style p-5 m-auto" [style.background-image]="'url('+content.image+')'"></div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="services mt-5 mt-md-4 mt-xl-0 pt-5">-->
+<!--            <div class="section-title mb-5">-->
+<!--                <h1 class="color-title mx-auto mx-md-0">Servicios</h1>-->
+<!--            </div>-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-xl-6 mb-5 p-md-0" *ngFor="let item of content.services">-->
+<!--                        <div class="box d-flex align-items-center flex-wrap flex-md-nowrap">-->
+<!--                            <div class="box-image d-flex justify-content-center align-items-center  m-auto m-md-0">-->
+<!--                                <img [src]="item.image" class="img-fluid" alt="">-->
+<!--                            </div>-->
+<!--                            <div class="box-content ml-md-5 mt-4 ml-md-5">-->
+<!--                                <h5 class="font-helvetica-medium color-title">{{item.title}}</h5>-->
+<!--                                <p>{{item.description}}</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+<app-footer></app-footer>

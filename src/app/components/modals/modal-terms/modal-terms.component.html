@@ -1,0 +1,25 @@
+<div class="modal-header border-bottom-0 pb-0 px-md-5 pt-sm-4">
+    <h3 class="font-helvetica-bold ft-25 color-title lh-1">Términos y Condiciones</h3>
+    <img class="close cursor-pointer pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="close()">
+</div>
+
+<div class="modal-body pt-2 px-md-5 pb-md-4">
+    <perfect-scrollbar class="terms">
+<!--        <p>Mediante el presente, el cliente tiene conocimiento y se obliga a cumplir con la política del cine sobre la prohibición de ingreso a las salas de cine con alimentos y/o bebidas ajenas al establecimiento, en el supuesto de incumplimiento,-->
+<!--            el cine se encuentra facultado de impedir el ingreso a la función.</p>-->
+<!--        <p>Asimismo, no se aceptará devoluciones y/o reembolso de las entradas adquiridas, en caso de incumplimiento.</p>-->
+<!--        <ul>-->
+<!--            <li>La compra de las entradas y/o combos, solo son válidos para el mismo día de la función.</li>-->
+<!--            <li>Esta compra no permite cambio de función, anulación y/o devolución de dinero.</li>-->
+<!--            <li>Cualquier duda respecto al pago, realízala directamente con tu banco emisor.</li>-->
+<!--            <li>Si deseas la boleta electrónica de tu compra ingresa a www.cinestar.com.pe y búscala por el N° de compra.</li>-->
+<!--        </ul>-->
+       <div style="white-space: pre" [innerHTML]="info"> </div>
+    </perfect-scrollbar>
+
+    <div class="modal-footer mt-2">
+        <button class="btn btn-primary font-helvetica-medium" (click)="accept()">
+            Aceptar y continuar
+        </button>
+    </div>
+</div>

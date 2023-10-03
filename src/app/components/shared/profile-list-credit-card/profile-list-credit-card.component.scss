@@ -1,0 +1,20 @@
+.container {
+    padding: 27px 10px 10px 19px;
+}
+
+.back {
+    transform: rotate(180deg);
+    margin-top: 6px;
+}
+
+.no-content {
+    height: 250px;
+
+    .icon-card {
+        font-size: 50px;
+    }
+
+    p {
+        width: 220px;
+    }
+}

@@ -1,0 +1,92 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/variables";
+@import "~assets/scss/fonts";
+
+.container-fluid {
+    background-image: url("~assets/images/svg/footer_bg.svg");
+    background-size: cover;
+
+    @include min-width-992 {
+        padding: 0 30px;
+    }
+
+    @include min-width-1200 {
+        padding: 0 66px;
+    }
+}
+
+h3 {
+    font-family: 'HelveticaNeue-Bold', sans-serif;
+    font-size: $ft-30;
+    color: $yellow;
+}
+
+.form-control {
+    background-color: transparent;
+    border: solid 1px #ffffff;
+}
+
+.md-input {
+
+    input,
+    label {
+        color: #ffffff;
+        font-weight: normal;
+    }
+
+    input:not(:placeholder-shown) + label,
+    input:focus + label {
+        font-family: 'HelveticaNeue-Medium', sans-serif;
+    }
+}
+
+textarea {
+    width: 100%;
+    background: transparent;
+    color: #ffffff;
+    font-family: 'HelveticaNeue-Medium', sans-serif;
+    border-radius: 8px;
+    border: solid 1px #ffffff;
+    padding: 5px 10px;
+    height: 88px;
+    resize: none;
+
+    @include min-width-1200 {
+        height: 116px;
+    }
+
+    &::placeholder {
+        color: #ffffff;
+    }
+}
+
+.btn {
+    height: 38px;
+    line-height: 1;
+}
+
+.links {
+    line-height: 1;
+    text-align: center;
+
+    @include min-width-768 {
+        text-align: left;
+        margin-top: 50px;
+    }
+
+    a {
+        font-size: $ft-10;
+        font-family: 'HelveticaNeue-Bold', sans-serif;
+        color: #ffffff;
+
+        &.active,
+        &:hover {
+            color: $secondary;
+            text-decoration: none;
+        }
+
+        @include min-width-576 {
+            font-size: $ft-13;
+        }
+    }
+}

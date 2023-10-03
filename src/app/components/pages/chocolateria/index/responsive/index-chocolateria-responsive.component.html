@@ -1,0 +1,267 @@
+<app-header-chocolateria>
+</app-header-chocolateria>
+
+<div class="container-fluid">
+    <div class="w-100 mt-3">
+        <div class="row">
+            <div class="col-md-4">
+                <ng-select class="custom filter map" [items]="cinemas"
+                        [(ngModel)]="headquarter_id" [clearable]="false"
+                        placeholder="Sede donde retira los productos"
+                        [searchable]="false" bindValue="id" bindLabel="name"
+                        (change)="onSelectCinema()">
+                    <ng-template ng-option-tmp let-item="item">
+                        <div class="template">
+                            <img src="./assets/images/svg/map-marker2.svg" alt="map">
+                            <div class="d-flex flex-column">
+                                <span class="bank">{{item.name}}</span>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-select>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group md-input auth-calendar position-relative mb-0">
+                    <input (bsValueChange)="onSelectCinema()" type="text" style="background: transparent !important; border:none ;
+                    box-shadow: 0 0 6px 0 rgb(27 43 96 / 11%) !important; padding-left: 50px;"
+                        placeholder="Fecha de recojo"
+                        class="form-control form-control-2"
+                        [bsConfig]="bsConfig"
+                        #dp="bsDatepicker"
+                        [(ngModel)]="this.pickup_date"
+                        bsDatepicker
+                        readonly>
+                    <label class="label-date-born">Seleccione fecha de recojo</label>
+                    <div class="icon-calendar position-absolute cursor-pointer cursor-pointer"
+                            (click)="dp.toggle()" style="left: 15px; top: 15px;">
+                            <img src="./assets/images/svg/icon-calendar.svg" class="img-fluid" alt="">
+                    </div>
+                    <div class="icon-calendar position-absolute cursor-pointer cursor-pointer" 
+                            (click)="dp.toggle()" style="right: 18px; top: 15px;">
+                            <img src="./assets/images/svg/picker_arrow_down.svg" class="img-fluid ml-1" width="15" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-100">
+        <div class="tabs d-flex align-items-center justify-content-around">
+            <div class="tab font-helvetica-bold ft-18 color-title cursor-pointer" [class.active]="tab === 'combos'"
+                 (click)="tab = 'combos'">Combos
+            </div>
+            <div class="tab font-helvetica-bold ft-18 color-title cursor-pointer" [class.active]="tab === 'products'"
+                 (click)="tab = 'products'">Productos
+            </div>
+            <div class="tab font-helvetica-bold ft-18 color-title cursor-pointer" [class.active]="tab === 'promotions'"
+                 (click)="tab = 'promotions'">Promociones
+            </div>
+            <div *ngIf="isLoggedIn" class="tab font-helvetica-bold ft-18 color-title cursor-pointer"
+                 [class.active]="tab === 'favoritos'" (click)="tab = 'favoritos'">Favoritos
+            </div>
+        </div>
+
+        <div class="my-3 mb-lg-4 d-flex justify-content-between align-items-center" *ngIf="headquarter_id && pickup_date && today">
+            <app-promo-codes source="choco" type="choco" *ngIf="isLoggedIn && pickup_date.toDateString() === today.toDateString()"></app-promo-codes>
+            <div class="filter d-flex align-items-center cursor-pointer" *ngIf="tab === 'combos' || tab === 'products' || tab === 'promotions'">
+                <img class="mr-1 img-fluid" src="./assets/images/svg/filter_red.svg" alt="">
+                <span class="font-helvetica-bold color-title ft-12" (click)="showFilters()">Filtrar</span>
+            </div>
+        </div>
+
+        <div *ngIf="!headquarter_id || !this.pickup_date" class="no-content d-flex flex-column justify-content-center align-items-center">
+            <img src="./assets/images/svg/dulceria_2.svg" alt="">
+            <p class="lh-1 ft-15 color-gray mt-2 text-center">Debe seleccionar una sede y fecha de recojo</p>
+        </div>
+
+        <ng-container
+            *ngIf="headquarter_id && this.pickup_date && ((!filteredCombos.length && tab === 'combos') || (!filteredPromos.length && tab === 'promotions') || (!filteredProducts.length && tab === 'products') || (!favorites.length && tab === 'favoritos'))">
+            <div class="no-content d-flex flex-column justify-content-center align-items-center">
+                <p class="lh-1 color-gray mt-2 text-center">No hay productos disponibles</p>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="headquarter_id">
+            <div class="d-none" [class.d-block]="tab === 'combos'">
+                <div class="products py-4 pl-1">
+                    <app-candy-card *ngFor="let combo of filteredCombos; trackBy:trackCombos"
+                                    (updated)="updatedProduct(combo)"
+                                    [headquarter_id]="headquarter_id"
+                                    [product]="combo"
+                                    [isLoggedIn]="isLoggedIn">
+                    </app-candy-card>
+                </div>
+            </div>
+
+            <div class="d-none" [class.d-block]="tab === 'products'">
+                <div class="products py-4 pl-1">
+                    <app-candy-card *ngFor="let product of filteredProducts; trackBy:trackProducts"
+                                    (updated)="updatedProduct(product)"
+                                    [headquarter_id]="headquarter_id"
+                                    [product]="product"
+                                    [isLoggedIn]="isLoggedIn">
+                    </app-candy-card>
+                </div>
+            </div>
+            <div class="d-none" [class.d-block]="tab === 'promotions'">
+                <div class="products py-4 pl-1">
+                    <app-candy-card *ngFor="let product of filteredPromos; trackBy:trackPromos"
+                                    (updated)="updatedProduct(product)"
+                                    [headquarter_id]="headquarter_id"
+                                    [product]="product"
+                                    [isLoggedIn]="isLoggedIn">
+                    </app-candy-card>
+                </div>
+            </div>
+            <div class="d-none" [class.d-block]="tab === 'favoritos'">
+                <div class="products py-4 pl-1">
+                    <app-candy-card *ngFor="let product of favorites; trackBy:trackFavorites"
+                                    (updated)="updatedProduct(product)"
+                                    [headquarter_id]="headquarter_id"
+                                    [product]="product"
+                                    [isLoggedIn]="isLoggedIn">
+                    </app-candy-card>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="bottom mt-3" [class.active]="showChocolateria()">
+        <div class="row">
+            <div class="col-6 d-flex flex-column">
+                <span class="ft-15 font-helvetica-bold text-secondary">Total</span>
+                <span class="ft-20 color-title">S/ {{candyService.paymentAmount | number: '.2'}}</span>
+            </div>
+
+            <div class="col-6 d-flex flex-column justify-content-center align-items-center">
+                <button class="btn btn-primary" (click)="showMyPurchase = true"
+                        [disabled]="!!showChocolateria() || isLoading">
+                    <span class="bouncingLoader" *ngIf="isLoading">
+                        <span></span>
+                    </span>
+                    <span *ngIf="!isLoading">
+                         Ver compra
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-purchase bg-white p-3 position-fixed w-100 d-flex flex-column" [class.active]="showMyPurchase">
+        <div class="d-flex justify-content-end">
+            <img class="cursor-pointer" src="./assets/images/svg/close_black.svg" alt=""
+                 (click)="showMyPurchase = false">
+        </div>
+
+        <p class="ft-20 color-title font-helvetica-bold mb-0">Tu compra</p>
+        <span class="ft-15 color-gray lh-1">Resumen de la compra, por favor verifique los datos.</span>
+
+        <perfect-scrollbar class="my-purchase-scroll">
+            <div class="products py-4 pl-1" style="padding-bottom: 30px !important;">
+                <app-candy-card *ngFor="let product of candyService.selectedProducts; trackBy:trackFavorites"
+                                (updated)="updatedProduct(product)"
+                                [headquarter_id]="headquarter_id"
+                                [product]="product"
+                                [isLoggedIn]="isLoggedIn">
+                </app-candy-card>
+
+                <ng-container *ngFor="let product of candyService.chocoAwards;">
+                    <app-candy-card *ngIf="product.quantity && product.quantity > 0"
+                                    [isPromo]="true"
+                                    [product]="product"
+                                    [isLoggedIn]="isLoggedIn">
+                    </app-candy-card>
+                </ng-container>
+
+            </div>
+        </perfect-scrollbar>
+
+
+        <div class="d-flex flex-column justify-content-center align-items-center mt-2">
+            <div class="d-flex">
+                <span class="text-primary ft-12 font-helvetica-bold">Fecha de recojo</span>
+            </div>
+            <div class="d-flex">
+                <span class="color-gray ft-15">{{candyService.day}}, {{candyService.day_number}} de {{this.candyService.month}} de {{candyService.year}}</span>
+            </div>
+            <div class="d-flex">
+                <span class="ft-20 font-helvetica-bold text-secondary mr-2">Total</span>
+                <span class="ft-20 color-title">S/ {{candyService.paymentAmount | number: '.2'}}</span>
+            </div>
+
+            <button class="btn btn-primary px-5 my-3" (click)="initPurchase()"
+                    [disabled]="isLoading || !showChocolateria()">
+                <span class="bouncingLoader" *ngIf="isLoading">
+                    <span></span>
+                </span>
+                <span *ngIf="!isLoading">
+                    Continuar
+                </span>
+            </button>
+
+            <span class="text-primary font-helvetica-bold" (click)="reset()">Vaciar compra</span>
+        </div>
+
+    </div>
+
+    <div class="candy-filters bg-white p-3 position-fixed w-100 d-flex flex-column" [class.active]="showCandyFilters">
+        <div class="d-flex justify-content-end">
+            <img class="cursor-pointer" src="./assets/images/svg/close_black.svg" alt="" (click)="closeCandyFilters()">
+        </div>
+        <p class="ft-20 text-primary font-helvetica-bold mb-2" *ngIf="tab === 'combos'">Filtrar Combos</p>
+        <p class="ft-20 text-primary font-helvetica-bold mb-2" *ngIf="tab === 'products'">Filtrar Productos</p>
+
+        <div class="mt-3" *ngIf="tab === 'products'">
+            <perfect-scrollbar class="filters-scroll">
+                <div class="custom-control custom-radio mx-3" *ngFor="let product of $productTypes | async">
+                    <input type="radio"
+                           (click)="_product_type_id && _product_type_id == product.id ?
+                           _product_type_id = undefined : _product_type_id=product.id"
+                           [checked]="_product_type_id == product.id"
+                           [value]="product.id" [id]="'products-' + product.id"
+                           name="_product_type_id" class="custom-control-input">
+                    <label class="custom-control-label" [for]="'products-' + product.id">
+                        {{product.name}}
+                    </label>
+                </div>
+            </perfect-scrollbar>
+        </div>
+
+        <div class="mt-3" *ngIf="tab === 'combos'">
+            <perfect-scrollbar class="filters-scroll">
+                <div class="custom-control custom-radio mx-3" *ngFor="let product of $comboTypes | async">
+                    <input type="radio"
+                           (click)="_combo_type_id && _combo_type_id == product.id ?
+                           _combo_type_id = undefined : _combo_type_id=product.id"
+                           [checked]="_combo_type_id == product.id"
+                           [value]="product.id" [id]="'combos-' + product.id"
+                           name="_product_type_id" class="custom-control-input">
+                    <label class="custom-control-label" [for]="'combos-' + product.id">
+                        {{product.name}}
+                    </label>
+                </div>
+            </perfect-scrollbar>
+        </div>
+        <div class="mt-3" *ngIf="tab === 'promotions'">
+            <perfect-scrollbar class="filters-scroll">
+                <div class="custom-control custom-radio mx-3" *ngFor="let product of $promoTypes | async">
+                    <input type="radio"
+                           (click)="_promotion_type_id && _promotion_type_id == product.id ?
+                           _promotion_type_id = undefined : _promotion_type_id=product.id"
+                           [checked]="_promotion_type_id == product.id"
+                           [value]="product.id" [id]="'promo-' + product.id"
+                           name="_promotion_type_id" class="custom-control-input">
+                    <label class="custom-control-label" [for]="'promo-' + product.id">
+                        {{product.name}}
+                    </label>
+                </div>
+            </perfect-scrollbar>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <button class="btn btn-primary px-5" (click)="filter()">
+                Aplicar Filtros
+            </button>
+        </div>
+    </div>
+
+</div>

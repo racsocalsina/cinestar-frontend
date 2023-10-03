@@ -1,0 +1,48 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+
+.tabs {
+    min-height: 55px;
+    flex-wrap: wrap;
+
+    @include for-min-width(1000px) {
+        flex-wrap: nowrap;
+    }
+
+    .tab {
+        margin-right: 25px;
+
+        &.active {
+            border-bottom: solid 2.5px $primary;
+        }
+    }
+}
+
+.products {
+    display: grid;
+    //grid-template-columns: 1fr;
+    gap: 10px;
+    justify-content: center;
+
+    @include for-min-width(1000px) {
+        grid-template-columns: 1fr 1fr;
+
+    }
+}
+
+.custom {
+    width: 250px;
+}
+
+
+::ng-deep {
+    perfect-scrollbar.products-scroll {
+        .ps-content {
+            @include min-width-768 {
+                max-height: calc(100vh - 330px);
+                padding-right: 30px;
+            }
+
+        }
+    }
+}

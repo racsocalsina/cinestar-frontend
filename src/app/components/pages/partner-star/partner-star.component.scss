@@ -1,0 +1,91 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+.section-title {
+    h1 {
+        font-size: $ft-28;
+
+        @include min-width-768 {
+            font-size: $ft-40;
+        }
+    }
+}
+
+.line {
+    width: 98px;
+    height: 6px;
+
+}
+
+.content-socio-movie {
+    padding: 70px 0;
+
+    .img-socio-start {
+        width: 40%;
+        @include min-width-768 {
+            width: 100%;
+        }
+    }
+
+    p {
+        max-width: 388px;
+        line-height: 1.17;
+    }
+}
+
+.content-benefits {
+    background: url('~assets/images/bg-beneficios.png');
+    height: 100%;
+    padding: 50px 0;
+
+    @include min-width-768 {
+        height: 497.2px;
+    }
+
+    .box {
+        p {
+            max-width: 218px;
+            height: 77px;
+            line-height: 1.11;
+        }
+    }
+}
+
+.content-awards {
+    padding: 50px 0 80px;
+
+    .card-box {
+        width: 270px;
+
+        @include min-width-768 {
+            width: 331px;
+        }
+        border-radius: 23px;
+
+        .content-img {
+            width: 270px;
+            height: 208px;
+
+            @include min-width-768 {
+                width: 331px;
+                height: 254px;
+            }
+        }
+
+        .description {
+            box-shadow: 0 0 24px 0 rgba(23, 36, 80, 0.11);
+            padding: 8px 10px;
+            border-radius: 0 0 23px 23px;
+
+            p {
+                line-height: 1.11;
+                height: 50px;
+            }
+        }
+    }
+
+    .text-conditions {
+        letter-spacing: 1.1px;
+    }
+}

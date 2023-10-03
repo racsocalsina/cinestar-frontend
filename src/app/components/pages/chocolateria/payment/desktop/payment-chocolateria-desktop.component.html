@@ -1,0 +1,71 @@
+<app-header-home></app-header-home>
+
+<div class="container-fluid d-flex justify-content-between">
+    <div class="sidebar shadow-none">
+        <span class="cursor-pointer color-title ft-15 font-helvetica-bold" routerLink="/chocolateria">
+            <img class="mr-1" src="./assets/images/svg/arrow-left-yellow.svg" alt="back">
+            Volver
+        </span>
+    </div>
+
+    <div class="content pr-3 pr-xl-5 py-5 flex-grow-1 d-flex justify-content-center align-items-center">
+        <div class="card border-0">
+            <div class="card-body">
+                <h1 class="ft-40 font-helvetica-bold color-title">Realiza tu pago</h1>
+
+                <app-chocolateria-payment-form [isLoggedIn]="isLoggedIn"></app-chocolateria-payment-form>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-right">
+        <div class="position-fixed h-100 d-flex flex-column">
+            <p class="font-helvetica-bold color-title ft-15 mb-1">Detalle de la compra</p>
+            <p class="ft-15 color-gray lh-1">Confirme la selección realizada antes de efectuar la compra y seleccione la sede a retirar</p>
+
+            <perfect-scrollbar class="sidebar-right-scroll">
+                <div class="mx-1 mb-2 pb-1" *ngFor="let product of candyService.selectedProducts">
+                    <app-candy-card [product]="product"
+                                    [step]="4"
+                                    [headquarter_id]="candyService?.options?.headquarter_id"
+                                    [isLoggedIn]="isLoggedIn">
+                    </app-candy-card>
+                </div>
+
+                <div class="mx-1 mb-2 pb-1" *ngFor="let choco of candyService.chocoAwards">
+                    <app-candy-card *ngIf="choco.quantity && choco.quantity > 0"
+                                    [product]="choco"
+                                    [step]="4"
+                                    [isPromo]="true"
+                                    [isLoggedIn]="isLoggedIn">
+                    </app-candy-card>
+                </div>
+            </perfect-scrollbar>
+            <div class="d-flex flex-column lh-1 mt-3">
+                <span class="text-primary ft-12 font-helvetica-bold">Fecha de recojo</span>
+                <span class="color-gray ft-15">{{candyService.day}}, {{candyService.day_number}} de {{this.candyService.month}} de {{candyService.year}}</span>
+            </div>
+            <div class="d-flex flex-column lh-1 mt-3">
+                <span class="total font-helvetica-bold ft-20 text-secondary">Total</span>
+                <span class="amount color-title ft-30">S/ {{candyService.paymentAmount | number : '.2'}}</span>
+            </div>
+
+            <div class="w-100 d-flex justify-content-center align-items-center flex-column mt-4">
+                <button class="btn btn-primary px-5" (click)="pay()" [disabled]="isLoading || !candyService.selectedProducts.length && !candyService.chocoAwards">
+                     <span class="bouncingLoader" *ngIf="isLoading">
+                        <span></span>
+                    </span>
+                    <span *ngIf="!isLoading">
+                          Pagar
+                    </span>
+                </button>
+
+                <button class="btn btn-default text-primary"
+                        [disabled]="isLoading"
+                        (click)="clear()">Vaciar compra
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>

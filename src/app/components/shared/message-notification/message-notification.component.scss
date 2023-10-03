@@ -1,0 +1,27 @@
+@import "~assets/scss/variables";
+
+.notification {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    top: 0;
+    left: 0;
+    height: 40px;
+    z-index: 99999;
+    transition: all 1s;
+    background-color: $secondary;
+
+    span {
+        line-height: 1;
+    }
+
+    &.show {
+        top: 67px;
+    }
+
+    &.has-error {
+        background-color: red;
+
+        span {
+            color: #ffffff;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="152.197" height="78.536" viewBox="0 0 152.197 78.536">
+    <defs>
+        <filter id="Rectángulo_1116" width="67.38" height="56.492" x="84.818" y="13.275" filterUnits="userSpaceOnUse">
+            <feOffset dx="5" dy="5"/>
+            <feGaussianBlur result="blur" stdDeviation="7.5"/>
+            <feFlood flood-color="#303746" flood-opacity=".051"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <style>
+            .cls-2{fill:#fff;opacity:.2}
+        </style>
+    </defs>
+    <g id="Grupo_6108" transform="translate(-22.944 -520)">
+        <path id="Trazado_3449" fill="#ffd400" d="M8.825 0h120.346A8.825 8.825 0 0 1 138 8.825v60.886a8.825 8.825 0 0 1-8.825 8.825H8.825A8.825 8.825 0 0 1 0 69.711V8.825A8.825 8.825 0 0 1 8.825 0z" transform="translate(22.944 520)"/>
+        <rect id="Rectángulo_1114" width="30.995" height="14.662" class="cls-2" rx="7" transform="translate(33.87 531.447)"/>
+        <rect id="Rectángulo_1115" width="113.771" height="15.72" class="cls-2" rx="7.86" transform="translate(33.87 559.081)"/>
+        <g filter="url(#Rectángulo_1116)" transform="translate(22.94 520)">
+            <rect id="Rectángulo_1116-2" width="22.38" height="11.492" fill="#fff" rx="5.746" transform="translate(102.32 30.78)"/>
+        </g>
+        <text id="_8423" fill="#727272" font-family="HelveticaNeue-Bold, Helvetica Neue" font-size="5px" font-weight="700" letter-spacing="0.06em" transform="translate(130.915 558.195)">
+            <tspan x="0" y="0">8423</tspan>
+        </text>
+    </g>
+</svg>

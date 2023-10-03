@@ -1,0 +1,29 @@
+@import "~assets/scss/breakpoints";
+
+.container-fluid {
+    padding-top: 120px;
+
+    @include min-width-992 {
+        height: 100vh;
+    }
+}
+
+.container-fluid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+  }
+  
+.d-flex {
+    align-self: flex-start;
+}
+
+.content {
+    p {
+        max-width: 250px;
+        line-height: 1;
+        color: #989898;
+    }
+
+}

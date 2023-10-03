@@ -1,0 +1,74 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+.container {
+    @include min-width-1200 {
+        max-width: 1300px;
+    }
+}
+
+.section-title {
+    h1 {
+        font-size: $ft-28;
+        @include min-width-768 {
+            font-size: $ft-40;
+        }
+    }
+}
+
+.corporate-sales {
+    p {
+        letter-spacing: 1.22px;
+        line-height: 1.2;
+        max-width: 550px;
+    }
+
+    .content-img {
+        width: 100%;
+        max-width: 428px;
+        height: 468px;
+        border-radius: 28px;
+    }
+}
+
+.services {
+    padding-bottom: 120px;
+
+    .box {
+        .box-image {
+            width: 161px;
+            height: 157px;
+            border-radius: 20px;
+            box-shadow: 0 0 14px 0 rgba(27, 52, 142, 0.15);
+        }
+
+        .box-content {
+            text-align: center;
+            max-width: 100%;
+            @include min-width-768 {
+                text-align: left;
+                max-width: 450px;
+            }
+            @include min-width-992 {
+                text-align: left;
+                max-width: 680px;
+            }
+            @include min-width-1200 {
+                max-width: 300px;
+            }
+
+            h5 {
+                font-size: $ft-17;
+                @include min-width-576 {
+                    font-size: $ft-20;
+                }
+            }
+
+            p {
+                line-height: 1.22;
+                color: #707070;
+            }
+        }
+    }
+}

@@ -1,0 +1,99 @@
+@import "../../../../../../assets/scss/breakpoints";
+@import "../../../../../../assets/scss/fonts";
+@import "../../../../../../assets/scss/variables";
+
+.container-fluid {
+    @include min-width-992 {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    @include min-width-1200 {
+        padding-right: 66px;
+        padding-left: 66px;
+    }
+}
+
+.cards-container {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 15px;
+
+    @include for-min-width(1285px) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @include for-min-width(1345px) {
+        padding: 0 30px;
+    }
+
+
+}
+
+
+.card {
+    box-shadow: 0 0 14px 0 rgba(27, 52, 142, 0.15);
+    border: 0;
+    border-radius: 23px;
+    width: 200px;
+    height: 238px;
+    margin: 15px;
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            .btn {
+                display: inline-block;
+            }
+
+            p {
+                display: none;
+            }
+        }
+    }
+
+    .btn {
+        display: none;
+        height: 28.8px;
+        width: 95px;
+        background-color: $yellow;
+        line-height: 1;
+        color: $color-title;
+        font-size: $ft-14;
+    }
+
+    .icon {
+        height: 100px;
+        margin-bottom: 25px;
+
+        img {
+            height: 100%;
+
+            &.pantallas {
+                max-width: 122px;
+            }
+
+            &.alquiler {
+                max-width: 118px;
+            }
+        }
+    }
+
+    p {
+        font-family: 'HelveticaNeue-Medium', sans-serif;
+        letter-spacing: 0.98px;
+        color: $color-title;
+        text-align: center;
+        //font-size: $ft-16;
+        font-size: $ft-13;
+        line-height: 1.13;
+        margin-bottom: 0;
+        font-weight: bold;
+    }
+}

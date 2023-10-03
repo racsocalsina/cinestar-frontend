@@ -1,0 +1,15 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+.container-fluid {
+    @include min-width-992 {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    @include min-width-1200 {
+        padding-right: 66px;
+        padding-left: 66px;
+    }
+}

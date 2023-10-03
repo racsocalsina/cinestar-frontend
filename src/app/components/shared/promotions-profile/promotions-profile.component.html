@@ -1,0 +1,78 @@
+<div class="d-flex" *ngIf="user">
+    <div class="box-points cursor-pointer d-flex justify-content-center align-items-center mb-2 mr-2"
+         [class.active]="rewardType === 'boleteria'" (click)="selectType('boleteria', user.ticket_promotional_data?.movements, user.ticket_promotional_data?.promotions)">
+        <div class="d-flex justify-content-center align-items-center border-right">
+            <strong class="font-helvetica-bold mr-2">{{user.ticket_promotional_data?.total_points}}</strong>
+        </div>
+        <div class="flex-grow-1 d-flex align-items-center">
+            <p class="mb-0 font-helvetica-bold">Puntos<br>Boletería</p>
+        </div>
+    </div>
+
+    <div class="box-points cursor-pointer d-flex justify-content-center align-items-center mb-3 ml-2"
+         [class.active]="rewardType === 'chocolateria'" (click)="selectType('chocolateria', user.choco_promotional_data?.movements, user.choco_promotional_data?.promotions)">
+        <div class="d-flex justify-content-center align-items-center border-right">
+            <strong class="font-helvetica-bold mr-2">{{user.choco_promotional_data?.total_points}}</strong>
+        </div>
+        <div class="flex-grow-1 d-flex align-items-center">
+            <p class="mb-0 font-helvetica-bold">Puntos<br>Chocolatería</p>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center mt-3 d-md-none">
+    <div (click)="openModal()" class="modal-button shadow font-helvetica-bold color-title ft-15 text-center cursor-pointer">
+        Canjea por los siguientes premios
+        <img class="ml-2" src="./assets/images/svg/arrow_right.svg" alt="">
+    </div>
+</div>
+
+
+<div class="d-none d-md-flex flex-column align-items-center mt-3">
+    <div class="modal-button font-helvetica-bold color-title ft-15 text-center"
+         [class.shadow]="!showRewards" [class.show]="showRewards">
+        <div class="cursor-pointer" (click)="showRewards = !showRewards">
+            <span>Canjea por los siguientes premios</span>
+            <img class="picker ml-2" src="./assets/images/svg/arrow_down_black.svg" alt="">
+        </div>
+
+        <div class="rewards w-100 d-flex align-items-center">
+            <div class="icon mr-4">
+                <img class="img-fluid" *ngIf="rewardType === 'chocolateria'" src="./assets/images/icon_chocolateria.png" alt="">
+                <img class="img-fluid" *ngIf="rewardType === 'boleteria'" src="./assets/images/icon_boleteria.png" alt="">
+            </div>
+            <div>
+                <div class="d-flex align-items-center my-2" *ngFor="let promotion of promotions">
+                    <div class="font-helvetica-bold text-primary mr-3 lh-1 text-nowrap">
+                        <span>{{promotion.points}}</span>
+                        <span class="ft-13"> {{Utils.isSingular( promotion.points ) ? 'pto' : 'ptos'}}</span>
+                    </div>
+                    <span class="color-black ft-11 lh-1 text-nowrap">{{promotion.name}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-container *ngIf="movements && movements.length">
+    <p class="ft-15 color-title font-helvetica-bold my-4">Tus puntos</p>
+
+    <div class="box-card mt-4">
+        <div class="box d-flex justify-content-between p-3" *ngFor="let movement of movements">
+            <div class="icons">
+                <img *ngIf="rewardType === 'boleteria'" src="./assets/images/svg/ticket.svg" class="img-fluid" alt="">
+                <img *ngIf="rewardType === 'chocolateria'" src="./assets/images/svg/chocolateria.svg" class="img-fluid" alt="">
+            </div>
+            <div class="content d-flex justify-content-center flex-column flex-grow-1 w-auto">
+                <h5 class="ft-14 font-helvetica-medium mb-0">{{movement.description}}</h5>
+                <span class="color-gray ft-14">{{movement.expiration}}</span>
+            </div>
+            <div class="d-flex flex-column align-items-center font-helvetica-bold lh-1" [ngClass]="movement.increase ? 'color-yellow' : 'text-primary'">
+                <span class="ft-25">{{movement.increase ? '' : '-'}}{{movement.points}}</span>
+                <span class="ft-14">{{Utils.isSingular( movement.points ) ? 'pto' : 'ptos'}}</span>
+            </div>
+        </div>
+    </div>
+
+</ng-container>

@@ -1,0 +1,28 @@
+<app-header-movies class="d-lg-none" title="Cines" (onSearchEvt)="searchTerm = $event" [showFilters]="false" [fromCinemas]="true" placeholder="Buscar cine..."></app-header-movies>
+<app-header-home class="d-none d-lg-block"></app-header-home>
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100">
+    <div class="d-flex">
+      <app-sidebar-cinemas class="d-md-none" [searchTerm]="searchTerm"></app-sidebar-cinemas>
+  
+      <app-sidebar-cinemas class="d-none d-md-block"
+                           [responsive]="false"
+                           (filteredsCinemasEvt)="cinemas = $event"
+                           (selectCinema)="selectedCinema = $event">
+      </app-sidebar-cinemas>
+       <!--
+        <div class="content flex-grow-1 d-none d-md-flex">
+
+            <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center" *ngIf="!selectedCinema && !cinemas">
+                <img src="./assets/images/svg/cartelera_vacia.svg" alt="cartelera vacia">
+                <p class="font-helvetica color-gray text-center pt-3">Selecciona un cine para visualizar la cartelera</p>
+            </div>
+
+            <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center" *ngIf="cinemas && !cinemas.length">
+                <img src="./assets/images/svg/no-cinema.svg" alt="">
+                <span class="text-center lh-1 mt-3" style="color: #A2A2A2; width: 150px"> No hay cines disponibles</span>
+            </div>
+        </div>
+    -->
+    </div>
+  </div>

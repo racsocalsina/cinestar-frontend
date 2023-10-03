@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="14" viewBox="0 0 22 14">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#ffd400;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+        </style>
+    </defs>
+    <g id="eye" transform="translate(-1 -5)">
+        <path id="Trazado_1085" d="M22 12a11.607 11.607 0 0 1-10 6 11.607 11.607 0 0 1-10-6 11.607 11.607 0 0 1 10-6 11.607 11.607 0 0 1 10 6z" class="cls-1"/>
+        <circle id="Elipse_11" cx="3" cy="3" r="3" class="cls-1" transform="translate(9 9)"/>
+    </g>
+</svg>

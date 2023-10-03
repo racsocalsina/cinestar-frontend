@@ -1,0 +1,10 @@
+<div class="carousel-banners">
+    <carousel  *ngIf="banners.length" >
+        <ng-container *ngFor="let item of banners">
+            <slide>
+                <img [src]="item.path" alt="" class="img-fluid">
+                <!--                <div class="slide-image position-relative" [style.background-image]="'url(' + item.photo + ')'"></div>-->
+            </slide>
+        </ng-container>
+    </carousel>
+</div>

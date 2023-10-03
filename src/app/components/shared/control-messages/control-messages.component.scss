@@ -1,0 +1,15 @@
+.ng-select .ng-select-container,
+.has-danger .col-form-label,
+.has-danger .custom-control,
+.has-danger .form-check-label,
+.has-danger .form-control-feedback,
+.has-danger .form-control,
+.has-danger .form-control-label {
+    color: #EF5350;
+    font-family: 'Gotham-Book', sans-serif;
+}
+
+::ng-deep .has-border .ng-select .ng-select-container,
+::ng-deep .has-border .form-control {
+    border: 1px solid #EF5350 !important;
+}

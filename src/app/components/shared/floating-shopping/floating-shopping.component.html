@@ -1,0 +1,78 @@
+<div class="floating-shopping h-100 position-fixed bg-white" id="floating-shopping">
+    <div class="content-head bg-primary d-flex justify-content-between align-items-center px-4">
+        <div class="section-title">
+            <h1 class="mb-0 text-white ft-40">Mis compras</h1>
+        </div>
+        <a class="cursor-pointer close" (click)="hideShopping()"><img src="./assets/images/svg/close.svg" class="img-fluid" alt=""></a>
+    </div>
+    <div class="zoom">
+        <div class="tab h-auto">
+            <div class="tab-menu d-flex justify-content-around align-items-center mw-100 h-100">
+                <button class="tab-menu-link position-relative color-title bg-white font-helvetica-bold ft-12" [class.active]="activeTab === 'current'" (click)="showTab('current')">
+                    <span data-title="current">VIGENTES</span>
+                </button>
+                <button class="tab-menu-link position-relative color-title bg-white font-helvetica-bold ft-12" [class.active]="activeTab === 'completed'" (click)="showTab('completed')">
+                    <span data-title="completed">CONCLUIDOS</span>
+                </button>
+            </div>
+            <div class="tab-bar">
+                <div class="tab-bar-content active" id="current">
+                    <perfect-scrollbar class="scroll scroll-shopping mt-3">
+                        <ng-container *ngFor="let item of current; trackBy:trackByFn">
+                            <div class="box d-flex justify-content-between align-items-center px-3 mb-3">
+                                <div class="">
+                                    <img src="./assets/images/svg/ticket.svg" class="img-fluid" alt="">
+                                </div>
+                                <div class="content flex-grow-1 px-2">
+                                    <h5 class="ft-17 font-helvetica-bold mb-0">{{item.ticket_data ? item.ticket_data.movie.name : 'Compra en chocolatería'}}</h5>
+                                    <p class="mb-0 ft-15 font-helvetica-bold">{{item.headquarter.name}},
+                                        <span class="d-block d-md-inline-block font-helvetica">
+                                            {{item.headquarter.address}}
+                                        </span>
+                                    </p>
+                                    <div class="d-flex align-items-center">
+                                        <span class="color-gray ft-12 mr-4 opacity font-helvetica">{{item.ticket_data ? item.ticket_data.start_at_name : item.sweet_data.date_name}}</span>
+                                        <span class="ft-12 color-gray opacity font-helvetica" *ngIf="item.ticket_data">{{item.ticket_data.start_at | date: 'hh:mm a'}}</span>
+                                        <span class="ft-12 color-gray opacity font-helvetica" *ngIf="!item.ticket_data">{{item.sweet_data.date | date: 'hh:mm a'}}</span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <a class="cursor-pointer" (click)="ticketDetail(item)">
+                                        <img src="./assets/images/svg/arrow_right_gray.svg" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </perfect-scrollbar>
+                </div>
+
+                <div class="tab-bar-content" id="completed">
+                    <perfect-scrollbar class="scroll scroll-shopping mt-3">
+                        <ng-container *ngFor="let item of concluded; trackBy:trackByFn">
+                            <div class="box d-flex justify-content-between align-items-center px-3 mb-3">
+                                <div class=""><img src="./assets/images/svg/ticket.svg" class="img-fluid" alt=""></div>
+                                <div class="content flex-grow-1 px-2">
+                                    <h5 class="ft-17 font-helvetica-bold mb-0">{{item.ticket_data ? item.ticket_data.movie.name : 'Compra en chocolatería'}}</h5>
+                                    <p class="mb-0 ft-15 font-helvetica-bold">{{item.headquarter.name}},
+                                        <span class="d-block d-md-inline-block font-helvetica">
+                                            {{item.headquarter.address}}
+                                        </span></p>
+                                    <div class="d-flex align-items-center">
+                                        <span class="color-gray ft-12 mr-4 opacity font-helvetica">{{item.ticket_data ? item.ticket_data.start_at_name : item.sweet_data.date_name}}</span>
+                                        <span class="ft-12 color-gray opacity font-helvetica" *ngIf="item.ticket_data">{{item.ticket_data.start_at | date: 'hh:mm a'}} / {{item.ticket_data.movie.version.short}}</span>
+                                        <span class="ft-12 color-gray opacity font-helvetica" *ngIf="!item.ticket_data">{{item.sweet_data.date | date: 'hh:mm a'}}</span>
+                                    </div>
+                                </div>
+                                <div class="">
+                                    <a class="cursor-pointer" (click)="ticketDetail(item)">
+                                        <img src="./assets/images/svg/arrow_right_gray.svg" class="img-fluid" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </perfect-scrollbar>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

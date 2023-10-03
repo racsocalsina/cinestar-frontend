@@ -1,0 +1,32 @@
+<app-header-home></app-header-home>
+<app-banners [page]="Pages.HOME"></app-banners>
+<div class="py-5">
+    <app-next-releases></app-next-releases>
+    <app-movie-billboard></app-movie-billboard>
+    <app-corporate-sales></app-corporate-sales>
+    <!--    <app-advertisements-ads></app-advertisements-ads>-->
+    <div class="container-fluid py-2 text-center">
+        <ng-adsense
+            [adClient]="'ca-pub-1121528612473878'"
+            [adSlot]="3669504588"
+            [display]="'block'"
+            [fullWidthResponsive]="true"
+            [adFormat]="'auto'"
+        ></ng-adsense>
+    </div>
+<!--    <div class="container-fluid py-2 text-center">-->
+<!--        <ng-adsense-->
+<!--            [adClient]="'ca-pub-1121528612473878'"-->
+<!--            [adSlot]="1577958672"-->
+<!--            [display]="'block'"-->
+<!--            [fullWidthResponsive]="true"-->
+<!--            [adFormat]="'fluid'"-->
+<!--            [layoutKey]="'-5t+dn-4s-cn+1d1'"-->
+<!--        ></ng-adsense>-->
+<!--    </div>-->
+</div>
+<app-footer></app-footer>
+
+<app-floating-movie-summary></app-floating-movie-summary>
+
+

@@ -1,0 +1,9 @@
+
+<h1 class="titulo_banner" *ngIf="popup_title">{{ popup_title }}</h1>
+<h2 class="subtitulo_banner" *ngIf="movie_title">{{ movie_title }}</h2>
+<div class="modal-body p-0 d-flex flex-column align-items-center" *ngIf="image">
+<!--    <img class="close cursor-pointer pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">-->
+    <img [src]="image">
+</div>
+<button class="btn_comprar" (click)="buy()" *ngIf="button_name">{{ button_name }}</button>
+<a href="#" class="btn_omitir" style="color: #fff;">Omitir</a>

@@ -1,0 +1,115 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+
+.md-input {
+    position: relative;
+
+    input {
+        color: $gray;
+        font-size: $ft-15 !important;
+        //padding: 13px 10px 10px 15px;
+        padding: 20px 10px 10px 19px;
+        display: block;
+        font-family: 'HelveticaNeue', sans-serif;
+
+        &:focus {
+            outline: none;
+            padding-top: 20px;
+            color: $gray;
+        }
+
+        &::placeholder {
+            opacity: 0;
+        }
+
+    }
+
+    input:not(:placeholder-shown) + label,
+    input:focus + label {
+        top: 6px;
+        left: 8px;
+        color: $color-title;
+        padding: 0 12px;
+        font-size: $ft-12 !important;
+        font-family: 'HelveticaNeue-Bold', sans-serif;
+    }
+
+    label {
+        color: #989898;
+        font-family: 'HelveticaNeue', sans-serif;
+        font-size: $ft-15 !important;
+        position: absolute;
+        pointer-events: none;
+        left: 20px;
+        top: 14px;
+        transition: 0.2s ease all;
+        -moz-transition: 0.2s ease all;
+        -webkit-transition: 0.2s ease all;
+        z-index: 9;
+
+        @include for-ie {
+            display: none;
+        }
+    }
+
+    &.search {
+        label {
+            left: 50px;
+            top: 12px;
+        }
+
+        input:not(:placeholder-shown) + label,
+        input:focus + label {
+            left: 39px;
+        }
+    }
+
+    &.responsive {
+        @include for-max-width(991px) {
+            label {
+                left: 30px;
+            }
+
+            input:not(:placeholder-shown) + label,
+            input:focus + label {
+                left: 18px;
+            }
+        }
+
+    }
+}
+
+.form-general {
+    input {
+        padding: 27px 10px 10px 19px;
+
+        &:focus {
+            padding-top: 25px;
+        }
+    }
+
+    input:not(:placeholder-shown) + label,
+    input:focus + label {
+        top: 8px;
+    }
+
+    .md-input input:not(:placeholder-shown) + .documentNumber, .md-input input:focus + .documentNumber {
+        left: 2px;
+    }
+
+    .form-control-1 {
+        padding: 24px 10px 5px 12px;
+        //border-top-right-radius: 25px;
+        //border-bottom-right-radius: 25px;
+
+        &:focus {
+            padding-top: 24px;
+        }
+    }
+
+    .documentNumber {
+        top: 15px;
+        left: 10px;
+    }
+}

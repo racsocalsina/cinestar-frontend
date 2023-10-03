@@ -1,0 +1,2 @@
+<app-payment-chocolateria-desktop *ngIf="!screenService.isResponsive" [isLoggedIn]="isLoggedIn"></app-payment-chocolateria-desktop>
+<app-payment-chocolateria-responsive *ngIf="screenService.isResponsive" [isLoggedIn]="isLoggedIn"></app-payment-chocolateria-responsive>

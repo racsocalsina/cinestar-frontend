@@ -1,0 +1,30 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/fonts";
+
+.title {
+    max-width: 80%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.input-group {
+    .form-control {
+        font-family: 'HelveticaNeue-Medium', sans-serif;
+        background-color: $primary-dark;
+        border: 0;
+        color: #ffffff;
+
+        &::placeholder {
+            font-style: italic;
+            font-size: $ft-15;
+            color: #ffffff;
+        }
+    }
+
+    .input-group-append {
+        padding-right: 15px;
+        background-color: $primary-dark;
+        border-radius: 0 23px 23px 0;
+    }
+}

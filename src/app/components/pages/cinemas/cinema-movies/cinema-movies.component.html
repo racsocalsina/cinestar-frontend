@@ -1,0 +1,96 @@
+<app-header-movie-details-responsive class="d-lg-none" [fromCinemas]="true" [showSearch]="true"
+                                     (onSearchEvt)="searchMovie($event)"></app-header-movie-details-responsive>
+<app-header-home class="d-none d-lg-block"></app-header-home>
+
+<div class="container-fluid d-md-flex flex-column align-items-center justify-content-center">
+        <div>
+          <div class="sede">
+              <div class="name-sede">
+                {{selectedCinema?.name}}
+              </div>
+              <div class="container">
+                <div class="info-box">
+                  <div class="icon-container">
+                    <img class="close cursor-pointer" src="./assets/images/svg/add_v2.svg" alt="close" (click)="bsModalRef?.hide()">
+                  </div>
+                  <div class="text" (click)="selectedCinema && showModalCinemaDetails(selectedCinema)" style="cursor: pointer;">Información</div>
+                </div>
+                <div class="divider"></div>
+              </div>
+          </div>
+          <!-- Lista de fechas -->
+          <div class="list-dates" *ngIf="!isLoading">
+            <div class="fechas" *ngFor="let date of billboardDates">
+                <div *ngIf="date.date == today" class="fecha" (click)="selectedDate(date.date)" style="cursor: pointer;" (mouseover)="highlightDate(true)" (mouseleave)="highlightDate(false)">
+                  HOY
+                </div>
+                <div *ngIf="date.date != today" class="fecha" (click)="selectedDate(date.date)" style="cursor: pointer;" (mouseover)="highlightDate(true)" (mouseleave)="highlightDate(false)">
+                    <div class="date-label">
+                        {{ date.name_day.length > 6 ? date.name_day.substring(0, 6) + '..' : date.name_day }}
+                      </div>
+                  <div class="date-number">{{ date.number_day }}</div>
+                  <div class="date-month">
+                    {{ date.name_month.length > 6 ? date.name_month.substring(0, 6) + '..' : date.name_month }}
+                    </div>
+                </div>
+              </div>
+          </div>
+
+
+          <!-- Lista de Peliculas -->
+        <div class="peliculas">
+            <div *ngIf="isLoading; else content" style="text-align: center; margin-top: 10rem;">
+              <!-- Animación de carga o mensaje "Cargando datos" -->
+              <span class="bouncingLoader" *ngIf="isLoading">
+                <span></span>
+            </span>
+            </div>
+            <ng-template #content>
+              <!-- Contenido cuando los datos están cargados -->
+                <!-- Resto del contenido de la película -->
+                <!-- ... -->
+                <div class="pelicula" *ngFor="let movie of movies">
+                    <img class="pelicula-imagen" [src]="movie.image" onError="this.src='https://via.placeholder.com/270x399'"/>
+                    <div class="pelicula-info">
+                      <div class="pelicula-titulo">
+                        {{ movie.name }}
+                      </div>
+                      <div class="pelicula-detalle">
+                        <div *ngIf="selectedCinema && selectedCinema.movie_formats && selectedCinema.movie_formats.length > 0">
+                            <div class="detalle-item">{{ selectedCinema.movie_formats[0].name }} •</div>
+                        </div>
+                        <!--<div class="detalle-item">Doblada •</div>-->
+                        <div class="detalle-item">{{movie.type_of_censorship}}</div>
+                      </div>
+                      <div class="pelicula-detalle">
+                        <div class="detalle-item">
+                            <img class="close cursor-pointer" src="./assets/images/svg/teatro.svg" alt="close" (click)="bsModalRef?.hide()">
+                            {{movie.gender_name}}
+                        </div>
+                        <div class="detalle-item">
+                            <img class="close cursor-pointer" src="./assets/images/svg/schedule.svg" alt="close" (click)="bsModalRef?.hide()">
+                            {{movie.duration_in_minutes}} minutos
+                        </div>
+                      </div>
+                      <div class="schedule">
+                        <div class="custom-text">Selecciona un horario:</div>
+                        <div class="schedule-options">
+                          <ng-container *ngFor="let movie_time of movie.movie_times; let i = index">
+                            <div class="option" 
+                                 [class.active]="selectedOption.movie?.id === movie.id && selectedOption.movie_time === movie_time.id"
+                                 (click)="selectTime(movie_time, movie_time.headquarter_id)"
+                                 style="cursor: pointer; order: {{ i }};">
+                              {{ movie_time.time_start | time}}
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </ng-template>
+          </div>
+          <div *ngIf="!isLoading && movies.length == 0" style="text-align: center">
+            <br>No hay películas disponibles para esta sede
+          </div>
+     </div>
+</div>

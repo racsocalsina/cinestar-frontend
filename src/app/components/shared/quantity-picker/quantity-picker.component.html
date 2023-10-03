@@ -1,0 +1,8 @@
+<div class="quantity-picker d-flex align-items-center" [class.sm]="sm">
+    <div class="picker down" [class.disabled]="currentValue === 0" (click)="sub()"></div>
+    <span class="value mx-2 color-gray text-center">{{currentValue}}</span>
+    <div class="picker up"
+         [class.disabled]="disabled || ( maxValue > 0 && maxValue <= currentValue)"
+         (click)="add()">
+    </div>
+</div>

@@ -1,0 +1,154 @@
+<div class="form-general" [formGroup]="form">
+    <div class="mb-3">
+        <h5 class="font-helvetica-bold  mb-3">Identicación del consumidor reclamante</h5>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('name')">
+                        <input formControlName="name" type="text" class="form-control" id="name" placeholder=" " alphaNumeric alphaNumericType="a">
+                        <label for="name" class="">Nombres (*)</label>
+                    </app-control-messages>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('lastname')">
+                        <input formControlName="lastname" type="text" class="form-control" id="lastName" placeholder=" " alphaNumeric alphaNumericType="a">
+                        <label for="lastName" class="">Apellidos (*)</label>
+                    </app-control-messages>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="form-group">
+                    <app-control-messages [control]="form.get('older')">
+                        <ng-select formControlName="older" class="custom ubigeo" placeholder="Mayor de edad (*)"
+                                   [searchable]="false" [clearable]="false" bindLabel="name" bindValue="id"
+                                   [items]="claimParameters.older_list" (change)="onChangeOlder($event)">
+                        </ng-select>
+                    </app-control-messages>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group form-typedocument d-flex justify-content-between align-items-center w-100" [ngStyle]="{'border-color': form.get('document_number')?.invalid && form.get('document_number')?.touched ? '#EF5350' : '#DDDDDD' }">
+                    <ng-select class="typeOfdocument" formControlName="document_type_id" [items]="typeDocuments" [searchable]="false"
+                               [clearable]="false" bindLabel="name" bindValue="id">
+                    </ng-select>
+                    <div class="md-input d-flex flex-grow-1">
+                        <input *ngIf="form.get('document_type_id')?.value === 1" formControlName="document_number" type="text" class="form-control form-control-1" id="documentNumber" placeholder="Num. de Doc." alphaNumeric
+                               alphaNumericType="n" minlength="8" maxlength="8">
+                        <input *ngIf="form.get('document_type_id')?.value === 2 || form.get('document_type_id')?.value === 3" formControlName="document_number" type="text" class="form-control form-control-1"
+                               id="documentNumber" placeholder="Num. de Doc." alphaNumeric
+                               alphaNumericType="an" minlength="1" maxlength="12">
+                        <label for="documentNumber" class="documentNumber">Num. de Doc.</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3" *ngIf="form.get('representative_name')">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('representative_name')">
+                        <input formControlName="representative_name" type="text" class="form-control" id="nameAgent" placeholder=" " alphaNumeric alphaNumericType="a">
+                        <label for="nameAgent" class="">Nombre del representante (*)</label>
+                    </app-control-messages>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <h5 class="font-helvetica-bold mb-3">Dirección del reclamante</h5>
+
+        <div class="row">
+            <div class="col-md-4 col-xl-3 mb-3">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('address')">
+                        <input formControlName="address" type="text" class="form-control" id="address" placeholder=" ">
+                        <label for="address" class="">Dirección (*)</label>
+                    </app-control-messages>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-3 mb-3">
+                <app-control-messages [control]="form.get('department')">
+                    <ng-select class="custom ubigeo" formControlName="department"
+                               placeholder="Departamento (*)" [items]="departments"
+                               [clearable]="false" bindLabel="name" bindValue="id" (change)="onChangeDepartment($event)">
+                    </ng-select>
+                </app-control-messages>
+            </div>
+
+            <div class="col-md-4 col-xl-3 mb-3">
+                <app-control-messages [control]="form.get('province')">
+                    <ng-select class="custom ubigeo" formControlName="province"
+                               placeholder="Provincia (*)" [items]="provinces"
+                               [clearable]="false" bindLabel="name" bindValue="id" (change)="onChangeProvince($event)">
+                    </ng-select>
+                </app-control-messages>
+            </div>
+
+            <div class="col-md-4 col-xl-3 mb-3">
+                <app-control-messages [control]="form.get('person_district_id')">
+                    <ng-select class="custom ubigeo" formControlName="person_district_id"
+                               placeholder="Distrito (*)" [items]="districts"
+                               [clearable]="false" bindLabel="name" bindValue="id">
+                    </ng-select>
+                </app-control-messages>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('cellphone')">
+                        <input formControlName="cellphone" type="text" class="form-control" id="phone" placeholder="Teléfono de contacto (*)" alphaNumeric alphaNumericType="n" [maxlength]="9">
+                        <label for="phone" class="">Teléfono de contacto (*)</label>
+                    </app-control-messages>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-3">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('email')">
+                        <input formControlName="email" type="email" class="form-control" id="email" placeholder=" ">
+                        <label for="email" class="">Correo (*)</label>
+                    </app-control-messages>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <!-- <h5 class="font-helvetica-bold mb-3">Ingresa los caracteres que veas a continuación</h5>-->
+        <div class="row">
+            <div class="col-md-4">
+                <app-control-messages [control]="form.get('recaptcha')">
+                    <ngx-recaptcha2 formControlName="recaptcha" #captchaElem class="d-flex justify-content-start align-items-center" [siteKey]="siteKey"
+                                    (expire)="handleExpire()" (success)="handleSuccess($event)"
+                                    [useGlobalDomain]="false" size="normal" hl="es" theme="light" type="image">
+                    </ngx-recaptcha2>
+                </app-control-messages>
+            </div>
+        </div>
+        <div class="w-100 text-primary mt-3" *ngIf="error">
+            {{error}}
+        </div>
+        <div class="row">
+            <div class="col-md-7 d-flex justify-content-between align-items-center mt-4 mb-4">
+                <a class="font-helvetica-bold cursor-pointer color-title d-flex align-items-center" (click)="onClickBack()">
+                    <img src="./assets/images/svg/arrow_left_yellow.svg" class="img-fluid mr-2" alt="">
+                    Volver
+                </a>
+                <button class="btn btn-primary" (click)="onClickNext()" [disabled]="isLoading">
+                     <span class="bouncingLoader" *ngIf="isLoading">
+                        <span></span>
+                    </span>
+                    <span *ngIf="!isLoading">Enviar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

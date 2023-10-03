@@ -1,0 +1,75 @@
+@import "~assets/scss/fonts";
+@import "~assets/scss/breakpoints";
+
+.movie {
+
+    &:hover {
+        .option {
+            opacity: 1;
+        }
+
+    }
+
+    img {
+        border-radius: 10px;
+        min-height: 180px;
+        max-height: 230px;
+
+        &.featured {
+            @include min-width-768 {
+                max-height: 466px;
+            }
+        }
+    }
+
+    .option {
+        background: rgba(0, 0, 0, 0.45);
+        top: 0;
+        opacity: 0;
+        border-radius: 15px;
+        padding: 0 5px;
+        transition: opacity .5s ease-out;
+
+        @include min-width-768 {
+            padding: 0 10px;
+        }
+
+
+        p {
+            height: 46px;
+            line-height: 1;
+            margin-bottom: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+            @include min-width-768 {
+                font-size: $ft-16;
+            }
+        }
+
+        .actions {
+
+            .btn-default {
+                text-decoration: underline;
+                @include min-width-768 {
+                    font-size: $ft-15;
+                }
+            }
+
+            .btn-primary {
+                width: 87px;
+                height: 28px;
+                line-height: 1;
+                margin-top: 8px;
+
+                @include min-width-768 {
+                    font-size: $ft-14;
+                    width: 95px;
+                    height: 30px;
+                }
+            }
+        }
+    }
+}

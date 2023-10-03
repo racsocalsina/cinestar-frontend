@@ -1,0 +1,14 @@
+<div class="movie h-100 text-center position-relative">
+    <img class="w-100 h-100"
+         [src]="movie.image"
+         onError="this.src='./assets/images/no-image-movie.png';"
+         [alt]="movie.name"
+         [class.featured]="featured">
+    <div class="option position-absolute h-100 w-100 d-flex flex-column justify-content-around">
+        <p class="ft-14 text-white font-helvetica-bold">{{movie.name}}</p>
+        <div class="actions d-flex flex-column align-items-center">
+            <button class="btn btn-default ft-14 text-secondary ft-14 d-none d-sm-block" (click)="showResume()">Ver más</button>
+            <button class="btn btn-primary ft-13" (click)="buy()">Comprar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<header class="container-fluid bg-primary d-flex justify-content-between align-items-center position-fixed">
+    <img class="cursor-pointer" src="./assets/images/svg/arrow-left-white.svg" alt="back" id="back" (click)="back()">
+    <span class="font-helvetica-bold ft-18 text-white">Comprar</span>
+    <div class="btn-container">
+        <button class="btn btn-default text-secondary ft-15" *ngIf="step > 1" (click)="cancel()">Cancelar</button>
+    </div>
+</header>
+
+<app-time-remaining></app-time-remaining>

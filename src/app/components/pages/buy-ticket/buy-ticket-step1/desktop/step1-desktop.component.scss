@@ -1,0 +1,14 @@
+.not-allowed {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 16px;
+    box-shadow: 0 1px 6px 0 rgba(27, 42, 77, 0.16);
+
+
+    img {
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+    }
+}

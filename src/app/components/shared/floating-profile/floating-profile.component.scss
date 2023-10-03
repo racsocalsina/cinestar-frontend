@@ -1,0 +1,87 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+
+.floating-profile {
+    width: 100%;
+    @include min-width-768 {
+        width: 555px;
+        right: -555px;
+    }
+    position: fixed;
+    top: 0;
+    right: -100%;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    overflow-x: hidden;
+    transition: 0.5s;
+    z-index: 9999999;
+    background-color: #ffffff;
+}
+
+.content-head {
+    background: $primary;
+    height: 95px;
+
+    .section-title {
+        h1 {
+            color: #fff;
+            font-size: $ft-40;
+        }
+    }
+}
+
+.zoom {
+    zoom: 0.9;
+}
+
+.profile {
+    @include min-width-576 {
+        padding: 0 50px;
+    }
+
+    .btn {
+        width: 100px;
+        height: 28px;
+
+        &:hover {
+            span {
+                color: white !important;
+            }
+        }
+    }
+}
+
+.options {
+    .option {
+        margin-top: 20px;
+        height: 55px;
+        border-radius: 10px;
+        box-shadow: 0 1px 6px 0 rgba(18, 60, 87, 0.15);
+        padding: 0 20px;
+    }
+}
+
+
+.scroll {
+    @include min-width-992 {
+        padding-right: 0;
+        height: calc(100vh - 280px);
+    }
+}
+
+.credit-card-added {
+    background: $secondary;
+    height: 48px;
+    position: absolute;
+    width: 100%;
+    top: 95px;
+    z-index: -1;
+    opacity: 0;
+    transition: all 1s;
+
+    &.show {
+        z-index: 1;
+        opacity: 100%;
+    }
+}
+

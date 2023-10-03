@@ -1,0 +1,314 @@
+<div class="d-flex justify-content-betwseen align-items-center">
+    <div class="back cursor-pointer"
+        *ngIf="step === 2">
+        <img src="./assets/images/svg/arrow_right_black.svg"
+            alt=""
+            (click)="back()">
+    </div>
+    <button class="btn btn-close p-0 position-absolute"
+        (click)="close()">
+        <img src="./assets/images/svg/icon-close-modal.svg"
+            alt="close-modal">
+    </button>
+    <div class="banner-sign-up background-style d-none d-lg-block"></div>
+    <div class="content-side-right form-general">
+        <div class="section-title d-flex justify-content-between mb-3">
+            <h1>Regístrate</h1>
+            <h1 *ngIf="step === 1">{{step}}<span class="span">/2</span></h1>
+            <h1 *ngIf="step === 2">{{step}}<span>/2</span></h1>
+        </div>
+        <!--<div class="sections-buttons d-flex justify-content-start align-items-center flex-wrap flex-md-nowrap">
+            <button class="btn btn-default mx-2 ft-14 font-helvetica-medium mb-3 mb-md-0 google color-gray" (click)="onClickSignInWithGoogle()">
+                <img src="./assets/images/svg/icon-google.svg" class="img-fluid mr-1" alt="">
+                Google
+            </button>
+            <button class="btn btn-default mx-2 ft-14 font-helvetica-medium mb-3 mb-md-0 facebook text-white d-flex align-items-center justify-content-center" (click)="onClickSignInWithFB()">
+                <span class="icon-facebook mr-2 ft-20" title="Facebook"></span>
+                Facebook
+            </button>
+        </div>
+        <div class="d-flex justify-content-center align-items-center option-o mt-4 mb-3">
+            <div class="">
+                <div class="line"></div>
+            </div>
+            <div class=""><p class="m-0 ml-2 mr-2 font-helvetica ft-17 color-gray">O</p></div>
+            <div class="">
+                <div class="line"></div>
+            </div>
+        </div>-->
+        <div class="container-fluid">
+            <div class="row">
+                <ng-container [formGroup]="form1"
+                    *ngIf="step === 1">
+                    <div class="col-md-6 pl-md-0 pr-md-1 mb-3">
+                        <app-control-messages [control]="form1.get('document_number')"
+                            [showBorder]="false">
+                            <div class="form-group d-flex justify-content-between align-items-center w-100 mb-0"
+                                [ngStyle]="{'border-color': form1.get('document_number')?.invalid && form1.get('document_number')?.touched ? '#EF5350' : '#DDDDDD' }">
+                                <ng-select class="select-sign-up"
+                                    formControlName="document_type"
+                                    [items]="typeDocuments"
+                                    [searchable]="false"
+                                    [clearable]="false"
+                                    bindLabel="name"
+                                    bindValue="code"
+                                    (change)="onChangeSelect()">
+                                </ng-select>
+                                <div class="md-input">
+                                    <input *ngIf="form1.get('document_type')?.value === Documents.DNI"
+                                        formControlName="document_number"
+                                        type="text"
+                                        class="form-control form-control-1"
+                                        id="documentNumber"
+                                        placeholder="Num. de Doc."
+                                        alphaNumeric
+                                        alphaNumericType="n"
+                                        minlength="8"
+                                        maxlength="8">
+                                    <input
+                                        *ngIf="form1.get('document_type')?.value === Documents.CE || form1.get('document_type')?.value === Documents.PAS"
+                                        formControlName="document_number"
+                                        type="text"
+                                        class="form-control form-control-1"
+                                        id="documentNumber"
+                                        placeholder="Num. de Doc."
+                                        alphaNumeric
+                                        alphaNumericType="an"
+                                        minlength="1"
+                                        maxlength="12">
+                                    <input *ngIf="form1.get('document_type')?.value === Documents.RUC"
+                                        formControlName="document_number"
+                                        type="text"
+                                        class="form-control form-control-1"
+                                        id="documentNumber"
+                                        placeholder="Num. de Doc."
+                                        alphaNumeric
+                                        alphaNumericType="n"
+                                        minlength="11"
+                                        maxlength="11">
+                                    <label for="documentNumber"
+                                        class="documentNumber">Num. de Doc.</label>
+                                </div>
+                            </div>
+                        </app-control-messages>
+                    </div>
+
+                    <div class="col-md-6 pr-md-0 pl-md-1 mb-3">
+                        <app-control-messages [control]="form1.get('birthdate')">
+                            <div class="form-group md-input auth-calendar position-relative mb-0">
+                                <input type="text"
+                                    placeholder="Fecha de Nac."
+                                    formControlName="birthdate"
+                                    class="form-control form-control-2"
+                                    [bsConfig]="bsConfig"
+                                    #dp="bsDatepicker"
+                                    bsDatepicker
+                                    readonly>
+                                <label class="label-date-born">Fecha de Nac.</label>
+                                <div class="icon-calendar position-absolute cursor-pointer cursor-pointer"
+                                    (click)="dp.toggle()">
+                                    <img src="./assets/images/svg/icon-calendar.svg"
+                                        class="img-fluid"
+                                        alt="">
+                                    <img src="./assets/images/svg/picker_arrow_down.svg"
+                                        class="img-fluid ml-1"
+                                        width="15"
+                                        alt="">
+                                </div>
+                            </div>
+                        </app-control-messages>
+
+                    </div>
+                    <div class="col-md-6 pl-md-0 pr-md-1 mb-3">
+                        <app-control-messages [control]="form1.get('name')">
+                            <div class="form-group md-input mb-0">
+                                <input formControlName="name"
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="Nombre"
+                                    id="name"
+                                    alphaNumeric
+                                    alphaNumericType="a">
+                                <label for="name"
+                                    class="">Nombre</label>
+                            </div>
+                        </app-control-messages>
+                    </div>
+                    <div class="col-md-6 pr-md-0 pl-md-1 mb-3">
+                        <app-control-messages [control]="form1.get('lastname')">
+                            <div class="form-group md-input mb-0">
+                                <input formControlName="lastname"
+                                    type="text"
+                                    class="form-control"
+                                    id="lastname"
+                                    placeholder=" "
+                                    alphaNumeric
+                                    alphaNumericType="a">
+                                <label for="lastname">Apellido</label>
+                            </div>
+                        </app-control-messages>
+
+                    </div>
+
+                    <div class="col-md-12 d-flex justify-content-center mt-5">
+                        <button
+                            class="btn btn-primary ft-18 font-helvetica-bold d-flex align-items-center justify-content-center"
+                            (click)="onClickNext()">
+                            Continuar
+                        </button>
+                    </div>
+                </ng-container>
+
+                <ng-container [formGroup]="form2"
+                    *ngIf="step === 2">
+                    <div class="col-md-6 pl-md-0 pr-md-1 mb-3">
+                        <app-control-messages [control]="form2.get('email')"
+                            [customMessages]="{email: 'Ingresa un correo electrónico válido'}">
+                            <div class="form-group md-input mb-0">
+                                <input formControlName="email"
+                                    type="email"
+                                    class="form-control"
+                                    id="email"
+                                    placeholder=" ">
+                                <label for="email"
+                                    class="">Email</label>
+                            </div>
+                        </app-control-messages>
+
+                    </div>
+                    <div class="col-md-6 pr-md-0 pl-md-1 mb-3">
+                        <app-control-messages [control]="form2.get('cellphone')">
+                            <div class="form-group md-input mb-0">
+                                <input formControlName="cellphone"
+                                    type="text"
+                                    class="form-control"
+                                    id="phone"
+                                    alphaNumeric
+                                    alphaNumericType="n"
+                                    placeholder=" "
+                                    maxlength="9">
+                                <label for="phone"
+                                    class="">Num. Celular</label>
+                            </div>
+                        </app-control-messages>
+
+                    </div>
+                    <div class="col-md-6 pl-md-0 pr-md-1">
+                        <app-control-messages [control]="form2.get('password')"
+                            [customMessages]="{pattern: ' '}">
+                            <div class="form-group mb-0 md-input">
+                                <input formControlName="password"
+                                    [type]="isPasswordTextFieldType ? 'text' : 'password'"
+                                    class="form-control"
+                                    id="password"
+                                    placeholder=" ">
+                                <label for="password"
+                                    class="">Contraseña</label>
+                                <a (click)="isPasswordTextFieldType = !isPasswordTextFieldType"
+                                    class="icon-eye position-absolute cursor-pointer">
+                                    <img [src]="isPasswordTextFieldType ? './assets/images/svg/eye.svg' : './assets/images/svg/eye-closed.svg'"
+                                        alt="">
+                                </a>
+                            </div>
+                        </app-control-messages>
+                    </div>
+                    <div class="col-md-6 pr-md-0 pl-md-1">
+                        <app-control-messages [control]="form2.get('password_confirmation')"
+                            [customMessages]="{pattern: ' '}">
+                            <div class="form-group mb-0 md-input">
+                                <input formControlName="password_confirmation"
+                                    [type]="isConfirmPasswordTextFieldType ? 'text' : 'password'"
+                                    class="form-control"
+                                    id="repeatpassword"
+                                    placeholder=" ">
+                                <label for="repeatpassword"
+                                    class="">Repetir contraseña</label>
+                                <a (click)="isConfirmPasswordTextFieldType = !isConfirmPasswordTextFieldType"
+                                    class="icon-eye position-absolute cursor-pointer">
+                                    <img [src]="isConfirmPasswordTextFieldType ? './assets/images/svg/eye.svg' : './assets/images/svg/eye-closed.svg'"
+                                        alt="">
+                                </a>
+                            </div>
+                        </app-control-messages>
+
+                    </div>
+
+
+                    <div class="col-12 color-gray pl-0 my-2"
+                        *ngIf="form2.get('password')?.hasError('pattern'); else notEquals">
+                        <small class="form-control-feedback">La contraseña debe tener al menos 6 caracteres ente letras,
+                            números y una mayúscula</small>
+                    </div>
+
+                    <ng-template #notEquals>
+                        <div class="col-12 color-gray pl-0 my-2"
+                            *ngIf="form2.getError('notEquals') || form2.get('password')?.value !== form2.get('password_confirmation')?.value">
+                            <small class="form-control-feedback">Las contraseñas no coinciden</small>
+                        </div>
+                    </ng-template>
+
+                    <div class="col-12 text-danger my-2 mt-4 lh-1"
+                        *ngIf="error">
+                        {{error}}
+                    </div>
+
+                    <div class="col-md-6 pr-md-0 pl-md-1 mb-3 mt-3" style="padding-left: 3px !important; padding-right: 3px !important;">
+                        <app-control-messages [control]="form2.get('department_id')">
+                            <ng-select class="custom ubigeo select_sign_up"
+                                formControlName="department_id"
+                                placeholder="Departamento"
+                                [items]="departments"
+                                [clearable]="false"
+                                bindLabel="name"
+                                bindValue="id">
+                            </ng-select>
+                        </app-control-messages>
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <div class="d-flex align-items-center">
+                            <div class="form-check form-check-common pl-1">
+                                <input formControlName="checkTerms"
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    value="false"
+                                    id="flexCheckDefault">
+                                <label class="form-check-label"
+                                    for="flexCheckDefault">
+                                    <span></span>
+                                </label>
+                            </div>
+                            <div class="d-flex font-helvetica-medium align-items-center">
+                                <label for="flexCheckDefault"
+                                    class="mb-0 mr-1">Acepto los </label>
+                                <a [href]="info && info.file" target="_blank" class="text-primary cursor-pointer">términos y condiciones</a>
+                            </div>
+                        </div>
+                        <small *ngIf="form2.get('checkTerms')?.touched && !form2.get('checkTerms')?.value"
+                            style="color: #EF5350;">
+                            Campo obligatorio*
+                        </small>
+
+                    </div>
+
+                    <div class="col-md-12 text-center mt-4">
+                        <button class="btn btn-primary ft-18 font-helvetica-bold"
+                            [disabled]="isLoading"
+                            (click)="onClickNext()">
+                            <span class="bouncingLoader"
+                                *ngIf="isLoading">
+                                <span></span>
+                            </span>
+                            <span *ngIf="!isLoading">Registrar</span>
+                        </button>
+                    </div>
+                </ng-container>
+
+                <div class="col-12 text-center">
+                    <p class="color-title ft-15 font-helvetica-medium mt-4 ">¿Ya tienes cuenta? <a (click)="login()"
+                            class="font-helvetica-bold cursor-pointer">Inicia Sesión</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

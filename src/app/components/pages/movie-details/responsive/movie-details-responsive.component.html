@@ -1,0 +1,92 @@
+<div class="container-fluid px-0" *ngIf="movie">
+    <div class="video">
+        <iframe width="100%" height="100%" [src]="youtubeVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div class="movie-info px-0">
+        <h3 class="title font-helvetica-bold ft-30">{{movie.name}}</h3>
+
+        <div class="tab">
+            <div class="tab-menu">
+                <button class="tab-menu-link font-helvetica-bold ft-12" [class.active]="activeTab === 'first'" (click)="showTab('first')">
+                    <span data-title="first">DETALLE</span>
+                </button>
+                <button class="tab-menu-link font-helvetica-bold ft-12" [class.active]="activeTab === 'second'" (click)="showTab('second')">
+                    <span data-title="second">CINES</span>
+                </button>
+            </div>
+            <div class="tab-bar">
+                <div class="tab-bar-content active" id="first">
+                    <p class="text-primary ft-13 font-helvetica-bold mb-1">Sinopsis</p>
+
+                    <ng-container *ngIf="movie.summary && movie.summary.length > 170; else summary">
+                        <input type="checkbox" class="view-more-state" id="view-more-responsive"/>
+                        <div class="sinopsis ft-15" [innerHTML]="Utils.viewMore(movie.summary)"></div>
+                        <label for="view-more-responsive" class="view-more-trigger"></label>
+                    </ng-container>
+
+                    <ng-template #summary>
+                        <div class="sinopsis font-helvetica-regular ft-15" [innerHTML]="movie.summary"></div>
+                    </ng-template>
+
+                    <div class="row px-0 mb-2">
+                        <div class="col-6 feature d-flex align-items-center">
+                            <img class="pr-2" src="./assets/images/svg/info-genero.svg" alt="genero">
+                            <div class="d-flex flex-column">
+                                <span class="title font-helvetica-bold ft-12">Género</span>
+                                <span class="description font-helvetica-medium ft-15">{{movie.gender_name}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-6 feature d-flex align-items-center">
+                            <img class="pr-2" src="./assets/images/svg/info-clock.svg" alt="clock">
+                            <div class="d-flex flex-column">
+                                <span class="title font-helvetica-bold ft-12">Duración</span>
+                                <span class="description font-helvetica-medium ft-15">{{movie.duration_in_minutes}} Minutos</span>
+                            </div>
+                        </div>
+
+                        <div class="col-6 feature d-flex align-items-center mt-3">
+                            <img class="pr-2" src="./assets/images/svg/info-fecha.svg" alt="fecha">
+                            <div class="d-flex flex-column">
+                                <span class="title font-helvetica-bold ft-12">Fecha de Estreno</span>
+                                <span class="description font-helvetica-medium ft-15">{{movie.premier_date | date: 'dd/MM/yy'}}</span>
+                            </div>
+                        </div>
+
+                        <div class="col-6 feature d-flex align-items-center mt-3">
+                            <img class="pr-2" src="./assets/images/svg/info-flag.svg" alt="flag">
+                            <div class="d-flex flex-column">
+                                <span class="title font-helvetica-bold ft-12">País</span>
+                                <span class="description font-helvetica-medium ft-15">{{movie.country_name}}</span>
+                            </div>
+                        </div>
+
+                        <!--<div class="col-6 feature d-flex align-items-center mt-3">
+                            <img class="pr-2" src="./assets/images/info-formato.png" alt="formato">
+                            <div class="d-flex flex-column">
+                                <span class="title font-helvetica-bold ft-12">Formato</span>
+                                <span class="description font-helvetica-medium ft-15">{{movie.formats}}</span>
+                            </div>
+                        </div>-->
+
+                        <div class="col-6 feature d-flex align-items-center mt-3">
+                            <img class="pr-2" src="./assets/images/svg/info-clasificacion.svg" alt="clasificacion">
+                            <div class="d-flex flex-column">
+                                <span class="title font-helvetica-bold ft-12">Clasificación</span>
+                                <span class="description font-helvetica-medium ft-15">{{movie.type_of_censorship}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="tab-bar-content" id="second">
+                    <app-select-cinema [movie]="movie"></app-select-cinema>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

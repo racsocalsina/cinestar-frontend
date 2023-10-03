@@ -1,0 +1,45 @@
+.steps {
+    position: relative;
+    margin-bottom: 25px;
+
+    .step {
+        span,
+        img {
+            opacity: 0.6;
+        }
+
+        &.active {
+            span,
+            img {
+                opacity: 1;
+                //cursor: pointer;
+            }
+
+            .icon {
+                box-shadow: 0 1px 6px 0 rgba(76, 98, 186, 0.24);
+                border: 0
+            }
+
+            .title {
+                font-family: 'HelveticaNeue-Bold', sans-serif;
+            }
+        }
+    }
+
+    .icon {
+        min-height: 38px;
+        min-width: 38px;
+        border-radius: 50%;
+        border: solid 1px #dddddd;
+        z-index: 1;
+        background-color: #ffffff;
+    }
+
+    .line {
+        width: 98%;
+        height: 1.7px;
+        background-color: #dddddd;
+        top: 19px;
+        left: 1px;
+    }
+}

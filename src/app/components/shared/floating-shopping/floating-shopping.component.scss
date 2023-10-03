@@ -1,0 +1,107 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+
+.floating-shopping {
+    width: 100%;
+    top: 0;
+    right: -100%;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    overflow-x: hidden;
+    transition: 0.5s;
+    z-index: 9999999;
+
+    @include min-width-768 {
+        width: 555px;
+        right: -555px;
+    }
+}
+
+.content-head {
+    height: 95px;
+}
+
+.tab {
+    width: 100%;
+    padding-top: 2vh;
+
+    &-menu {
+        margin: 0 auto;
+        border-bottom: 1.3px solid darken(#f4f4f4, 10);
+        transition: all 0.3s ease;
+
+        &-link {
+            line-height: inherit;
+            width: calc(100% / 2);
+            padding: 0.5rem 0;
+            border: 0;
+            border-bottom: 2.5px solid transparent;
+            opacity: 0.54;
+            transition: all 0.3s ease;
+            outline: none;
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: auto;
+                z-index: 2;
+            }
+
+            &.active {
+                bottom: 0;
+                z-index: 0;
+                overflow: hidden;
+                border-bottom: 5px solid $primary;
+                color: $primary;
+                opacity: 1;
+            }
+        }
+    }
+
+    &-bar {
+        padding: 1.5vh 20px;
+        overflow: hidden;
+
+        &-content {
+            display: none;
+            width: 100%;
+            transition: all 0.3s ease;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .box {
+            width: 100%;
+            min-height: 89px;
+            border-radius: 18px;
+            box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.16);
+            background-color: #ffffff;
+            font-family: "HelveticaNeue-Medium", sans-serif;
+
+            .content {
+                width: 235px;
+                @include min-width-768 {
+                    width: 395px; // 300px;
+                }
+
+                span {
+                    &.opacity {
+                        opacity: 0.78;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.scroll {
+    @include min-width-992 {
+        padding-right: 20px;
+        height: calc(100vh - 200px);
+    }
+}

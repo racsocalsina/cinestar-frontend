@@ -1,0 +1,14 @@
+.btn {
+    border-radius: 23px;
+    font-family: 'HelveticaNeue-Bold', sans-serif;
+    height: 45px;
+
+    &:focus,
+    &.focus {
+        box-shadow: none !important;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
+}

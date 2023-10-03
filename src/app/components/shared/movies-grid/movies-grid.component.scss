@@ -1,0 +1,44 @@
+@import "~assets/scss/breakpoints";
+
+.movies-container {
+    padding-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+
+    @include for-min-width(500px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @include for-min-width(650px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @include for-min-width(860px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    @include for-min-width(1400px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    @include for-min-width(1650px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    @include min-width-992 {
+        padding-right: 30px;
+        gap: 15px
+    }
+
+    @include min-width-1200 {
+        padding-right: 50px;
+        gap: 20px;
+    }
+}
+
+.scroll {
+    @include min-width-992 {
+        max-height: calc(100vh - 196px);
+    }
+}

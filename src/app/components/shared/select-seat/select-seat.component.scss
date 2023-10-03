@@ -1,0 +1,54 @@
+@import "~assets/scss/fonts";
+@import "~assets/scss/breakpoints";
+
+.card {
+    border: none;
+    box-shadow: 0 1px 6px 0 rgba(27, 42, 77, 0.16);
+    border-radius: 16px;
+
+    .card-body {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+}
+
+.bg-4x,
+.selected,
+.busy,
+.available {
+    color: #989898;
+
+    @include min-width-768 {
+        font-size: $ft-11;
+    }
+
+    span {
+        min-width: 7px;
+        min-height: 7px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+}
+
+.available {
+    span {
+        background-color: #707070;
+        opacity: 0.33;
+    }
+}
+
+.bg-4x {
+    span {
+        background-color: #6481c6;
+    }
+}
+
+.select {
+    @include min-width-768 {
+        font-size: $ft-16;
+    }
+
+    @include min-width-992 {
+        font-size: $ft-20;
+    }
+}

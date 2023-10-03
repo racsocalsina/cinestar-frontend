@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16.213" height="15.979" viewBox="0 0 16.213 15.979">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#222;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px}
+        </style>
+    </defs>
+    <g id="Componente_1_1" transform="translate(1.414 1.414)">
+        <path id="Trazado_1086" d="M0 0l6.913 7.015L13.153 0" class="cls-1" transform="rotate(90 6.692 6.693)"/>
+        <path id="Trazado_1087" d="M0 7.015L6.913 0l6.24 7.015" class="cls-1" transform="rotate(90 3.507 3.508)"/>
+    </g>
+</svg>

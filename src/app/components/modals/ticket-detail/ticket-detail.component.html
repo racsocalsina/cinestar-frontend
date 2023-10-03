@@ -1,0 +1,160 @@
+<div class="modal-header border-bottom-0 pb-0 px-md-5 pt-sm-4">
+    <div class="d-flex flex-column">
+        <h3 class="font-helvetica-bold ft-25 color-title lh-1">Boleto</h3>
+        <ng-container *ngIf="purchase">
+            <p class="font-helvetica mb-2 color-gray" *ngIf="purchase.tab_type !== 'concluded'">
+                ¡Sin colas! muestra el código QR desde tu celular, para recoger tu combo en la zona de reparto online e ingresar a la sala. No necesitas pasar por boletería ni imprimir este documento.
+            </p>
+            <p class="font-helvetica mb-2 color-gray" *ngIf="purchase.tab_type === 'concluded'">El siguiente boleto ya fue utilizado</p>
+        </ng-container>
+    </div>
+    <img class="close cursor-pointer pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body pt-0 px-md-5 pb-md-4">
+    <perfect-scrollbar class="pay-confirmation-scroll">
+        <div *ngIf="purchase.ticket_data" class="box-qr d-flex justify-content-around align-items-center px-3 py-2 flex-wrap flex-sm-nowrap">
+            <div class="content-qr d-flex justify-content-center align-items-center position-relative">
+                <ng-container *ngIf="purchase.tab_type !== 'concluded'">
+                    <img class="img-fluid"
+                         [src]="purchase.ticket_data.qr_url" alt="QR"
+                         *ngIf="purchase.ticket_data.qr_url">
+                </ng-container>
+                <ng-container *ngIf="purchase.ticket_data.qr_url === null || purchase.tab_type === 'concluded'">
+                    <img class="img-fluid"
+                         src="./assets/images/qr-code.png" alt="QR">
+                    <div class="bg d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                        <span class="font-helvetica-bold ft-16 text-white">No disponible</span>
+                    </div>
+                </ng-container>
+
+            </div>
+            <div class="content-infor px-3">
+                <div class="">
+                    <h4 class="font-helvetica-bold mb-0 color-title">{{purchase.ticket_data.movie.name}}</h4>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="">
+                            <small class="ft-13 font-helvetica-bold text-primary">Butacas</small>
+                            <p class="ft-15 font-helvetica mb-0 color-gray">{{purchase.ticket_data.seats}}</p>
+                        </div>
+                        <div class="">
+                            <p class="font-helvetica-bold mb-0 text-primary">Sala {{purchase.ticket_data.room}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="">
+                    <h5 class="font-helvetica-bold mb-0 ft-13 text-primary">Cantidad</h5>
+                    <p class="font-helvetica ft-15 color-gray mb-0" *ngFor="let item of purchase.ticket_data.ticket_types">
+                        {{item.quantity}} {{item.name}}
+                    </p>
+                </div>
+                <div class="d-flex align-items-center mt-2">
+                    <div class="mr-3">
+                        <h5 class="font-helvetica-bold mb-0 ft-13 text-primary">Fecha</h5>
+                        <p class="font-helvetica ft-15 color-gray mb-0">{{purchase.ticket_data.start_at_name}}</p>
+                    </div>
+                    <div class="">
+                        <h5 class="font-helvetica-bold mb-0 ft-13 text-primary">Hora</h5>
+                        <p class="font-helvetica ft-15 color-gray mb-0">{{purchase.ticket_data.start_at | timeToDate}} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="purchase.sweet_data">
+            <p class="font-helvetica-bold color-title ft-25 mt-3 mb-1">Chocolatería</p>
+
+            <div class="box-qr d-flex justify-content-around align-items-center px-3 py-2 flex-wrap flex-sm-nowrap">
+                <div class="content-qr d-flex justify-content-center align-items-center position-relative">
+                    <ng-container *ngIf="purchase.tab_type !== 'concluded'">
+                        <img class="img-fluid"
+                             [src]="purchase.sweet_data.qr_url" alt="QR"
+                             *ngIf="purchase.sweet_data.qr_url">
+                    </ng-container>
+                    <ng-container *ngIf="purchase.sweet_data.qr_url === null || purchase.tab_type === 'concluded'">
+                        <img class="img-fluid"
+                             src="./assets/images/qr-code.png" alt="QR">
+                        <div class="bg d-flex justify-content-center align-items-center position-absolute w-100 h-100">
+                            <span class="font-helvetica-bold ft-16 text-white">No disponible</span>
+                        </div>
+                    </ng-container>
+
+                </div>
+                <div class="content-infor px-3">
+                    <div class="">
+                        <h3 class="font-helvetica-bold mb-0 color-title">Compra en chocolatería</h3>
+
+                        <div class="d-flex mb-3">
+                            <div class="d-flex flex-column mr-5">
+                                <span class="text-primary ft-12 font-helvetica-bold">Fecha</span>
+                                <span class="color-gray ft-15">{{purchase.sweet_data.date_name}}</span>
+                            </div>
+
+<!--                            <div class="d-flex flex-column">-->
+<!--                                <span class="text-primary ft-12 font-helvetica-bold">Hora</span>-->
+<!--                                <span class="color-gray ft-15">{{purchase.sweet_data.date | timeToDate}}</span>-->
+<!--                            </div>-->
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex flex-column">
+                                <span class="text-primary ft-12 font-helvetica-bold">Sede a retirar</span>
+                                <div class="d-flex flex-wrap">
+                                    <img class="mr-1" src="./assets/images/svg/cine-icon.svg" alt="">
+                                    <span class="color-title ft-15 font-helvetica-bold mr-1">{{purchase.headquarter.name}},</span>
+                                    <span class="color-gray ft-15 font-helvetica">{{purchase.headquarter.address}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="items">
+                <div class="item d-flex align-items-center mr-3 py-2 pb-2" *ngFor="let item of purchase.sweet_data.items">
+                    <div class="img text-center mr-2">
+                        <img class="img-fluid"
+                             [src]="item.image"
+                             onError="this.src='./assets/images/svg/no-product.svg';"
+                             alt="">
+                    </div>
+
+                    <div>
+                        <div class="description color-gray ft-13 lh-1 mb-2 pt-2">
+                            {{item.name}}
+                        </div>
+
+                        <div class="ft-15 font-helvetica-bold d-flex justify-content-between">
+                            <span>S/ {{item.price | number: '.2'}}</span>
+                            <span>Cant. {{item.quantity}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="mt-5">
+            <p class="color-title font-helvetica-medium mb-3">
+                <img src="./assets/images/svg/rueda.svg" class="img-fluid mr-2" alt="">
+                {{purchase.headquarter.name}},
+                <span class="color-gray d-block d-md-inline-block font-helvetica">
+                    {{purchase.headquarter.address}}
+                </span>
+            </p>
+        </div>
+        <div class="d-flex align-items-start flex-wrap flex-md-nowrap">
+            <div class="col-12 col-sm-3 p-0 mb-3 mb-md-0">
+                <h5 class="color-title ft-13 font-helvetica-bold mb-0">Tipo de Pago</h5>
+                <p class="color-gray ft-15 font-helvetica mb-0">Tarjeta {{purchase.payment_data.type | titlecase}}</p>
+            </div>
+            <div class="col-6 col-sm-3 p-0 mb-3 mb-md-0">
+                <h5 class="color-title ft-13 font-helvetica-bold mb-0">Total</h5>
+                <p class="color-gray ft-15 font-helvetica mb-0">S/{{purchase.payment_data.total}}</p>
+            </div>
+            <div class="col-6 col-sm-6 text-md-right p-0 mb-3 mb-md-0">
+                <button (click)="downloadTicket(purchase.download_url)" [disabled]="purchase.tab_type === 'concluded'" class="btn btn-primary">Descargar</button>
+            </div>
+        </div>
+    </perfect-scrollbar>
+</div>
+

@@ -1,0 +1,82 @@
+<header class="container-fluid bg-primary d-flex align-items-center position-fixed">
+
+    <app-responsive-menu class="d-lg-none">
+    </app-responsive-menu>
+
+    <div class="logo d-flex justify-content-center flex-grow-1 flex-lg-grow-0">
+        <a routerLink="/" id="logo">
+            <img src="./assets/images/svg/logo.svg" alt="Cinestar" title="Cinestar">
+        </a>
+    </div>
+    <nav class="flex-grow-1 d-none d-lg-flex">
+        <ul class="navbar-nav navbar-expand">
+            <li class="nav-item ft-13" *ngFor="let item of items">
+                <a [routerLink]="item.route" [id]="item.id" *ngIf="item.id === 'home'" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" class="nav-link font-helvetica-bold text-white">{{item.title}}</a>
+                <a [routerLink]="item.route" [id]="item.id" routerLinkActive="active" *ngIf="item.id !== 'home'" class="nav-link font-helvetica-bold text-white">{{item.title}}</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="auth" *ngIf="!isLoggedIn">
+<!--        <button class="btn font-helvetica-medium btn-default text-white ft-15 d-none d-xl-inline mr-2" id="register" (click)="onClickRegister()">Registrar</button>-->
+        <button class="btn font-helvetica-medium btn-primary ft-15 px-4" id="login" (click)="onClickLogin()"
+                *ngIf="environment.validation_apple">¿Eres socio?</button>
+        <button class="btn font-helvetica-medium btn-primary ft-15 px-4" id="login" (click)="onClickRegister()"
+                *ngIf="!environment.validation_apple">Registrate</button>
+    </div>
+
+    <div class="social-icons d-none d-xl-flex ml-3">
+        <a href="https://www.linkedin.com/company/cine-star-multicines/" target="_blank"
+           class="mr-3 text-decoration-none text-white" id="desktop-icon-linkedin">
+            <img src="assets/images/svg/linkedin.svg" style="width: 26px;">
+        </a>
+        <a href="https://www.instagram.com/multicines_cinestar/" target="_blank" class="mr-3 text-decoration-none text-white" id="desktop-icon-instagram">
+            <span class="icon-instagram ft-26" title="Instagram"></span>
+        </a>
+
+        <a href="https://www.facebook.com/multicinestar/" target="_blank" class="mr-3 text-decoration-none text-white" id="desktop-icon-facebook">
+            <span class="icon-facebook ft-26" title="Facebook"></span>
+        </a>
+    </div>
+
+    <div class="user-dropdown" *ngIf="isLoggedIn">
+        <div class="dropdown-toggle cursor-pointer d-flex align-items-center" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img class="avatar img-fluid"
+                 onError="this.src='./assets/images/svg/default-user.svg';"
+                 [src]="user.image" alt="avatar" title="{{user.fullName}}">
+            <img class="arrow-down" src="./assets/images/svg/arrow_down.svg" alt="arrow_down">
+        </div>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+            <div class="options h-100 d-flex flex-column justify-content-center align-items-center">
+                <p class="color-title font-helvetica-bold ft-17">{{user.fullName}}</p>
+
+                <button class="btn btn-outline-primary mb-1 ft-15" id="profile" (click)="showProfile()">Ver Perfil</button>
+
+                <div class="separator"></div>
+
+                <a class="shopping text-primary ft-12 font-helvetica-medium cursor-pointer" (click)="showShopping()" id="shopping">
+                    <span class="icon-ticket font-weight-bold ft-15 ft-15 mr-1"></span>
+                    MIS COMPRAS
+                </a>
+
+                <div class="separator w-100"></div>
+
+                <a class="logout color-black font-weight-bold text-decoration-none cursor-pointer" (click)="onClickLogout()" id="logout">
+                    <img src="./assets/images/svg/logout.svg" alt="logout">
+                    Cerrar Sesión
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+</header>
+
+<app-message-notification [notification]="$showNotification | async"></app-message-notification>
+<ng-container *ngIf="isLoggedIn">
+    <app-floating-profile></app-floating-profile>
+    <app-floating-shopping></app-floating-shopping>
+</ng-container>
+

@@ -1,0 +1,346 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+
+/*
+.card {
+    border: 0;
+    box-shadow: 0 1px 6px 0 rgba(27, 42, 77, 0.16);
+    border-radius: 16px;
+    margin: 15px 0;
+
+    @include min-width-768 {
+        box-shadow: none;
+
+        &:hover,
+        &.active {
+            box-shadow: 0 1px 6px 0 rgba(27, 42, 77, 0.16);
+        }
+    }
+
+    .card-body {
+        padding: 7px;
+
+        img {
+            border-radius: 15px;
+            max-width: 104px;
+            max-height: 104px;
+
+            @include min-width-992 {
+                max-width: 132px;
+            }
+        }
+
+        .icon-star {
+            @include min-width-992 {
+                font-size: $ft-20;
+            }
+        }
+
+        h3 {
+            line-height: 1;
+
+            @include min-width-992 {
+                font-size: $ft-15;
+
+                span {
+                    font-size: $ft-14;
+                }
+            }
+
+            img {
+                width: 11px;
+            }
+        }
+
+        .formats {
+            span {
+                @include min-width-992 {
+                    font-size: $ft-11;
+                }
+            }
+        }
+
+        .view-details {
+            height: 23px;
+            line-height: 0;
+        }
+
+    }
+}*/
+/* Diseño PC */
+.card-container {
+    width: 406px;
+    height: 614px;
+    padding: 24px;
+    background: white;
+    border-radius: 22px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.card-container:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.card-container.pc-design {
+    width: 100%;
+    max-width: 754px;
+    height: 241px;
+    padding: 28px;
+    background: white;
+    box-shadow: 0px 0px 12px rgba(52, 58, 64, 0.25);
+    border-radius: 22px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    display: inline-flex;
+    margin-bottom: 24px;
+    margin: 10px;
+}
+
+.card-container.pc-design .card-image {
+    width: 339px;
+    height: 185px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.card-container.pc-design .card-content {
+    flex: 1;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+    display: inline-flex;
+}
+
+.card-container.pc-design:hover {
+    background: #ececec;
+}
+
+.card-container.pc-design .card-title {
+    width: 100%;
+    color: #343A40;
+    font-size: 16px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+    word-wrap: break-word;
+}
+
+.card-container.pc-design .card-subtitle {
+    width: 100%;
+    color: #343A40;
+    font-size: 16px;
+    font-family: Helvetica;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+    word-wrap: break-word;
+}
+
+.card-container.pc-design .card-details {
+    justify-content: space-between;
+    align-items: center;
+    display: inline-flex;
+    width: 100%;
+}
+
+.card-container.pc-design .format {
+    width: auto;
+    color: #D91D1C;
+    font-size: 16px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+    word-wrap: break-word;
+}
+
+.card-container.pc-design .arrow {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    margin-left: auto;
+}
+
+.card-container.pc-design .arrow-mask {
+    width: 24px;
+    height: 24px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #D9D9D9;
+}
+
+.card-container.pc-design .arrow-tip {
+    width: 10.82px;
+    height: 18.98px;
+    left: 6.78px;
+    top: 2.50px;
+    position: absolute;
+    background: #D91D1C;
+}
+
+/* Diseño Móvil */
+
+.container.mobile-design {
+    width: 361px;
+    //height: 112px;
+    padding: 16px;
+    background: white;
+    box-shadow: 0px 0px 6px rgba(52, 58, 64, 0.20);
+    border-radius: 4px;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+    display: inline-flex;
+    margin-bottom: 10px;
+  }
+
+  .container.mobile-design .content {
+    //height: 80px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    display: flex;
+  }
+
+  .container.mobile-design .logo {
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+
+  .container.mobile-design .logo img {
+    width: 20px;
+    height: 20px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+  }
+
+  .container.mobile-design .details {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+    display: inline-flex;
+  }
+
+  .container.mobile-design .title {
+    width: 233px;
+    color: #343A40;
+    font-size: 14px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.14px;
+    word-wrap: break-word;
+  }
+
+  .container.mobile-design .address {
+    width: 233px;
+    color: #6C757D;
+    font-size: 14px;
+    font-family: Helvetica;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.14px;
+    word-wrap: break-word;
+  }
+
+  .container.mobile-design .format {
+    width: 190px;
+    color: #D91D1C;
+    font-size: 14px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.14px;
+    word-wrap: break-word;
+  }
+
+  .container.mobile-design .icon {
+    width: 24px;
+    height: 24px;
+    position: relative;
+  }
+
+  .container.mobile-design .circle {
+    width: 24px;
+    height: 24px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #D9D9D9;
+  }
+
+  .container.mobile-design .line {
+    width: 10.82px;
+    height: 18.98px;
+    left: 6.78px;
+    top: 2.50px;
+    position: absolute;
+    background: #D91D1C;
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .content {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  
+  .icon {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Ajusta los estilos según tus necesidades */
+  .logo {
+    margin-right: 10px;
+  }
+  
+  .arrow {
+    margin-left: 10px;
+  }
+
+/* Diseño PC */
+
+.pc-design {
+        display: block; // Mostrar en pantallas de PC
+}
+
+  // Diseño Móvil
+  .container.mobile-design {
+    display: block; // Mostrar en pantallas móviles
+  }
+
+  // Media Query para ocultar el diseño PC en pantallas móviles
+  @media (max-width: 767px) {
+    .card-container.pc-design {
+      display: none; // Ocultar en pantallas móviles
+    }
+  }
+
+  // Media Query para ocultar el diseño móvil en pantallas de PC
+  @media (min-width: 768px) {
+    .container.mobile-design {
+      display: none; // Ocultar en pantallas de PC
+    }
+  }

@@ -1,0 +1,116 @@
+<div class="floating-profile h-100" id="floating-profile">
+    <div class="content-head d-flex justify-content-between align-items-center px-4">
+        <div class="section-title">
+            <h1 class="mb-0">Mi perfil</h1>
+        </div>
+        <a class="cursor-pointer close" (click)="hideProfile()"><img src="./assets/images/svg/close.svg" class="img-fluid" alt=""></a>
+    </div>
+    <div class="zoom">
+        <div class="tab h-auto">
+            <div class="tab-menu d-flex justify-content-around align-items-center mw-100 h-100">
+                <button class="tab-menu-link position-relative color-title bg-white font-helvetica-bold ft-12" [class.active]="activeTab === 'profile'" (click)="showTab('profile')">
+                    <span data-title="profile">DATOS PERSONALES</span>
+                </button>
+                <button class="tab-menu-link position-relative color-title bg-white font-helvetica-bold ft-12" [class.active]="activeTab === 'rewards'" (click)="showTab('rewards')">
+                    <span data-title="rewards">TUS PROMOCIONES</span>
+                </button>
+            </div>
+
+            <div class="tab-bar">
+                <div class="tab-bar-content active mt-4" id="profile-tab" *ngIf="user">
+
+                    <div class="profile" *ngIf="profileOption === 'profile'">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h3 class="mb-0">{{user.fullName}}</h3>
+                            <button class="btn btn-outline-primary lh-1 ft-13 font-helvetica-medium"
+                                    (click)="profileOption = 'update-profile'">
+                                <span class="mr-2 icon-edit text-primary"></span>
+                                Editar
+                            </button>
+                        </div>
+
+                        <div class="row mt-4 border-bottom pb-3">
+                            <div class="col-6">
+                                <small class="d-block ft-10 font-helvetica-bold lh-1 color-title">Tipo y Número de documento</small>
+                                <span class="ft-15 color-gray">{{Utils.getDocumentName( user.document_type )}} {{user.document_number}}</span>
+                            </div>
+                            <div class="col-6">
+                                <small class="d-block ft-10 font-helvetica-bold lh-1 color-title">Fecha de nacimiento</small>
+                                <span class="ft-15 color-gray">{{user.birthdate | date: 'dd/MM/y'}}</span>
+                            </div>
+                        </div>
+
+                        <div class="row mt-4 border-bottom pb-3">
+                            <div class="col-6">
+                                <small class="d-block ft-10 font-helvetica-bold lh-1 color-title">Celular</small>
+                                <span class="ft-15 color-gray">{{user.cellphone}}</span>
+                            </div>
+                            <div class="col-6">
+                                <small class="d-block ft-10 font-helvetica-bold lh-1 color-title">Correo electrónico</small>
+                                <span class="ft-15 color-gray">{{user.email}}</span>
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-6">
+                                <small class="d-block ft-10 font-helvetica-bold lh-1 color-title">Departamento</small>
+                                <span class="ft-15 color-gray">{{user.department.name}}</span>
+                            </div>
+                        </div>
+
+                        <div class="options mt-5">
+                            <div (click)="profileOption = 'update-password'" class="option cursor-pointer d-flex justify-content-between align-items-center">
+                                <span class="icon-lock text-primary ft-24 mr-3"></span>
+                                <span class="flex-grow-1 ft-14 font-helvetica-bold">Modificar Contraseña</span>
+                                <img src="./assets/images/svg/arrow_right.svg" alt="">
+                            </div>
+
+                            <div (click)="profileOption = 'credit-cards'" class="option cursor-pointer d-flex justify-content-between align-items-center">
+                                <span class="icon-card text-primary ft-20 mr-3"></span>
+                                <span class="flex-grow-1 ft-14 font-helvetica-bold">Tarjetas Guardadas</span>
+                                <img src="./assets/images/svg/arrow_right.svg" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <app-form-update-profile
+                        *ngIf="profileOption === 'update-profile'"
+                        (onBack)="profileOption = 'profile'"
+                        [user]="user">
+                    </app-form-update-profile>
+
+                    <app-form-update-password
+                        *ngIf="profileOption === 'update-password'"
+                        (onBack)="profileOption = 'profile'">
+                    </app-form-update-password>
+
+                    <app-profile-list-credit-card
+                        *ngIf="profileOption === 'credit-cards'"
+                        (onAddCard)="profileOption = 'add-credit-card'"
+                        (onBack)="profileOption = 'profile'">
+                    </app-profile-list-credit-card>
+
+                    <app-profile-add-credit-card
+                        *ngIf="profileOption === 'add-credit-card'"
+                        (onAddCard)="onAddCard()"
+                        (onBack)="profileOption = 'credit-cards'">
+                    </app-profile-add-credit-card>
+                </div>
+
+                <div class="tab-bar-content mt-3 px-md-4" id="rewards">
+
+                    <app-promotions-profile>
+                    </app-promotions-profile>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="credit-card-added color-title font-helvetica-bold d-flex justify-content-center align-items-center"
+         [class.show]="creditCardAdded">
+        ¡Tarjeta agregada con éxito!
+    </div>
+</div>
+

@@ -1,0 +1,141 @@
+<div class="modal-header border-bottom-0">
+    <div class="d-flex flex-column">
+        <h3 class="font-helvetica-bold ft-25 text-primary lh-1">Confirmación de la compra</h3>
+        <p class="color-gray ft-15 lh-1">Confirme los datos ingresados para efectuar la compra</p>
+    </div>
+    <img class="close pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body pt-0 px-4">
+    <div class="row">
+        <div class="col-3">
+            <img class="img-fluid"
+                 [src]="movie.image"
+                 onError="this.src='./assets/images/no-image-movie.png';"
+                 [alt]="movie.name"
+                 [title]="movie.name">
+        </div>
+        <div class="col-5 d-flex flex-column">
+            <h4 class="ft-20 font-helvetica-bold color-title lh-1">{{movie.name}}</h4>
+
+            <div class="d-flex flex-column lh-1 mt-2">
+                <span class="font-helvetica-medium ft-15 color-title">
+                    <img class="mr-1" src="./assets/images/svg/cine-icon.svg" alt="">
+                    {{showTime?.name}},
+                </span>
+                <span class="color-gray ft-15">{{showTime?.address}}</span>
+            </div>
+
+            <div class="d-flex justify-content-between border-bottom my-4 pb-2" *ngIf="movieTime">
+                <div class="d-flex flex-column lh-1">
+                    <span class="font-helvetica-bold ft-12 color-title">Fecha</span>
+                    <span class="color-gray ft-15">{{movieTime.date_start | date: 'dd/MM/yy'}}</span>
+                </div>
+
+                <div class="d-flex flex-column lh-1">
+                    <span class="font-helvetica-bold ft-12 color-title">Hora</span>
+                    <span class="color-gray ft-15">{{movieTime.time_start | time}} / {{movieTime.movie_version_name}}</span>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column lh-1">
+                <span class="font-helvetica-bold ft-12 color-title">Cantidad y tipo de entradas</span>
+                <span class="color-gray ft-15 d-block mb-1" *ngFor="let tariif of buyTicketService.tariffs">
+                    {{tariif.quantity}} {{tariif.name}} {{format?.short}}
+                </span>
+
+                <ng-container *ngFor="let award of buyTicketService.ticketAwards">
+                    <span class="color-gray ft-15 d-block mb-1" *ngIf="award.quantity && award.quantity > 0">
+                        {{award.quantity}} {{award.name}}
+                    </span>
+                </ng-container>
+                <span class="color-gray ft-15 d-block mb-1" *ngFor="let code of buyTicketService.codes">
+                    {{code.quantity}} {{code.name}} ({{code.code_promotion}})
+                </span>
+
+                <small class="color-gray ft-14 mt-1">
+                    ({{buyTicketService.tickets_number}} {{Utils.isSingular( buyTicketService.tickets_number ) ? 'ticket' : 'tickets'}})
+                </small>
+            </div>
+
+        </div>
+        <div class="col-4">
+            <app-room [minSize]="false" [clickable]="false"></app-room>
+
+            <div class="d-flex flex-column lh-1 mt-4">
+                <span class="font-helvetica-bold ft-12 color-title">Butacas seleccionadas</span>
+                <span class="color-gray ft-15">{{Utils.arrToString( { arr: seats, field: 'position' } )}}</span>
+            </div>
+        </div>
+    </div>
+
+    <ng-container *ngIf="showChocolateria()">
+        <p class="font-helvetica-bold color-title ft-25 mt-3 mb-1">Chocolatería</p>
+
+        <perfect-scrollbar class="purchase-confirmation-scroll">
+            <div class="items">
+                <div class="item d-flex align-items-center mr-3 py-2 pb-2" *ngFor="let product of candyService.selectedProducts">
+                    <div class="img text-center mr-2">
+                        <img class="img-fluid"
+                             [src]="product.image"
+                             onError="this.src='./assets/images/svg/no-product.svg';"
+                             alt="">
+                    </div>
+
+                    <div>
+                        <div class="description color-gray ft-13 lh-1 mb-2 pt-2">
+                            {{product.name}}
+                        </div>
+
+                        <div class="ft-15 font-helvetica-bold d-flex justify-content-between">
+                            <span>S/ {{product.price | number: '.2'}}</span>
+                            <span>Cant. {{product.quantity}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-container *ngFor="let product of candyService.chocoAwards">
+                    <div *ngIf="product.quantity > 0" class="item d-flex align-items-center mr-3 py-2 pb-2">
+                        <div class="img text-center mr-2">
+                            <img class="img-fluid"
+                                 [src]="product.image"
+                                 onError="this.src='./assets/images/svg/no-product.svg';"
+                                 alt="">
+                        </div>
+
+                        <div>
+                            <div class="description color-gray ft-13 lh-1 mb-2 pt-2">
+                                {{product.name}}
+                            </div>
+
+                            <div class="ft-15 font-helvetica-bold d-flex justify-content-between">
+                                <span>S/ {{product.price | number: '.2'}}</span>
+                                <span>Cant. {{product.quantity}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </div>
+        </perfect-scrollbar>
+    </ng-container>
+
+    <p class="text-danger mt-2">{{error}}</p>
+
+    <div class="row mt-3">
+        <div class="offset-3 col-5">
+            <div class="d-flex flex-column">
+                <span class="ft-20 font-helvetica-bold text-secondary">Total</span>
+                <span class="color-title ft-30 lh-1">S/ {{totalPayment + candyService.paymentAmount | number: '.2'}}</span>
+            </div>
+        </div>
+        <div class="col-4 d-flex align-items-center">
+            <button class="btn btn-primary px-5" (click)="continue()" [disabled]="isLoading || !buyTicketService.purchase">
+                    <span class="bouncingLoader" *ngIf="isLoading">
+                        <span></span>
+                    </span>
+                <span *ngIf="!isLoading">Confirmar</span>
+            </button>
+        </div>
+    </div>
+</div>

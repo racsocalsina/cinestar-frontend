@@ -1,0 +1,29 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/fonts";
+
+.floating-summary {
+    width: 462px;
+    position: fixed;
+    top: 0;
+    right: -462px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    overflow-x: hidden;
+    transition: 0.5s;
+    z-index: 9999999;
+    background-color: #ffffff;
+}
+
+.video {
+    height: 37vh;
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+
+    img {
+        padding: 5px 10px;
+        width: 45px;
+    }
+}
+

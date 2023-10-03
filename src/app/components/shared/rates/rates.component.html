@@ -1,0 +1,91 @@
+<ng-container *ngIf="showPromotions()">
+    <h3 class="font-helvetica-bold ft-20 color-title">Tarifas promocionales:</h3>
+
+    <div class="rates mb-3">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="w-100 color-black ft-12"></th>
+                <th class="d-none d-lg-block mx-5 color-black ft-12 text-center" style="width: 132px;"></th>
+                <th class="color-black ft-12 text-center" style="width: 70px;"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let award of buyTicketService.ticketAwards">
+                <tr *ngIf="award.quantity">
+                    <td class="d-flex">
+                        <span class="icon-ticket text-primary ft-19 mr-2"></span>
+                        <div class="d-flex flex-column">
+                            <span class="description color-gray ft-12">{{award.name}}</span>
+                            <span class="color-title font-helvetica-bold ft-17 d-lg-none">S/ {{award.online_price | number: '.2'}}</span>
+                        </div>
+                    </td>
+                    <td class="d-none d-lg-table-cell text-center">
+                        <span class="color-title ft-20 font-helvetica-bold">S/ {{award.online_price | number: '.2'}}</span>
+                    </td>
+                    <td class="ft-20 text-right">
+                        <span class="color-gray">{{award.quantity}}</span>
+                        <span class="ml-2 ft-16 icon-close-solid" role="button" (click)="removeAward(award)"></span>
+                    </td>
+                </tr>
+            </ng-container>
+
+            <ng-container *ngFor="let code of buyTicketService.codes">
+                <tr>
+                    <td class="d-flex">
+                        <span class="icon-ticket text-primary ft-19 mr-2"></span>
+                        <div class="d-flex flex-column">
+                            <span class="description color-gray ft-12">{{code.name}} ({{code.code_promotion}})</span>
+                            <span class="color-title font-helvetica-bold ft-17 d-lg-none">S/ {{code.online_price | number: '.2'}}</span>
+                        </div>
+                    </td>
+                    <td class="d-none d-lg-table-cell text-center">
+                        <span class="color-title ft-20 font-helvetica-bold">S/ {{code.online_price | number: '.2'}}</span>
+                    </td>
+                    <td class="ft-20 text-right">
+                        <span class="color-gray">{{code.quantity}}</span>
+                        <span class="ml-2 ft-16 icon-close-solid" role="button" (click)="removeCode(code)"></span>
+                    </td>
+                </tr>
+            </ng-container>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+
+<h3 class="font-helvetica-bold ft-20 color-title">Tarifas Disponibles:</h3>
+
+<div class="rates">
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="w-100 color-black ft-12">Tipo de Entrada</th>
+            <th class="d-none d-lg-block mx-5 color-black ft-12 text-center">Precio</th>
+            <th class="color-black ft-12 text-center">Cantidad</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tariff of tariffs">
+            <td class="d-flex">
+                <span class="icon-ticket text-primary ft-19 mr-2"></span>
+                <div class="d-flex flex-column">
+                    <span class="description color-gray ft-12">{{tariff.name}}
+                        <span *ngIf="tariff.type == typeTariff.Promocion" class="text-primary">(P)</span>
+                    </span>
+                    <span class="color-title font-helvetica-bold ft-17 d-lg-none">S/ {{tariff.online_price | number: '.2'}}</span>
+                </div>
+            </td>
+            <td class="d-none d-lg-table-cell text-center">
+                <span class="color-title ft-20 font-helvetica-bold">S/ {{tariff.online_price | number: '.2'}}</span>
+            </td>
+            <td>
+                <app-quantity-picker [(ngModel)]="tariff.quantity"
+                                     [disabled]="buyTicketService.tickets_number >= MAX_TICKETS || buyTicketService.tickets_number + tariff.tickets_number > MAX_TICKETS"
+                                     (ngModelChange)="totalPayment()">
+                </app-quantity-picker>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>

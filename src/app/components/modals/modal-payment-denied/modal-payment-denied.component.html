@@ -1,0 +1,50 @@
+<div class="modal-header border-bottom-0 pb-0 px-md-5 pt-sm-4">
+    <div class="d-flex flex-column">
+        <h3 class="font-helvetica-bold ft-30 color-title lh-1">Pago Denegado</h3>
+        <p class="color-title font-helvetica-bold ft-18 lh-1" *ngIf="data">
+            Nro. de pedido {{data.id}}
+        </p>
+    </div>
+    <img class="close cursor-pointer pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="close()">
+</div>
+
+<div class="modal-body pt-0 px-md-5 pb-md-4">
+
+    <div *ngIf="isLoading" class="loading">
+         <span class="bouncingLoader">
+            <span></span>
+         </span>
+    </div>
+
+    <ng-container *ngIf="!isLoading && data">
+        <div class="d-flex flex-column">
+            <span class="text-primary ft-12 font-helvetica-bold">Motivo</span>
+            <span class="color-gray ft-15">{{data?.error}}</span>
+        </div>
+
+        <div class="d-flex mt-2" *ngIf="!isSafari">
+            <div class="d-flex flex-column mr-5">
+                <span class="text-primary ft-12 font-helvetica-bold">Fecha</span>
+                <span class="color-gray ft-15">{{data?.datetime | date: 'dd/MM/yy'}}</span>
+            </div>
+
+            <div class="d-flex flex-column">
+                <span class="text-primary ft-12 font-helvetica-bold">Hora</span>
+                <span class="color-gray ft-15">{{data?.datetime | time}}</span>
+            </div>
+        </div>
+
+        <div class="d-flex mt-2" *ngIf="isSafari">
+            <div class="d-flex flex-column">
+                <span class="text-primary ft-12 font-helvetica-bold">Fecha y Hora</span>
+                <span class="color-gray ft-15">{{data?.datetime}}</span>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column mt-3">
+            <span class="text-primary ft-12 font-helvetica-bold">Importe a pagar</span>
+            <span class="color-title ft-30">S/ {{data?.total}}</span>
+        </div>
+    </ng-container>
+
+</div>

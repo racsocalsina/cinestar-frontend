@@ -1,0 +1,169 @@
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+
+header {
+    height: 67px;
+    z-index: 999999;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+}
+
+.logo {
+
+    @include min-width-992 {
+        margin-right: 55px;
+    }
+
+    img {
+        width: 100px;
+
+        @include min-width-576 {
+            width: auto;
+        }
+    }
+}
+
+.social-icons {
+    a {
+        &:hover {
+            span {
+                color: $secondary;
+            }
+        }
+    }
+}
+.d-xl-flex, .d-xl-inline {
+    display: none !important;
+}
+@media (min-width: 1345px){
+    .d-xl-flex {
+        display: flex !important;
+    }
+    .d-xl-inline {
+        display: inline !important;
+    }
+}
+
+
+.navbar-nav {
+    .nav-item {
+        letter-spacing: 0.52px;
+        line-height: 1.23;
+        padding: 0 18px;
+
+        &:last-child {
+            padding-right: 0;
+        }
+
+        .nav-link {
+
+            &::after {
+                content: '';
+                display: block;
+                width: 0;
+                height: 2px;
+                background: $yellow;
+                transition: width .3s;
+            }
+
+            &.active,
+            &:hover {
+                color: $secondary !important;
+
+                &::after {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+.auth {
+
+    .btn {
+        height: 38px;
+
+        @include min-width-992 {
+            font-size: $ft-18;
+            height: 45px;
+        }
+    }
+
+    .btn-default {
+        &:hover {
+            color: $secondary !important;
+        }
+    }
+
+    .btn-primary {
+        border: solid 2px $secondary;
+
+        &:hover {
+            background: $secondary;
+            color: $primary;
+        }
+    }
+}
+
+.user-dropdown {
+    margin-left: 20px;
+
+    &.show {
+        .arrow-down {
+            transform: rotate(180deg);
+        }
+    }
+
+    .shopping {
+        &:hover {
+            color: $primary !important;
+            text-decoration: underline;
+        }
+    }
+
+}
+
+.arrow-down {
+    transition-duration: 0.5s;
+}
+
+.dropdown-toggle {
+
+    .avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    &::after {
+        display: none;
+    }
+}
+
+
+.dropdown-menu {
+    border-radius: 18px;
+    min-width: 220px;
+    height: 238px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+    border: 0;
+    top: 15px !important;
+    z-index: 99999;
+
+    .options {
+
+        .btn {
+            height: 34px;
+            width: 113px;
+        }
+
+        .separator {
+            height: 1px;
+            background-color: #cbcbcb;
+            margin: 15px 0;
+        }
+    }
+}
+

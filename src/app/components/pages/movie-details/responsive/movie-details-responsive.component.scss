@@ -1,0 +1,86 @@
+@import "~assets/scss/variables";
+
+.container-fluid {
+    padding-top: 67px;
+}
+
+.video {
+    height: 35vh;
+}
+
+.movie-info {
+    h3.title {
+        padding: 0 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+.tab {
+    width: 100%;
+    height: auto;
+    padding-top: 2vh;
+
+    &-menu {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        max-width: 100%;
+        height: auto;
+        margin: 0 auto;
+        border-bottom: 1.3px solid darken(#f4f4f4, 10);
+        transition: all 0.3s ease;
+
+        &-link {
+            position: relative;
+            line-height: inherit;
+            width: calc(100% / 2);
+            padding: 0.5rem 0;
+            border: 0;
+            border-bottom: 2.5px solid transparent;
+            color: $color-title;
+            opacity: 0.54;
+            background: #ffffff;
+            transition: all 0.3s ease;
+            outline: none;
+
+            &::before {
+                position: absolute;
+                content: "";
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: auto;
+                z-index: 2;
+            }
+
+            &.active {
+                bottom: 0;
+                z-index: 0;
+                overflow: hidden;
+                border-bottom: 5px solid $primary;
+                color: $primary;
+                opacity: 1;
+            }
+        }
+    }
+
+    &-bar {
+        padding: 1.5vh 20px 0;
+        overflow: hidden;
+
+        &-content {
+            display: none;
+            width: 100%;
+            transition: all 0.3s ease;
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+}
+

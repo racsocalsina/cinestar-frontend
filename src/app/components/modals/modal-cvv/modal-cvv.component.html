@@ -1,0 +1,32 @@
+<div class="modal-header border-bottom-0 pb-0 mx-3 ">
+    <img class="close cursor-pointer pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body pb-4 px-5 d-flex flex-column align-items-center">
+    <h3 class="color-title ft-18 font-helvetica-bold text-center lh-1">
+        Ingrese su código {{cvvText}} para realizar el pago con esta tarjeta
+    </h3>
+
+    <p class="color-gray ft-15 lh-1 text-center">
+        La cantidad del código {{card.payment_method === CreditCards.Amex ? 'CSC son 4' : 'CVV son 3'}} dígitos ubicados al <span class="font-helvetica-bold">reverso de la tarjeta</span>
+    </p>
+
+    <div class="w-100 text-center mb-3">
+        <img *ngIf="card.payment_method !== CreditCards.Amex" src="./assets/images/svg/credit_card_cvv.svg" alt="">
+        <img *ngIf="card.payment_method === CreditCards.Amex" src="./assets/images/svg/credit_card_cvv_amex.svg" alt="">
+    </div>
+
+    <div class="form-group md-input ">
+        <app-control-messages [control]="inputCVV" [showMessage]="false">
+            <input [formControl]="inputCVV" type="text" class="form-control font-helvetica"
+                   (keydown.enter)="close()"
+                   [placeholder]="cvvText" [mask]="card.payment_method === CreditCards.Amex ? '0000' : '000'">
+            <label>{{cvvText}}</label>
+        </app-control-messages>
+    </div>
+
+
+    <div class="w-100 text-center mt-2">
+        <button class="btn btn-primary" (click)="close()">Pagar</button>
+    </div>
+</div>

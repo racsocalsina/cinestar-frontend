@@ -1,0 +1,27 @@
+<section class="content-next-releases">
+    <div class="section-title">
+        <h1>Próximos Estrenos</h1>
+        <a routerLink="peliculas" [queryParams]="{tipo: 'proximos_estrenos'}">VER TODOS</a>
+    </div>
+    <div class="d-flex justify-content-center align-items-center flex-column"
+         *ngIf="!movies.length" style="height: 150px">
+        <ng-container *ngIf="isLoading">
+            Cargando...
+            <span class="bouncingLoader">
+                <span></span>
+            </span>
+        </ng-container>
+        <ng-container *ngIf="!isLoading">
+            No hay películas disponibles
+        </ng-container>
+    </div>
+    <carousel [margin]="12" [cellWidth]="165" *ngIf="movies.length">
+        <div class="carousel-cell" *ngFor="let movie of movies">
+            <!--<a routerLink="/peliculas/{{movie.id}}">
+                <img [src]="movie.image" [alt]="movie.name"/>
+            </a>-->
+
+            <app-movie-card [movie]="movie" [featured]="true"></app-movie-card>
+        </div>
+    </carousel>
+</section>

@@ -1,0 +1,117 @@
+<app-header-home></app-header-home>
+<div class="content-workUs form-general">
+    <div class="container">
+        <div class="row justify-content-center" [formGroup]="form">
+            <div class="col-md-10 col-lg-8">
+                <div class="section-title">
+                    <h1>Trabaja con nosotros</h1>
+                </div>
+                <p class="font-helvetica">Nos complace que quieras ser parte de nuestro equipo completa los datos solicitados y nos pondremos en contacto contigo </p>
+                <div class="box d-flex justify-content-center align-items-center pt-5 pb-5 pt-md-0 pb-md-0 px-5">
+                    <div class="">
+                        <h5 class="font-helvetica-medium subtext mb-3">Ingresa tus datos personales</h5>
+                        <div class="row">
+                            <div class="col-md-6 order-md-0">
+                                <div class="form-group md-input">
+                                    <app-control-messages [control]="form.get('name')">
+                                        <input type="text" class="form-control" formControlName="name" id="name" placeholder=" " alphaNumeric alphaNumericType="a">
+                                        <label for="name" class="">Nombres</label>
+                                    </app-control-messages>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-2">
+                                <div class="form-group md-input">
+                                    <app-control-messages [control]="form.get('lastname')">
+                                        <input type="text" class="form-control" formControlName="lastname" id="lastname" placeholder=" " alphaNumeric alphaNumericType="a">
+                                        <label for="lastname" class="">Apellidos</label>
+                                    </app-control-messages>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-4">
+                                <div class="form-group md-input">
+                                    <app-control-messages [control]="form.get('document_number')">
+                                        <input type="text" class="form-control" id="document_number" formControlName="document_number" placeholder="DNI" alphaNumeric alphaNumericType="n" maxlength="8">
+                                        <label for="document_number" class="">DNI</label>
+                                    </app-control-messages>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-6">
+                                <div class="form-group md-input">
+                                    <app-control-messages [control]="form.get('birth_date')">
+                                        <input type="text" class="form-control" id="birth_date" formControlName="birth_date" mask="0000-00-00" placeholder=" ">
+                                        <label for="birth_date" class="">Fecha de nacimiento (y-m-d)</label>
+                                    </app-control-messages>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-1">
+                                <div class="form-group md-input">
+                                    <app-control-messages [control]="form.get('email')">
+                                        <input type="email" class="form-control" formControlName="email" id="email" placeholder=" ">
+                                        <label for="email" class="">Email</label>
+                                    </app-control-messages>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-3">
+                                <div class="form-group md-input">
+                                    <app-control-messages [control]="form.get('address')">
+                                        <input type="text" class="form-control" id="address" formControlName="address" placeholder=" " alphaNumeric alphaNumericType="a">
+                                        <label for="address" class="">Dirección</label>
+                                    </app-control-messages>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-5">
+                                <div class="form-group md-input">
+                                    <app-control-messages [control]="form.get('district_name')">
+                                        <input type="text" class="form-control" id="district" formControlName="district_name" placeholder=" " alphaNumeric alphaNumericType="a">
+                                        <label for="district" class="">Distrito</label>
+                                    </app-control-messages>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-7">
+                                <div class="form-group md-input">
+                                    <app-control-messages [control]="form.get('education_level')">
+                                        <input type="text" class="form-control" id="level" formControlName="education_level" placeholder=" " alphaNumeric alphaNumericType="a">
+                                        <label for="level" class="">Nivel de educación</label>
+                                    </app-control-messages>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-8 mb-3 mb-md-0">
+                                <app-control-messages [control]="form.get('cv')">
+                                    <div class="d-flex align-items-center upload-file">
+                                        <a class="cursor-pointer">
+                                            <img src="./assets/images/svg/document.svg" title="Seleccionar archivo" onclick="document.getElementById('uploadFile').click();" class="img-fluid" alt="">
+                                            <input (change)="onSelectFile($event)" id="uploadFile" style="display: none; visibility: hidden;" type="file" accept=".docx,.pdf"/>
+                                        </a>
+                                        <div class="ml-3" onclick="document.getElementById('uploadFile').click();">
+                                            <h3 class="font-helvetica-medium mb-0">Adjuntar Curriculum Vitae</h3>
+                                            <span class="d-block font-helvetica">(Word o PDF)</span>
+                                        </div>
+                                    </div>
+                                </app-control-messages>
+                            </div>
+                            <div class="col-md-6 order-md-9">
+                                <!-- <div class="form-group md-input">
+                                     <input type="text" class="form-control" specialIsAlphaNumeric id="code" placeholder=" ">
+                                     <label for="code" class="">Código de verificación</label>
+                                 </div>-->
+                                <ngx-recaptcha2 #captchaElem class="d-flex justify-content-start align-items-center" [siteKey]="siteKey"
+                                                (expire)="handleExpire()" (success)="handleSuccess($event)"
+                                                [useGlobalDomain]="false" size="normal" hl="es" theme="light" type="image" formControlName="recaptcha">
+                                </ngx-recaptcha2>
+                            </div>
+                            <div class="col-md-12 order-md-10 d-block mt-5 mx-auto text-center">
+                                <button class="btn btn-primary" [disabled]="isLoading" (click)="send()">
+                      <span class="bouncingLoader" *ngIf="isLoading">
+                                <span></span>
+                            </span>
+                                    <span *ngIf="!isLoading">Enviar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

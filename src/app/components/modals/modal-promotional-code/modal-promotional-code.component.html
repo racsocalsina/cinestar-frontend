@@ -1,0 +1,125 @@
+<div class="modal-header border-bottom-0 pb-1">
+    <!--    <img class="close pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">-->
+</div>
+
+<div class="modal-body pt-0">
+    <h3 class="color-title ft-25 font-helvetica-bold lh-1 mb-3">
+        Canjea por <br> premios y promociones
+    </h3>
+
+    <ng-container *ngIf="type === 'ticket'">
+        <label class="ft-15 mb-2 color-gray" for="codigo">Si cuenta con un código ingréselo aqui</label>
+        <div class="input-group">
+            <div class="input-group-prepend border-right-0">
+             <span class="input-group-text pr-2" id="basic-addon1">
+                 <img width="20" src="./assets/images/svg/code-ticket_gray.svg" alt="">
+             </span>
+            </div>
+            <input [(ngModel)]="customCode" type="text"
+                   class="form-control border-left-0 border-right-0 pl-0"
+                   id="codigo" placeholder="Código promocional">
+        </div>
+
+        <button class="btn btn-secondary lh-1 font-helvetica-medium mt-2"
+                (click)="validateCode()" [disabled]="!customCode">
+            Validar
+        </button>
+
+        <ng-container *ngIf="codes.length">
+            <div class="code d-flex align-items-center flex-column px-3 pt-3 mt-3">
+                <div *ngFor="let code of codes" class="custom-control custom-checkbox mx-3 w-100">
+                    <input type="checkbox" class="custom-control-input"
+                           id="code-{{code.code_promotion}}"
+                           (change)="useCode($event, code)">
+                    <label class="custom-control-label" for="code-{{code.code_promotion}}">
+                        <span class="font-helvetica-bold ft-15 d-flex align-items-center">
+                             <img class="mr-1" width="15" src="./assets/images/svg/code-ticket.svg" alt="ticket">
+                            {{code.name}} ({{code.code_promotion}})
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+    <div class="mt-3">
+        <div class="accordion mt-lg-3" id="accordionPoints">
+            <div class="card border-0">
+                <div class="card-header p-2 bg-white border-0" id="headingPoints">
+                    <div class="d-flex align-items-center">
+                        <div class="color-yellow ft-25 pr-3 font-helvetica-bold" *ngIf="type === 'ticket'">{{accumulatedPoints - buyTicketService.ticketAwardsUsedPoints}}</div>
+                        <div class="color-yellow ft-25 pr-3 font-helvetica-bold" *ngIf="type === 'choco'">{{accumulatedPoints - candyService.chocoAwardsUsedPoints}}</div>
+                        <div class="flex-grow-1 color-title font-helvetica-bold ft-15 d-flex flex-column lh-1">
+                            <span *ngIf="type === 'ticket'">{{Utils.isSingular( accumulatedPoints - buyTicketService.ticketAwardsUsedPoints ) ? 'Punto' : 'Puntos'}}</span>
+                            <span *ngIf="type === 'choco'">{{Utils.isSingular( accumulatedPoints - candyService.chocoAwardsUsedPoints ) ? 'Acumulado' : 'Acumulados'}}</span>
+                        </div>
+                        <button class="btn btn-link collapsed pl-lg-0 ft-15 color-title d-flex align-items-center text-decoration-none"
+                                type="button" data-toggle="collapse" data-target="#collapsePoints" aria-expanded="true"
+                                aria-controls="collapsePoints">
+                            <span class="text-nowrap font-helvetica-bold ft-10 text-primary">Mis premios</span>
+                            <img class="ml-2 rotate" width="10" src="./assets/images/svg/arrow_down_red.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+
+                <div id="collapsePoints" class="collapse" aria-labelledby="headingPoints" data-parent="#accordionPoints">
+                    <div class="card-body px-0 points-container" *ngIf="type === 'ticket'">
+                        <div class="point d-flex align-items-center px-3" *ngFor="let item of buyTicketService.ticketAwards">
+                            <div class="d-flex flex-grow-1 flex-column pr-2">
+                                <div class="points mr-2 color-yellow font-helvetica-bold ft-14">
+                                    {{item.points}} <span class="ft-11">{{Utils.isSingular( item.points ) ? 'pto' : 'ptos'}}</span>
+                                </div>
+                                <div class="lh-1">
+                                    <span class="color-black ft-12">
+                                        {{item.name}}
+                                    </span>
+                                </div>
+                            </div>
+                            <app-quantity-picker [sm]="true"
+                                                 [disabled]="buyTicketService.ticketAwardsUsedPoints + item.points > accumulatedPoints || buyTicketService.tickets_number >= MAX_TICKETS || buyTicketService.tickets_number + item.tickets_number > MAX_TICKETS"
+                                                 [(ngModel)]="item.quantity"
+                                                 (ngModelChange)="onChange()">
+                            </app-quantity-picker>
+                        </div>
+                    </div>
+
+                    <div class="card-body px-0 points-container" *ngIf="type === 'choco'">
+                        <div class="point d-flex align-items-center px-3" *ngFor="let item of candyService.chocoAwards">
+                            <div class="d-flex flex-grow-1 flex-column pr-2">
+                                <div class="points mr-2 color-yellow font-helvetica-bold ft-14">
+                                    {{item.points}} <span class="ft-11">{{Utils.isSingular( item.points ) ? 'pto' : 'ptos'}}</span>
+                                </div>
+                                <div class="lh-1">
+                                    <span class="color-black ft-12">
+                                        {{item.name}}
+                                    </span>
+                                </div>
+                            </div>
+                            <app-quantity-picker [sm]="true"
+                                                 [disabled]="candyService.chocoAwardsUsedPoints + item.points > accumulatedPoints"
+                                                 [(ngModel)]="item.quantity"
+                                                 (ngModelChange)="onChange()">
+                            </app-quantity-picker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-3 w-100" *ngIf="type === 'ticket'">
+        <div class="color-title font-helvetica-bold ft-20 mr-3" *ngIf="buyTicketService.ticketAwardsUsedPoints > 0">
+            -{{buyTicketService.ticketAwardsUsedPoints}} <span class="ft-10">Total de puntos a usar</span>
+        </div>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center align-items-center mt-3 w-100" *ngIf="type === 'choco'">
+        <div class="color-title font-helvetica-bold ft-20 mr-3" *ngIf="candyService.chocoAwardsUsedPoints > 0">
+            -{{candyService.chocoAwardsUsedPoints}} <span class="ft-10">Total de puntos a usar</span>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mb-3 mt-4">
+        <button class="btn btn-primary px-5" (click)="bsModalRef.hide()">Utilizar</button>
+    </div>
+</div>

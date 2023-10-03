@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="section-title">
+        <h1>Ventas Corporativas</h1>
+        <a routerLink="/corporativo">VER TODO</a>
+    </div>
+
+    <carousel class="corporate-salles-carousel" [arrows]="false" [height]="248">
+        <div class="card carousel-cell" *ngFor="let item of items">
+            <div class="card-body">
+                <div class="icon">
+                    <img class="img-fluid alquiler" src="./assets/images/svg/{{item.icon}}.svg" [alt]="item.icon">
+                </div>
+                <p [innerHTML]="item.description"></p>
+                <button class="btn btn-default" id="salas-{{item.icon}}-responsive" routerLink="/corporativo" [fragment]="item.icon">Ver más</button>
+            </div>
+        </div>
+    </carousel>
+
+    <div class="cards-container">
+        <div class="card" *ngFor="let item of items">
+            <div class="card-body">
+                <div class="icon">
+                    <img class="img-fluid alquiler" src="./assets/images/svg/{{item.icon}}.svg" [alt]="item.icon">
+                </div>
+                <p [innerHTML]="item.description"></p>
+                <button class="btn btn-default" id="salas-{{item.icon}}" routerLink="/corporativo" [fragment]="item.icon">Ver más</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="33.833" height="33.833" viewBox="0 0 33.833 33.833">
+    <defs>
+        <style>
+            .cls-2{fill:none;stroke:#ffd400;stroke-linecap:round;stroke-linejoin:round}
+        </style>
+    </defs>
+    <g id="Grupo_4562" transform="translate(-69.556 -214.16)">
+        <g id="Grupo_4339" transform="translate(69.556 214.16)">
+            <path id="Trazado_1306" fill="none" d="M0 0h33.833v33.833H0z"/>
+            <circle id="Elipse_183" cx="9.5" cy="9.5" r="9.5" class="cls-2" transform="translate(7.444 8.84)"/>
+            <path id="Trazado_1307" d="M12 10v4.229h2.819" class="cls-2" transform="translate(4.917 4.097)"/>
+            <path id="Línea_76" d="M3.877 0L0 2.819" class="cls-2" transform="translate(5.991 5.639)"/>
+            <path id="Línea_77" d="M0 0L3.877 2.819" class="cls-2" transform="translate(23.965 5.639)"/>
+        </g>
+    </g>
+</svg>

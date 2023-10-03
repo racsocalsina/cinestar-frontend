@@ -1,0 +1,25 @@
+<app-header-movie-details-responsive
+    [movie]="movie"
+    *ngIf="screenService.isResponsive">
+</app-header-movie-details-responsive>
+<app-header-home *ngIf="!screenService.isResponsive"></app-header-home>
+
+
+<ng-container *ngIf="!isLoading">
+
+    <app-movie-details-responsive
+        *ngIf="screenService.isResponsive"
+        [movie]="movie">
+    </app-movie-details-responsive>
+
+    <app-movie-details-desktop *ngIf="!screenService.isResponsive"
+                               [movie]="movie">
+    </app-movie-details-desktop>
+
+</ng-container>
+
+<div class="container-fluid loading d-flex justify-content-center align-items-center" *ngIf="isLoading">
+    <span class="bouncingLoader">
+        <span></span>
+    </span>
+</div>

@@ -1,0 +1,13 @@
+<ng-container>
+    <app-index-chocolateria-desktop *ngIf="!screenService.isResponsive" [isLoggedIn]="isLoggedIn"></app-index-chocolateria-desktop>
+    <app-index-chocolateria-responsive *ngIf="screenService.isResponsive" [isLoggedIn]="isLoggedIn"></app-index-chocolateria-responsive>
+</ng-container>
+
+<!--<ng-container *ngIf="!isLoggedIn">-->
+<!--    <app-header-home></app-header-home>-->
+
+<!--    <div class="container-fluid d-flex flex-column justify-content-center align-items-center vh-100 vw-100">-->
+<!--        <p class="color-gray font-italic">Debe iniciar sesión para continuar</p>-->
+<!--        <button class="btn btn-primary px-5" (click)="loginModal()">Iniciar Sesión</button>-->
+<!--    </div>-->
+<!--</ng-container>-->

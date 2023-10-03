@@ -1,0 +1,63 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+
+.sidebar {
+    width: 805px;
+    /* Mismo ancho que el componente cinemas-list */
+}
+
+.custom {
+    min-width: 48%;
+}
+
+::ng-deep {
+    perfect-scrollbar.cinema-scroll {
+        .ps-content {
+            @include min-width-768 {
+                // max-height: calc(100vh - 210px);
+                padding-right: 10px;
+                padding-bottom: 5rem;
+            }
+        }
+    }
+}
+
+.d-flex {
+    margin-bottom: 40px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+
+.align-right {
+    justify-self: flex-end;
+}
+
+.cines-heading {
+    width: 754px;
+    height: 24px;
+    color: #343A40;
+    font-size: 30px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.24px;
+    word-wrap: break-word;
+    margin-left: 10px;
+    margin-top: 24px;
+    margin-bottom: 40px;
+}
+
+.ng-select .template .d-flex.flex-row {
+    height: 30px;
+    /* Ajusta la altura según tus necesidades */
+    align-items: center;
+    /* Centra verticalmente los elementos */
+}
+
+.ng-select .template .d-flex.flex-row img {
+    width: 30px;
+    /* Ajusta el ancho de la imagen según tus necesidades */
+    height: 30px;
+    /* Ajusta la altura de la imagen según tus necesidades */
+}

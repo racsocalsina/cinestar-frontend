@@ -1,0 +1,90 @@
+<div class="container-fluid py-4 py-lg-5">
+    <div class="row" [formGroup]="form">
+        <div class="col-12 col-md-8 order-md-1">
+            <div class="row">
+                <div class="col-12 col-xl-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>Contáctanos</h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group md-input">
+                                <app-control-messages [control]="form.get('name')">
+                                    <input formControlName="name" type="text" class="form-control" placeholder="Nombres"
+                                           alphaNumeric alphaNumericType="a">
+                                    <label>Nombres</label>
+                                </app-control-messages>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group md-input">
+                                <app-control-messages [control]="form.get('lastname')">
+                                    <input id="lastname" formControlName="lastname" type="text" class="form-control" placeholder="Apellidos"
+                                           alphaNumeric alphaNumericType="a">
+                                    <label for="lastname">Apellidos</label>
+                                </app-control-messages>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group md-input">
+                                <app-control-messages [control]="form.get('email')">
+                                    <input type="email" formControlName="email" class="form-control" placeholder="Email">
+                                    <label>Email</label>
+                                </app-control-messages>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group md-input">
+                                <app-control-messages [control]="form.get('district_name')">
+                                    <input id="district_name" type="text" formControlName="district_name" class="form-control"
+                                           placeholder="Distrito" alphaNumeric alphaNumericType="a">
+                                    <label for="district_name">Distrito</label>
+                                </app-control-messages>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-6 mt-3 mt-xl-0">
+                    <app-control-messages [control]="form.get('message')">
+                        <div class="invisible d-none d-xl-block">
+                            <h3>MENSAJE</h3>
+                        </div>
+                        <textarea placeholder="Mensaje" formControlName="message" id="message"></textarea>
+                    </app-control-messages>
+                    <div class="d-flex justify-content-center justify-content-sm-end mt-3 mb-5 mb-md-0">
+                        <button class="btn btn-primary px-5" [disabled]="isLoading" (click)="send()">
+                      <span class="bouncingLoader" *ngIf="isLoading">
+                                <span></span>
+                            </span>
+                            <span *ngIf="!isLoading">Enviar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4 order-md-0">
+            <div class="row links">
+                <div class="col-6 col-md-12 mb-2 mb-md-4">
+                    <a routerLink="/libro-de-reclamaciones" routerLinkActive="active" class="cursor-pointer" id="complaints-book">LIBRO DE RECLAMACIONES</a>
+                </div>
+                <div class="col-6 col-md-12 mb-2 mb-md-4">
+                    <a href="#" id="work-with-us" routerLinkActive="active" routerLink="/trabaja-con-nosotros">TRABAJA CON NOSOTROS</a>
+                </div>
+                <div class="col-6 col-md-12 mb-2 mb-md-4">
+                    <a href="http://www.cinestarmovietime.ws/cpe/login.php" target="_blank" routerLinkActive="active" id="voucher">COMPROBANTE DE PAGO</a>
+                </div>
+                <div class="col-6 col-md-12 mb-2 mb-md-4">
+                    <a id="about-us" routerLink="/quienes-somos" routerLinkActive="active">QUIÉNES SOMOS</a>
+                </div>
+                <div class="col-6 col-md-12 mb-2 mb-md-4">
+                    <a [href]="info && info.file" target="_blank">TERMINOS Y CONDICIONES</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

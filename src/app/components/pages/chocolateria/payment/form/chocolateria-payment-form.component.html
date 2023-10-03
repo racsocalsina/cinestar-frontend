@@ -1,0 +1,261 @@
+<div class="payment">
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+        <div>
+            <span class="ft-20 color-title font-helvetica-bold">Elige tu método de pago</span>
+            <p class="color-gray ft-15 lh-1">Tarjeta de débito o de crédito</p>
+        </div>
+
+        <span *ngIf="isLoggedIn" class="ft-15 font-helvetica-bold text-primary cursor-pointer" (click)="addCard()">
+            Agregar tarjeta
+            <img src="./assets/images/svg/add.svg" alt="">
+        </span>
+    </div>
+    <ng-container [formGroup]="form">
+
+        <div class="row mt-4" *ngIf="isLoggedIn">
+            <div class="col-12 color-gray text-center"
+                 *ngIf="!creditCardService.creditCards.length">
+                Debes añadir una tarjeta para poder pagar
+            </div>
+            <div class="col-12">
+                <app-credit-cards-list
+                    (onSelectCard)="onSelectCard($event)"
+                    (onDeleteCard)="onSelectCard()"
+                    [showRadios]="true">
+                </app-credit-cards-list>
+
+                <p class="text-danger mt-3"
+                   *ngIf="form.get('token')?.invalid && form.get('token')?.touched">
+                    Debe seleccionar un método de pago
+                </p>
+            </div>
+        </div>
+        <div class="row mt-4" *ngIf="!isLoggedIn">
+            <!--            <form class="row">-->
+            <div class="col-12 mb-4 d-flex justify-content-around justify-content-between">
+                <div class="card-icon" [class.active]="creditCardInfo?.type === creditCards.Visa">
+                    <img src="./assets/images/svg/visa.svg" alt="">
+                </div>
+                <div class="card-icon" [class.active]="creditCardInfo?.type === creditCards.Mastercard">
+                    <img src="./assets/images/svg/master-card.svg" alt="">
+                </div>
+                <div class="card-icon" [class.active]="creditCardInfo?.type === creditCards.Amex">
+                    <img src="./assets/images/svg/american-express.svg" alt="">
+                </div>
+                <div class="card-icon" [class.active]="creditCardInfo?.type === creditCards.Diners">
+                    <img src="./assets/images/svg/diners.png" alt="">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('number')">
+                        <input (ngModelChange)="onChange()"
+                               formControlName="number" type="text" class="form-control font-helvetica"
+                               [mask]="creditCardInfo?.mask || '0000-0000-0000-0000'"
+                               placeholder="Número de tarjeta" autocomplete="false">
+
+                        <label class="">Número de tarjeta</label>
+                    </app-control-messages>
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('expiration_date')">
+                        <input formControlName="expiration_date" type="text" class="form-control font-helvetica"
+                               id="date"
+                               mask="00/00"
+                               [placeholder]="screenService.isResponsive ? 'MM/AA' : 'Fecha de vencimiento MM/AA'"
+                               autocomplete="false" alphaNumeric
+                               alphaNumericType="n">
+                        <label for="date">{{screenService.isResponsive ? 'MM/AA' : 'Fecha de vencimiento MM/AA' }}</label>
+                    </app-control-messages>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('security_code')">
+                        <input formControlName="security_code" type="text" class="form-control font-helvetica"
+                               id="security_code"
+                               alphaNumeric
+                               placeholder="{{cvvText}}" autocomplete="false">
+                        <label for="security_code" class="">{{cvvText}}</label>
+                    </app-control-messages>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="form-group md-input">
+                    <app-control-messages [control]="form.get('full_name')" >
+                        <input formControlName="full_name" type="text" class="form-control font-helvetica"
+                               id="full-name"
+                               alphaNumeric alphaNumericType="a"
+                               placeholder="Nombre completo" autocomplete="false">
+                        <label for="full-name" class="">Nombre completo</label>
+                    </app-control-messages>
+                </div>
+            </div>
+            <!--            </form>-->
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 mb-3">
+                <div class="ft-20 color-title font-helvetica-bold">Datos para el comprobante</div>
+                <div class="d-flex flex-column lh-1">
+                    <span class="font-helvetica-bold ft-12 color-title">Concepto:</span>
+                    <span class="ft-15 color-gray">Pago de Boletos</span>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-3 pr-lg-1">
+                <app-control-messages [control]="form.get('document_number')" [showBorder]="false">
+                    <div class="form-group inputs d-flex justify-content-between align-items-center w-100 mb-0"
+                         [ngStyle]="{'border-color': form.get('document_number')?.invalid && form.get('document_number')?.touched ? '#EF5350' : '#DDDDDD' }">
+                        <ng-select class="select-sign-up" formControlName="document_type" [items]="typeDocuments"
+                                   [searchable]="false"
+                                   [clearable]="false" bindLabel="name" bindValue="code"
+                                   (change)="onDocumentTypeChange()">
+                        </ng-select>
+                        <div class="md-input">
+                            <input *ngIf="form.get('document_type')?.value === Documents.DNI"
+                                   formControlName="document_number" type="text" class="form-control form-control-1"
+                                   placeholder="Num. de Doc." alphaNumeric
+                                   alphaNumericType="n" minlength="8" maxlength="8">
+                            <input
+                                *ngIf="form.get('document_type')?.value === Documents.CE || form.get('document_type')?.value === Documents.PAS"
+                                formControlName="document_number" type="text" class="form-control form-control-1"
+                                placeholder="Num. de Doc." alphaNumeric
+                                alphaNumericType="an" minlength="1" maxlength="12">
+                            <input *ngIf="form.get('document_type')?.value === Documents.RUC"
+                                   formControlName="document_number" type="text" class="form-control form-control-1"
+                                   placeholder="Num. de Doc." alphaNumeric
+                                   alphaNumericType="n" minlength="11" maxlength="11">
+                            <label class="documentNumber">Num. de Doc.</label>
+                        </div>
+                    </div>
+                </app-control-messages>
+            </div>
+
+            <div class="col-lg-6 mb-3 pl-lg-1">
+                <app-control-messages [control]="form.get('name')">
+                    <div class="form-group inputs md-input mb-0">
+                        <input formControlName="name" type="text"
+                               class="form-control" id="name" placeholder="Nombre"
+                               alphaNumeric alphaNumericType="a" maxlength="50">
+                        <label for="name">Nombre</label>
+                    </div>
+                </app-control-messages>
+            </div>
+
+            <div class="col-lg-6 mb-3 pr-lg-1">
+                <app-control-messages [control]="form.get('lastname')">
+                    <div class="form-group inputs md-input mb-0">
+                        <input formControlName="lastname" type="text"
+                               class="form-control" id="lastname" placeholder="Apellido"
+                               alphaNumeric alphaNumericType="a" maxlength="50">
+                        <label for="lastname">Apellido</label>
+                    </div>
+                </app-control-messages>
+            </div>
+
+            <div class="col-lg-6 mb-3 pl-lg-1">
+                <app-control-messages [control]="form.get('email')">
+                    <div class="form-group inputs md-input mb-0">
+                        <input formControlName="email" type="email"
+                               class="form-control" id="email"
+                               placeholder="Correo Electrónico" maxlength="50">
+                        <label for="email">Correo Electrónico</label>
+                    </div>
+                </app-control-messages>
+            </div>
+
+            <div class="col-12 mt-3">
+                <div class="d-flex align-items-center">
+                    <div class="form-check form-check-common pl-1">
+                        <input formControlName="checkTerms" class="form-check-input" type="checkbox" value=""
+                               id="flexCheckDefault" (click)="showTerms()">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            <span></span>
+                        </label>
+                    </div>
+                    <div class="d-flex font-helvetica-medium align-items-center" (click)="showTerms()">
+                        <label for="flexCheckDefault" class="mb-0 mr-1">Acepto los </label>
+                        <span class="text-primary cursor-pointer" >términos y condiciones</span>
+                    </div>
+                </div>
+                <small *ngIf="form.get('checkTerms')?.touched && !form.get('checkTerms')?.value"
+                       style="color: #EF5350;">
+                    Campo obligatorio*
+                </small>
+
+            </div>
+
+            <div class="col-12 mt-4 mb-3 color-title ft-20 font-helvetica-bold">
+                Tipo de comprobante
+            </div>
+
+            <div class="col-12 form-inline mb-3">
+                <div class="form-group form-check invoice pl-0 mb-3 mr-5">
+                    <input formControlName="voucher_type" type="radio" name="voucher_type" class="form-check-input"
+                           id="boleta" value="03" (ngModelChange)="onVoucherTypeChange()">
+                    <label class="form-check-label d-flex" for="boleta">
+                        <span class="mt-1 mr-2"></span>
+                        Boleta
+                    </label>
+                </div>
+
+                <div class="form-group form-check invoice pl-0 mb-3">
+                    <input formControlName="voucher_type" type="radio" name="voucher_type" class="form-check-input"
+                           id="factura" value="01" (ngModelChange)="onVoucherTypeChange()">
+                    <label class="form-check-label d-flex" for="factura">
+                        <span class="mt-1 mr-2"></span>
+                        Factura
+                    </label>
+                </div>
+            </div>
+
+            <ng-container *ngIf="form.get('voucher_type')?.value === Voucher.Factura">
+                <div class="col-md-6 mb-3 pr-md-1">
+                    <app-control-messages [control]="form.get('ruc')">
+                        <div class="form-group inputs md-input mb-0">
+                            <input formControlName="ruc" type="text"
+                                   class="form-control" id="ruc" placeholder="RUC*"
+                                   alphaNumeric alphaNumericType="n" maxlength="11">
+                            <label for="ruc">RUC*</label>
+                        </div>
+                    </app-control-messages>
+                </div>
+
+                <div class="col-md-6 mb-3 pl-md-1">
+                    <app-control-messages [control]="form.get('business_name')">
+                        <div class="form-group inputs md-input mb-0">
+                            <input formControlName="business_name" type="text"
+                                   class="form-control" id="razonsocial"
+                                   placeholder="Razón Social*" maxlength="50">
+                            <label for="razonsocial">Razón Social*</label>
+                        </div>
+                    </app-control-messages>
+                </div>
+
+                <div class="col-md-6 mb-3 pr-md-1">
+                    <div class="form-group inputs md-input mb-0">
+                        <input formControlName="address" type="text"
+                               class="form-control" id="direccion"
+                               placeholder="Dirección (opcional)" maxlength="200">
+                        <label for="direccion">Dirección (opcional)</label>
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3 pl-md-1">
+                    <div class="form-group inputs md-input mb-0">
+                        <input formControlName="phone" type="text"
+                               class="form-control" id="telefono"
+                               placeholder="Teléfono (opcional)"
+                               alphaNumeric alphaNumericType="n" maxlength="9">
+                        <label for="telefono">Teléfono (opcional)</label>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,67 @@
+<div class="sidebar pl-xl-2 container">
+    <div class="cines-heading">Cines</div>
+    <div class="cinemas">
+        <div class="d-none d-md-flex" [formGroup]="filterForm">
+            <ng-select formControlName="city"
+                       class="custom search responsive filter map mr-2"
+                       placeholder="Ciudad"
+                       [items]="cities"
+                       [searchable]="false"
+                       bindValue="id"
+                       bindLabel="name"
+                       (change)="filter()">
+              <ng-template ng-option-tmp let-item="item">
+                <div class="template">
+                  <div class="d-flex flex-row">
+                    <img src="./assets/images/svg/map-marker.svg" alt="map">
+                    <span class="bank">{{item.name}}</span>
+                  </div>
+                </div>
+              </ng-template>
+            </ng-select>
+          
+            <ng-select formControlName="format"
+                       class="custom search responsive filter cine ml-auto"
+                       placeholder="Formato"
+                       [items]="formats"
+                       [searchable]="false"
+                       bindValue="id"
+                       bindLabel="name"
+                       (change)="filter()">
+              <ng-template ng-option-tmp let-item="item">
+                <div class="template">
+                  <div class="d-flex flex-row">
+                    <img src="./assets/images/svg/cine.svg" alt="cine">
+                    <span class="bank">{{item.name}}</span>
+                  </div>
+                </div>
+              </ng-template>
+            </ng-select>
+        </div>
+        <div class="d-flex flex-column w-100 justify-content-center mt-4 align-items-center"
+             *ngIf="isLoading && !filteredsCinemas.length && responsive; else cinemasList" style="height: 50vh">
+            <img src="./assets/images/svg/no-cinema.svg" alt="">
+            <span class="text-center lh-1 mt-3" style="color: #A2A2A2; width: 150px"> No hay cines disponibles</span>
+        </div>
+
+        <ng-template #cinemasList>
+            <perfect-scrollbar class="cinema-scroll d-none d-md-block">
+                <app-cinemas-list [cinemas]="filteredsCinemas"
+                                  [cinemaId]="cinemaId"
+                                  [responsive]="responsive"
+                                  [queryParams]="queryParams"
+                                  [selectedCinema]="selectedCinema">
+                </app-cinemas-list>
+            </perfect-scrollbar>
+
+            <div class="d-md-none">
+                <app-cinemas-list [cinemas]="filteredsCinemas"
+                                  [cinemaId]="cinemaId"
+                                  [responsive]="responsive"
+                                  [queryParams]="queryParams"
+                                  [selectedCinema]="selectedCinema">
+                </app-cinemas-list>
+            </div>
+        </ng-template>
+    </div>
+</div>

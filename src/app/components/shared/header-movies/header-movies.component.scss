@@ -1,0 +1,48 @@
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+.input-group {
+    .form-control {
+        font-family: 'HelveticaNeue-Medium', sans-serif;
+        background-color: $primary-dark;
+        border: 0;
+        color: #ffffff;
+
+        &::placeholder {
+            font-style: italic;
+            font-size: $ft-15;
+            color: #ffffff;
+        }
+    }
+
+    .input-group-append {
+        padding-right: 15px;
+        background-color: $primary-dark;
+        border-radius: 0 23px 23px 0;
+    }
+}
+
+
+.responsive-movies-filter {
+    top: 0;
+    right: -100%;
+    transition: 0.5s;
+    padding: 4vh 30px;
+    z-index: 9999999;
+    background-color: #ffffff;
+}
+
+.row {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 3vh;
+    max-width: 350px;
+}
+
+.title {
+    line-height: 1;
+}
+
+.buttons {
+    margin-top: 2vh;
+}

@@ -1,0 +1,33 @@
+<div class="container px-md-4">
+    <div class="d-flex align-items-start">
+        <img class="back mr-3 cursor-pointer"
+             src="./assets/images/svg/arrow_right.svg" alt=""
+             (click)="onBack.emit()">
+        <div class="lh-1">
+            <h3 class="font-helvetica-bold pl-md-0 ft-20">
+                Configuración de pago
+            </h3>
+            <span class="ft-15 color-title">
+                Tranquilo tu información de pago se guardará de manera segura
+            </span>
+        </div>
+    </div>
+
+    <div class="text-center my-4">
+        <span class="ft-15 font-helvetica-bold text-primary cursor-pointer"
+              (click)="onAddCard.emit()">
+            Agregar tarjeta
+            <img src="./assets/images/svg/add.svg" alt="">
+        </span>
+    </div>
+
+    <p class="font-helvetica-bold ft-15 color-title" *ngIf="creditCardService.creditCards.length">Tarjetas guardadas</p>
+
+    <app-credit-cards-list></app-credit-cards-list>
+
+    <div *ngIf="!creditCardService.creditCards.length"
+         class="no-content d-flex flex-column align-items-center justify-content-center color-gray">
+        <span class="icon-card"></span>
+        <p class="ft-15 text-center mt-3">Usted aún no posee ninguna tarjeta guardada</p>
+    </div>
+</div>

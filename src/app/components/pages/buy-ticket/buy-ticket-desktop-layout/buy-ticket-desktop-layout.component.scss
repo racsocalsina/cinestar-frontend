@@ -1,0 +1,136 @@
+@import "~assets/scss/fonts";
+@import "~assets/scss/breakpoints";
+
+.container-fluid {
+    padding-top: 102px;
+    //max-width: 1366px;
+    padding-left: 5vw;
+}
+
+.back {
+    margin-bottom: 100px;
+}
+
+.sidebar {
+    width: 15vw;
+    padding-top: 15px;
+    min-width: 125px;
+
+    @include min-width-992 {
+        padding-top: 20px;
+    }
+
+    @include min-width-1200 {
+        padding-top: 25px;
+    }
+}
+
+.steps {
+    height: 400px;
+    width: 1px;
+
+    .line {
+        height: 98%;
+        width: 1px;
+        top: 4px;
+        left: 19px;
+    }
+}
+
+.content {
+    padding-top: 15px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    @include min-width-992 {
+        padding-right: 40px;
+        padding-top: 30px;
+    }
+
+    @include min-width-1200 {
+        padding-top: 50px;
+        padding-right: 70px;
+    }
+
+    .movie-title {
+        //white-space: nowrap;
+        //overflow: hidden;
+        //text-overflow: ellipsis;
+
+        @include min-width-1200 {
+            font-size: $ft-40;
+        }
+    }
+
+}
+
+.sidebar-right {
+    width: 30vw;
+    max-width: 335px;
+    box-shadow: -7px 3px 13px -7px rgba(0, 0, 0, 0.16);
+    min-height: calc(100vh - 105px);
+    padding-top: 15px;
+    padding-left: 2vw;
+    //position: relative;
+
+    @include min-width-992 {
+        padding-top: 20px;
+    }
+
+    /* @include min-width-1200 {
+         padding-top: 25px;
+     }*/
+
+    .buttons {
+        bottom: 0;
+        width: 85%;
+        background: linear-gradient(0deg, rgba(255, 255, 255, 0.9139005944174545) 70%, rgba(255, 255, 255, 0) 100%);
+
+        .btn {
+            opacity: 1;
+        }
+    }
+
+}
+
+.buy-details {
+    max-width: 300px;
+    padding-left: 3vw;
+
+    .poster {
+        max-width: 100px;
+
+        @include min-width-992 {
+            max-width: 120px;
+        }
+    }
+
+    .totales {
+        padding-bottom: 115px;
+    }
+
+    .total,
+    .address {
+        @include min-width-1200 {
+            font-size: $ft-20;
+        }
+    }
+
+    .amount {
+        @include min-width-1200 {
+            font-size: $ft-30;
+        }
+    }
+}
+
+::ng-deep {
+    perfect-scrollbar.buy-details-scroll {
+        //.ps-content {
+        @include min-width-768 {
+            height: calc(100vh - 125px);
+            padding-right: 10px;
+            //}
+
+        }
+    }
+}

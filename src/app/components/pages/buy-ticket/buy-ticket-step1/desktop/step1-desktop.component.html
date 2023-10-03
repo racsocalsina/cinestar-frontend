@@ -1,0 +1,15 @@
+<div class="my-3 mb-lg-4 mb-xl-5">
+    <app-promo-codes *ngIf="allowed_for_promotions"
+                     type="ticket">
+    </app-promo-codes>
+
+    <div class="not-allowed" *ngIf="!allowed_for_promotions">
+        <img src="./assets/images/svg/not-allowed.svg" alt="">
+        <div class="ft-15 color-title font-helvetica-bold">
+            Esta película se encuentra restringida para el canje de promociones
+        </div>
+    </div>
+</div>
+
+<app-rates></app-rates>
+

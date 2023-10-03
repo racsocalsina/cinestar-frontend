@@ -1,0 +1,18 @@
+<div class="modal-header border-bottom-0 pb-0 mx-4 pt-4">
+    <img class="close cursor-pointer pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body px-5 pb-4 pt-0 d-flex flex-column align-items-center">
+
+    <div class="row">
+        <div class="col-12 text-center mb-3">
+            <img *ngIf="rewardType === 'boleteria'" src="./assets/images/icon_boleteria.png" alt="">
+            <img *ngIf="rewardType === 'chocolateria'" src="./assets/images/icon_chocolateria.png" alt="">
+        </div>
+
+        <div class="col-12 mb-2 pb-2" *ngFor="let item of data">
+            <div class="points text-primary ft-13 font-helvetica-bold">{{item.points}} {{Utils.isSingular( item.points ) ? 'pto' : 'ptos'}}</div>
+            <div class="description ft-12 color-black">{{item.name}}</div>
+        </div>
+    </div>
+</div>

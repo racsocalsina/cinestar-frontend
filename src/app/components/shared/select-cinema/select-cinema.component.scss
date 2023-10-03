@@ -1,0 +1,117 @@
+@import "~assets/scss/fonts";
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/variables";
+
+.filters {
+    margin-top: 10px;
+
+    .inputs {
+
+        ng-select {
+            width: 40vw;
+            max-width: 200px;
+
+            @include min-width-992 {
+                max-width: 230px;
+                min-width: 230px;
+            }
+        }
+
+        .search {
+            .form-control {
+                height: 50px;
+            }
+
+            &.responsive {
+                width: 30vw;
+                max-width: 150px;
+                height: 50px;
+
+
+                @include min-width-992 {
+                    min-width: 195px;
+                    max-width: 195px;
+                }
+
+            }
+
+            &.md-input {
+                box-shadow: 0 0 6px 0 rgba(36, 59, 134, 0.11);
+                border-radius: 23px;
+            }
+        }
+    }
+
+    .icon {
+        min-width: 50px;
+        height: 50px;
+        box-shadow: 0 1px 6px 0 rgba(76, 98, 186, 0.24);
+        border-radius: 50%;
+    }
+}
+
+.on-search {
+    &.input-group {
+        .form-control {
+
+            &::placeholder {
+                font-style: italic;
+                font-size: $ft-15;
+            }
+        }
+
+        .input-group-append {
+            padding-right: 15px;
+            border-radius: 0 23px 23px 0;
+            border: solid 1px #dddddd;
+        }
+    }
+}
+
+.cinemas {
+    padding-right: 20px;
+}
+
+::ng-deep {
+    perfect-scrollbar {
+        @include min-width-992 {
+            .ps-content {
+                // max-height: calc(100vh - 395px);
+            }
+        }
+    }
+
+}
+
+.buy {
+    height: 70px;
+    left: 0;
+    bottom: -75px;
+    box-shadow: 0 -3px 6px 0 rgba(0, 0, 0, 0.16);
+    transition: all .5s;
+
+    &.active {
+        bottom: 0;
+
+        @include min-width-992 {
+            bottom: -75px;
+            display: none;
+        }
+    }
+}
+
+.bouncingLoader>span,
+.bouncingLoader:before,
+.bouncingLoader:after {
+    background: $primary;
+}
+
+
+.btn {
+
+    .bouncingLoader>span,
+    .bouncingLoader:before,
+    .bouncingLoader:after {
+        background: #ffffff;
+    }
+}

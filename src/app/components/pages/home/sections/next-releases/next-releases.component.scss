@@ -1,0 +1,49 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+
+.content-next-releases {
+    margin-bottom: 50px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    z-index: 9;
+
+    @include min-width-768 {
+        padding-left: 15px;
+        padding-right: 0;
+    }
+    @include min-width-992 {
+        padding-left: 30px;
+        padding-right: 0;
+    }
+    @include min-width-1200 {
+        padding-left: 66px;
+        padding-right: 0;
+    }
+
+    h4 {
+        color: $black;
+        font-family: 'HelveticaNeue-Bold', sans-serif;
+        font-size: $ft-30;
+        line-height: 1;
+    }
+
+    .text-view-more {
+        color: $primary;
+        font-size: $ft-12;
+        font-family: 'HelveticaNeue-Bold', sans-serif;
+        text-decoration: underline;
+        line-height: 1;
+    }
+}
+
+.padspecial {
+    padding-left: 0 !important;
+}
+
+.bouncingLoader > span,
+.bouncingLoader:before,
+.bouncingLoader:after {
+    background: $primary;
+}

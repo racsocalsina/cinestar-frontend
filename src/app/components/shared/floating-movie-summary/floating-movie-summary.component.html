@@ -1,0 +1,85 @@
+<div class="floating-summary h-100" id="floating-summary">
+    <div class="d-flex flex-column h-100" *ngIf="data">
+        <div class="close">
+            <img class="cursor-pointer" id="hide-resume" src="./assets/images/svg/circle-close.svg" alt="close" (click)="hideResume()">
+        </div>
+        <div class="video">
+            <iframe width="462" height="100%" [src]="youtubeVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+
+        <div class="movie-info">
+            <h3 class="title font-helvetica-bold ft-30">{{data?.movie?.name}}</h3>
+
+            <p class="text-primary ft-15 font-helvetica-bold mb-1">Sinopsis</p>
+
+            <ng-container *ngIf="data.movie && data.movie.summary && data.movie.summary.length > 170; else summary">
+                <input type="checkbox" class="view-more-state" id="post-1"/>
+                <div class="sinopsis font-helvetica-regular ft-15" [innerHTML]="Utils.viewMore(data?.movie?.summary)"></div>
+                <label for="post-1" class="view-more-trigger"></label>
+            </ng-container>
+
+            <ng-template #summary>
+                <div class="sinopsis font-helvetica-regular ft-15" [innerHTML]="data?.movie?.summary"></div>
+            </ng-template>
+
+
+            <div class="row">
+                <div class="col-6 feature d-flex align-items-center">
+                    <img class="pr-2" src="./assets/images/svg/info-genero.svg" alt="genero">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Género</span>
+                        <span class="description font-helvetica-regular ft-12">{{data?.movie?.gender_name}}</span>
+                    </div>
+                </div>
+
+                <div class="col-6 feature d-flex align-items-center">
+                    <img class="pr-2" src="./assets/images/svg/clock.svg" alt="clock">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Duración</span>
+                        <span class="description font-helvetica-regular ft-12">{{data?.movie?.duration_in_minutes}} Minutos</span>
+                    </div>
+                </div>
+
+                <div class="col-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/svg/info-fecha.svg" alt="fecha">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Fecha de Estreno</span>
+                        <span class="description font-helvetica-regular ft-12">{{data?.movie?.premier_date | date: 'dd/MM/yy'}}</span>
+                    </div>
+                </div>
+
+                <div class="col-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/svg/info-flag.svg" alt="flag">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">País</span>
+                        <span class="description font-helvetica-regular ft-12">{{data?.movie?.country_name}}</span>
+                    </div>
+                </div>
+
+                <!--<div class="col-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/info-formato.png" alt="formato">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Formato</span>
+                        <span class="description font-helvetica-regular ft-12">{{data?.movie?.formats}}</span>
+                    </div>
+                </div>-->
+
+                <div class="col-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/svg/info-clasificacion.svg" alt="clasificacion">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Clasificación</span>
+                        <span class="description font-helvetica-regular ft-12">{{data?.movie?.type_of_censorship}}</span>
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex justify-content-center mt-4">
+                    <button class="btn btn-primary px-5" (click)="next()">
+                        {{data?.cinemaId ? 'Ver horarios' : 'Ver cines'}}
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

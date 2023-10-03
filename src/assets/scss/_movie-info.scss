@@ -1,0 +1,67 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/fonts";
+
+.movie-info {
+    padding: 2vh 20px 0 30px;
+
+    .title {
+        color: $color-title;
+        line-height: 1;
+    }
+
+    .sinopsis {
+        color: $gray;
+    }
+
+    .row {
+        padding: 4vh 20px 10px;
+    }
+
+    .feature {
+        line-height: 1;
+
+        img {
+            width: 30px;
+        }
+
+        .description {
+            color: #727272;
+        }
+    }
+}
+
+.view-more-state {
+    display: none;
+}
+
+.view-more {
+    opacity: 0;
+    max-height: 0;
+    font-size: 0;
+    transition: .25s ease;
+}
+
+
+.view-more-state:checked ~ .sinopsis .view-more {
+    opacity: 1;
+    font-size: inherit;
+    max-height: 999em;
+}
+
+.view-more-state ~ .view-more-trigger:before {
+    font-family: 'icomoon', sans-serif;
+    content: 'Leer más \e903';
+}
+
+.view-more-state:checked ~ .view-more-trigger:before {
+    content: 'Leer menos \e902';
+}
+
+.view-more-trigger {
+    cursor: pointer;
+    color: $color-title;
+    font-size: $ft-14;
+    line-height: 2;
+    font-weight: bold;
+    margin-bottom: 0;
+}

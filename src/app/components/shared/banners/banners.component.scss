@@ -1,0 +1,71 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/variables";
+@import "~assets/scss/fonts";
+
+.carousel-banners {
+    padding-top: 67px;
+}
+
+img {
+    min-width: 100%;
+}
+
+.slide-image {
+    background-size: cover;
+    background-repeat: no-repeat;
+    //background-position: -148px;
+    width: 100vw;
+    max-height: 36vh;
+    /*height: 64vh;*/
+
+    background-position: center;
+
+
+    margin: auto;
+
+    @include min-width-576 {
+        max-height: 48vh;
+        //background-position: -223px;
+    }
+    @include min-width-768 {
+        max-height: 27vh;
+    }
+    @include min-width-992 {
+        max-height: 35vh;
+    }
+    @include min-width-1200 {
+        max-height: 42vh;
+    }
+    @include for-min-width(1300px) {
+        max-height: 58vh;
+    }
+}
+
+.btn-primary {
+    width: 100px;
+    height: 40px;
+    font-size: $ft-14;
+    position: absolute;
+    right: 16px;
+    bottom: 12px;
+    //border: 2px solid $primary;
+    transition: all 0.5s;
+
+    @include min-width-992 {
+        width: 138px;
+        height: 45px;
+        font-size: $ft-18;
+        right: 18px;
+        bottom: 16px;
+    }
+    @include min-width-1200 {
+        right: 36px;
+        bottom: 40px;
+    }
+
+    /* &:hover {
+         border: 1px solid $primary;
+         background-color: transparent;
+         color: $primary;
+     }*/
+}

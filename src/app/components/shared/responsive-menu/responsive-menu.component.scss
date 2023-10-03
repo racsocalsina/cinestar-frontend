@@ -1,0 +1,119 @@
+@import "~assets/scss/variables";
+
+.responsive-menu {
+    top: 0;
+    left: -100%;
+    background-image: url("~assets/images/svg/responsive_menu_bg.svg");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: cover;
+    transition: 0.5s;
+    z-index: 99999;
+    padding: 2.5vh 30px;
+    overflow: scroll;
+
+    .menu {
+
+        .menu-link {
+            border-bottom: solid 1px #cbcbcb;
+            width: 250px;
+            padding: 2vh 0;
+
+            a {
+                opacity: 0.19;
+
+                &.active {
+                    color: $secondary !important;
+                    opacity: 1;
+                }
+            }
+        }
+
+        .btn {
+            width: 188px;
+            margin-top: 2vh;
+            margin-bottom: 1.8vh;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .logout {
+            margin-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            margin-top: 5vh;
+        }
+    }
+}
+
+
+.hamburger {
+    padding-right: 15px;
+    display: inline-block;
+    cursor: pointer;
+    transition-property: opacity, filter;
+    transition-duration: 0.15s;
+    transition-timing-function: linear;
+    font: inherit;
+    color: inherit;
+    text-transform: none;
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    overflow: visible;
+}
+
+.hamburger:hover {
+    opacity: 0.7;
+}
+
+.hamburger.is-active:hover {
+    opacity: 0.7;
+}
+
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+    background-color: $primary;
+}
+
+.hamburger-box {
+    width: 40px;
+    height: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+.hamburger-inner {
+    display: block;
+    top: 50%;
+    margin-top: -2px;
+}
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 40px;
+    height: 4px;
+    background-color: white;
+    border-radius: 4px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease;
+}
+
+.hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+    display: block;
+}
+
+.hamburger-inner::before {
+    top: -10px;
+}
+
+.hamburger-inner::after {
+    bottom: -10px;
+}

@@ -1,0 +1,147 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+
+.banner-sign-up {
+    background: url('~assets/images/img-register.png');
+    width: 413px;
+    height: 577px;
+}
+
+.section-title {
+    .span {
+        opacity: 0.19;
+    }
+}
+
+.icon-eye {
+    top: 15px;
+    right: 15px;
+}
+
+.content-side-right {
+    padding: 35px 28px;
+
+    @include min-width-992 {
+        width: 482px;
+        padding: 0 38px;
+    }
+}
+
+.back {
+    position: absolute;
+    right: 92%;
+    top: 15px;
+    transform: rotate(180deg);
+
+    @include min-width-992 {
+        right: 50%;
+    }
+}
+
+.btn-close {
+    right: 20px;
+    top: 0;
+}
+
+.btn-default {
+    width: 70%;
+    height: 46px;
+    border-radius: 25px;
+
+    @include min-width-768 {
+        width: 100%;
+        height: 46px;
+    }
+
+    &.google {
+        background: $lightgray;
+    }
+
+    &.facebook {
+        background: $blue;
+
+        img {
+            width: 100%;
+            max-width: 11px;
+        }
+    }
+
+}
+
+.btn-default:nth-child(n) {
+    &:nth-child(n) {
+        @include min-width-768 {
+            margin-right: 14px;
+        }
+
+    }
+
+    &:last-child {
+        @include min-width-768 {
+            margin-right: 0;
+        }
+    }
+}
+
+.line {
+    width: 100px;
+    @include min-width-768 {
+        width: 179.8px;
+    }
+    height: 0;
+    opacity: 0.34;
+    border: solid 1px #9a9ab5;
+}
+
+
+.form-group {
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    border: solid 1px #dddddd;
+    // overflow: hidden;
+    .form-control {
+        background: transparent;
+        border: none;
+    }
+}
+
+.form-control {
+    font-family: 'HelveticaNeue', sans-serif;
+}
+
+.form-control::placeholder, {
+    font-family: 'HelveticaNeue', sans-serif;
+    font-size: 15px;
+    color: #989898;
+}
+
+.form-control-2 {
+    font-family: "HelveticaNeue", sans-serif;
+
+    &::placeholder {
+        font-family: "HelveticaNeue-Medium", sans-serif;
+        font-size: 15px;
+        color: $color-title;
+        padding-left: 10px;
+    }
+}
+
+.icon-calendar {
+    right: 12px;
+    top: 15px;
+}
+
+.btn-primary {
+    width: 200px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+.select_sign_up {
+    box-shadow: none !important;
+    width: 100%;
+    border-radius: 25px !important;
+    border: solid 1px #dddddd;
+    color: #989898;
+}

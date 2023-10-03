@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="23" height="14" viewBox="0 0 23 14">
+    <defs>
+        <style>
+            .cls-1, .cls-2 {fill: #727272}
+
+            .cls-1 {fill-rule: evenodd}
+        </style>
+    </defs>
+    <g id="Grupo_4525" transform="translate(-347 -367)">
+        <g id="Grupo_4422" transform="translate(108 -153)">
+            <g id="noun_Coupon_550622" transform="translate(239 514)">
+                <g id="Grupo_4421">
+                    <g id="Grupo_4420" transform="translate(-429 -285)">
+                        <g id="Grupo_4419" transform="translate(429 291)">
+                            <path id="Trazado_1521" d="M.5 5a2.5 2.5 0 0 1 0 5 .5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h22a.5.5 0 0 0 .5-.5V.5a.5.5 0 0 0-.5-.5H.5a.5.5 0 0 0-.5.5v4a.5.5 0 0 0 .5.5zM1 1h21v12H1v-2.036a3.5 3.5 0 0 0 0-6.929z" class="cls-1"/>
+                            <path id="Rectángulo_1223" d="M0 0H1V2H0z" class="cls-2" transform="translate(6 4)"/>
+                            <path id="Rectángulo_1224" d="M0 0H1V2H0z" class="cls-2" transform="translate(6)"/>
+                            <path id="Rectángulo_1225" d="M0 0H1V2H0z" class="cls-2" transform="translate(6 8)"/>
+                            <path id="Rectángulo_1226" d="M0 0H1V2H0z" class="cls-2" transform="translate(6 12)"/>
+                            <path id="Trazado_1522" d="M17.5 11.5a2 2 0 1 0-2-2 2 2 0 0 0 2 2zm0-1a1 1 0 1 0-1-1 1 1 0 0 0 1 1z" class="cls-1"/>
+                            <path id="Trazado_1523" d="M10.795 10.554l.759.651 6.651-7.759-.759-.651z" class="cls-1"/>
+                            <path id="Trazado_1524" d="M11.5 6.5a2 2 0 1 0-2-2 2 2 0 0 0 2 2zm0-1a1 1 0 1 0-1-1 1 1 0 0 0 1 1z" class="cls-1"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

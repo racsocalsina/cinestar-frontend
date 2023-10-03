@@ -1,0 +1,18 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+.content-complaints-book {
+    padding-top: 67px;
+}
+.section-title {
+    h1 {
+        font-size: $ft-28;
+        @include min-width-992 {
+            font-size: $ft-35;
+        }
+        @include min-width-1200 {
+            font-size: $ft-50;
+        }
+    }
+}

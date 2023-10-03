@@ -1,0 +1,32 @@
+@import "~assets/scss/fonts";
+@import "~assets/scss/breakpoints";
+
+tbody {
+    tr {
+        border-bottom: 1px solid #dee2e6;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+
+}
+
+td {
+    padding: 10px 0 8px;
+
+    @include min-width-992 {
+        padding-top: 15px;
+    }
+}
+
+.description {
+    @include min-width-992 {
+        font-size: $ft-15;
+    }
+}
+
+.icon-close-solid {
+    color: #bebebe;
+}

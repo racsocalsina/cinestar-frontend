@@ -1,0 +1,98 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/variables";
+
+.info {
+    background-color: #f4f4f4;
+    padding: 10px;
+
+}
+
+.qr {
+    width: 100%;
+
+    @include for-min-width(500px) {
+        width: auto;
+    }
+
+    img {
+        max-width: 168px;
+    }
+
+    .bg {
+        background-color: rgba(48, 48, 47, 0.7);
+    }
+}
+
+.data {
+    width: 100%;
+    margin-top: 15px;
+
+    @include for-min-width(500px) {
+        width: calc(100% - 186px);
+        padding-left: 15px;
+        margin-top: 0;
+    }
+
+    @include min-width-768 {
+        padding-left: 30px;
+    }
+
+    h3 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.btn {
+    height: 36px;
+
+    @include min-width-768 {
+        height: 45px;
+    }
+}
+
+.items {
+    .item {
+        border-bottom: solid 1px rgba(112, 112, 112, 0.15);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .img {
+            height: 85px;
+            width: 140px;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .description {
+            width: 200px;
+        }
+    }
+}
+
+.loading {
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bouncingLoader > span,
+.bouncingLoader:before,
+.bouncingLoader:after {
+    background: $primary;
+}
+
+::ng-deep {
+    perfect-scrollbar.pay-confirmation-scroll {
+        .ps-content {
+            max-height: 73vh;
+        }
+
+    }
+}

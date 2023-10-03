@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+    <defs>
+        <filter id="Elipse_254" width="50" height="50" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="3"/>
+            <feFlood flood-opacity=".161"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <style>
+            .cls-2{fill:none;stroke:#fff;stroke-linecap:round;stroke-width:3px}
+        </style>
+    </defs>
+    <g id="Grupo_5911" transform="translate(-1135 -304)">
+        <g id="Grupo_5896" transform="translate(341 54)">
+            <g id="Grupo_5000" transform="translate(508 -139)">
+                <g id="Grupo_4998">
+                    <g id="Grupo_4990" transform="translate(95 227)">
+                        <g filter="url(#Elipse_254)" transform="translate(191 162)">
+                            <circle id="Elipse_254-2" cx="16" cy="16" r="16" fill="#d9000d" transform="translate(9 6)"/>
+                        </g>
+                        <g id="Grupo_2060" transform="rotate(45 -103.75 348.452)">
+                            <path id="Línea_5" d="M0 0L12.447 12.447" class="cls-2"/>
+                            <path id="Línea_6" d="M12.447 0L0 12.447" class="cls-2"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

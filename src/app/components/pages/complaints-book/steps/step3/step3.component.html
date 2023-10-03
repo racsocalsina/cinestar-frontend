@@ -1,0 +1,21 @@
+<div class="mb-5">
+    <h5 class="font-helvetica-bold mb-3">Constancia de Registro</h5>
+    <p class="font-helvetica sub-text mb-0">Le informamos que la respuesta a su reclamo tendrá la acciones adoptadas y
+        será remitida al correo electrónico o a los teléfonos de contacto registrados.</p>
+    <div class="d-flex jusify-content-start align-items-center mt-4 mb-5 cursor-pointer">
+        <img src="./assets/images/svg/document.svg" class="img-fluid" alt="">
+        <p class="color-title font-helvetica-bold mb-0 ml-3" (click)="download()">Descargar documento de Sustento</p>
+    </div>
+    <div class="w-100 text-primary" *ngIf="error">
+        Se produjo un error, inténtelo nuevamente
+    </div>
+    <div class="w-100 d-flex justify-content-center align-items-center mb-5">
+        <button class="btn btn-primary" routerLink="/" [disabled]="downloading">
+            <span class="bouncingLoader" *ngIf="downloading">
+                <span></span>
+            </span>
+            <span *ngIf="!downloading">Volver al home</span>
+        </button>
+    </div>
+</div>
+

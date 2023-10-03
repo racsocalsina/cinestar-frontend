@@ -1,0 +1,261 @@
+//@import "~assets/scss/variables";
+/*
+$slider-height: 30vh;
+
+.modal-header {
+    padding: 0;
+    display: block;
+
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 9;
+    }
+}
+
+.slider {
+    height: $slider-height;
+    position: relative;
+}
+
+agm-map {
+    margin-top: 10px;
+    height: 129px;
+}
+
+
+::ng-deep {
+
+    perfect-scrollbar.scroll-cinema-details {
+        .ps-content {
+            max-height: 50vh;
+        }
+    }
+
+    carousel {
+        height: $slider-height;
+
+        .carousel-control {
+            display: none;
+        }
+
+        .carousel-indicators {
+            right: auto;
+            margin-bottom: 0;
+            justify-content: flex-start;
+            margin-left: 5%;
+
+            li {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+
+                &.active {
+                    background-color: $secondary;
+                }
+            }
+        }
+
+        .item {
+            height: $slider-height;
+
+            .image {
+                background-position: center;
+                background-size: cover;
+                height: inherit;
+                border-top-right-radius: 25px;
+                border-top-left-radius: 25px;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+}
+*/
+agm-map {
+    width: 366px;
+    height: 208px;
+    border-radius: 12px;
+}
+
+.card {
+    margin: 24px;
+    border-radius: 22px;
+    overflow: hidden;
+    border: none;
+    /* Resto de tus estilos... */
+  }
+  
+  .card-container {
+    border-radius: 0;
+    /* Resto de tus estilos... */
+  }
+  
+  .card-container {
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  
+  .cinema-name {
+    width: 366px;
+    color: #343A40;
+    font-size: 20px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.20px;
+    word-wrap: break-word;
+  }
+  
+  .cinema-image {
+    width: 366px;
+    height: 208px;
+    border-radius: 12px;
+  }
+  
+  .cinema-location .title {
+    width: 366px;
+    color: #343A40;
+    font-size: 16px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+    word-wrap: break-word;
+  }
+  
+  .cinema-location .text {
+    width: 366px;
+    color: #6C757D;
+    font-size: 14px;
+    font-family: Helvetica;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.14px;
+    word-wrap: break-word;
+  }
+  
+  .cinema-salas .title {
+    width: 366px;
+    color: #343A40;
+    font-size: 16px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+    word-wrap: break-word;
+  }
+  
+  .cinema-salas .format {
+    width: 75px;
+    padding: 8px 4px;
+    background: white;
+    border-radius: 6px;
+    border: 0.50px #6C757D solid;
+    justify-content: center;
+    align-items: center;
+    color: #6C757D;
+    font-size: 14px;
+    font-family: Helvetica;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.14px;
+    word-wrap: break-word;
+  }
+  
+  .cinema-tarifa .title {
+    width: 358px;
+    color: #343A40;
+    font-size: 16px;
+    font-family: Helvetica;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.16px;
+    word-wrap: break-word;
+  }
+  
+  .cinema-tarifa .prices {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .cinema-tarifa .price {
+    width: 361px;
+    color: #6C757D;
+    font-size: 14px;
+    font-family: Helvetica;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0.14px;
+    word-wrap: break-word;
+  }
+  
+  .cinema-icon {
+    width: 32px;
+    height: 32px;
+    left: 360px;
+    top: 14px;
+    position: absolute;
+  }
+  
+  .cinema-icon .circle {
+    width: 32px;
+    height: 32px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    background: #D9D9D9;
+  }
+  
+  .cinema-icon .dot {
+    width: 26.67px;
+    height: 26.67px;
+    left: 2.67px;
+    top: 2.67px;
+    position: absolute;
+    background: #D91D1C;
+  }
+
+  .modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-wrapper::-moz-focus-inner {
+    border: 0;
+  }
+  
+  .modal-wrapper {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+  }
+
+  .modal-header {
+    padding: 0;
+    display: block;
+
+    .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 9;
+    }
+}

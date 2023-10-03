@@ -1,0 +1,132 @@
+<div class="modal-header border-bottom-0">
+    <div class="d-flex flex-column">
+        <h3 class="font-helvetica-bold ft-25 text-primary lh-1">Confirmación de la compra</h3>
+        <p class="color-gray ft-15 lh-1">Confirme los datos ingresados para efectuar la compra</p>
+    </div>
+    <img class="close pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body pt-0">
+
+    <div class="w-100 d-flex flex-column">
+        <h3 class="ft-20 font-helvetica-bold color-title lh-1">{{movie.name}}</h3>
+        <p class="font-helvetica-medium fr-15 color-title lh-1 mb-0">
+            <img class="mr-2" src="./assets/images/svg/cine-icon.svg" alt="">
+            {{showTime?.name}},
+        </p>
+        <span class="color-gray ft-15">{{showTime?.address}}</span>
+    </div>
+    <div class="scroll d-flex flex-wrap mt-3">
+        <div class="info d-flex">
+            <img class="img-fluid"
+                 [src]="movie.image"
+                 onError="this.src='./assets/images/no-image-movie.png';"
+                 [alt]="movie.name"
+                 [title]="movie.name">
+            <div class="data ml-3" *ngIf="movieTime">
+                <div class="border-bottom py-2">
+                    <div class="font-helvetica-bold ft-12 color-title">Fecha</div>
+                    <div class="color-gray ft-15">{{movieTime.date_start | date: 'dd/MM/yy'}}</div>
+                </div>
+
+                <div class="border-bottom py-2">
+                    <div class="font-helvetica-bold ft-12 color-title">Hora</div>
+                    <div class="color-gray ft-15">{{movieTime.time_start | time}}</div>
+                </div>
+
+                <div class="pt-2">
+                    <div class="font-helvetica-bold ft-12 color-title">Butacas</div>
+                    <div class="color-gray ft-15">{{Utils.arrToString( { arr: seats, field: 'position' } )}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="selected-seats w-100 p-2">
+            <app-room [clickable]="false"></app-room>
+
+            <div class="font-helvetica-bold color-title ft-12 lh-1 w-100 text-center mt-2">Cantidad y tipo de entradas</div>
+            <div class="ft-15 color-gray lh-1 text-center" *ngFor="let tariif of buyTicketService.tariffs">
+                {{tariif.quantity}} {{tariif.name}}
+            </div>
+
+            <ng-container *ngFor="let award of buyTicketService.ticketAwards">
+                <div class="color-gray lh-1 text-center ft-15 d-block mb-1" *ngIf="award.quantity && award.quantity > 0">
+                    {{award.quantity}} {{award.name}}
+                </div>
+            </ng-container>
+            <div class="color-gray ft-15 text-center d-block mb-1" *ngFor="let code of buyTicketService.codes">
+                {{code.quantity}} {{code.name}} ({{code.code_promotion}})
+            </div>
+
+            <div class="color-gray ft-14 mt-1">
+                ({{buyTicketService.tickets_number}} {{Utils.isSingular( buyTicketService.tickets_number ) ? 'ticket' : 'tickets'}})
+            </div>
+        </div>
+
+        <ng-container *ngIf="showChocolateria()">
+            <p class="font-helvetica-bold color-title ft-25 mt-3 mb-1">Chocolatería</p>
+
+            <div class="items">
+                <div class="item d-flex align-items-center mr-3 py-2 pb-2" *ngFor="let product of candyService.selectedProducts">
+                    <div class="img text-center mr-2">
+                        <img class="img-fluid"
+                             [src]="product.image"
+                             onError="this.src='./assets/images/svg/no-product.svg';"
+                             alt="">
+                    </div>
+
+                    <div>
+                        <div class="description color-gray ft-13 lh-1 mb-2 pt-2">
+                            {{product.name}}
+                        </div>
+
+                        <div class="ft-15 font-helvetica-bold d-flex justify-content-between">
+                            <span>S/ {{product.price | number: '.2'}}</span>
+                            <span>Cant. {{product.quantity}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-container *ngFor="let product of candyService.chocoAwards">
+                    <div *ngIf="product.quantity > 0" class="item d-flex align-items-center mr-3 py-2 pb-2">
+                        <div class="img text-center mr-2">
+                            <img class="img-fluid"
+                                 [src]="product.image"
+                                 onError="this.src='./assets/images/svg/no-product.svg';"
+                                 alt="">
+                        </div>
+
+                        <div>
+                            <div class="description color-gray ft-13 lh-1 mb-2 pt-2">
+                                {{product.name}}
+                            </div>
+
+                            <div class="ft-15 font-helvetica-bold d-flex justify-content-between">
+                                <span>S/ {{product.price | number: '.2'}}</span>
+                                <span>Cant. {{product.quantity}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <p class="text-danger mt-2">{{error}}</p>
+
+        <div class="continue d-flex flex-wrap align-items-center w-100">
+            <div class="total ft-20 my-3">
+                <span class="font-helvetica-bold text-secondary mr-2">Total</span>
+                <span class="color-title">S/ {{totalPayment + candyService.paymentAmount | number: '.2'}}</span>
+            </div>
+            <div class="total my-3">
+                <button class="btn btn-primary px-4" (click)="continue()" [disabled]="isLoading || !buyTicketService.purchase">
+                    <span class="bouncingLoader" *ngIf="isLoading">
+                        <span></span>
+                    </span>
+                    <span *ngIf="!isLoading">Confirmar</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,19 @@
+<header class="container-fluid bg-primary d-flex justify-content-between align-items-center position-fixed">
+    <ng-container *ngIf="!onSearch; else search">
+        <img class="cursor-pointer" src="./assets/images/svg/arrow-left-white.svg" alt="back" id="back" (click)="back()">
+        <span *ngIf="cinema && fromCinemas" class="title font-helvetica-bold ft-20 text-white">{{cinema?.name}}</span>
+        <span class="icon-search text-white ft-19 cursor-pointer mr-3" *ngIf="showSearch" (click)="onSearch = true"></span>
+    </ng-container>
+
+
+    <ng-template #search>
+        <div class="input-group">
+            <input id="responsive-movie-search" type="text"
+                   class="form-control" placeholder="Buscar película..."
+                   [(ngModel)]="searchTerm" (ngModelChange)="searchMovie()">
+            <div class="input-group-append">
+                <img src="./assets/images/svg/close.svg" alt="close" (click)="onSearch = false">
+            </div>
+        </div>
+    </ng-template>
+</header>

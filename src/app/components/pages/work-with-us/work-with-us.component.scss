@@ -1,0 +1,51 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+.content-workUs {
+    padding-top: 130px;
+    padding-bottom: 70px;
+}
+
+.section-title {
+    h1 {
+        font-size: $ft-28;
+        @include min-width-768 {
+            font-size: $ft-40;
+        }
+    }
+}
+
+p {
+    color: $gray;
+    letter-spacing: 1.22px;
+    line-height: 1.2;
+    font-size: $ft-20;
+}
+
+.subtext {
+    color: $primary;
+    font-size: $ft-20;
+}
+
+.box {
+    width: 100%;
+    height: auto;
+    @include min-width-768 {
+        height: 566px;
+    }
+    border-radius: 23px;
+    box-shadow: 0 0 24px 0 rgba(23, 36, 80, 0.11);
+    background-color: #ffffff;
+
+    .upload-file {
+        h3 {
+            font-size: $ft-18
+        }
+    }
+
+    .btn-primary {
+        width: 173px;
+        height: 50px;
+    }
+}

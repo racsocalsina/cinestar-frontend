@@ -1,0 +1,87 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+
+.content-qr {
+    width: 100px;
+    height: 100px;
+
+    .bg {
+        background-color: rgba(48, 48, 47, 0.7);
+    }
+
+    @include min-width-576 {
+        width: 135px;
+        height: 135px;
+    }
+
+    @include min-width-768 {
+        width: 168px;
+        height: 168px;
+    }
+}
+
+.content-infor {
+    width: 100%;
+    @include min-width-768() {
+        width: calc(100% - 168px);
+    }
+
+    h4 {
+        font-size: $ft-20;
+    }
+
+    p, h5, h4, small {
+        line-height: 1.2
+    }
+}
+
+.box-qr {
+    border-radius: 3px;
+    background-color: #f4f4f4;
+}
+
+.items {
+    .item {
+        border-bottom: solid 1px rgba(112, 112, 112, 0.15);
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .img {
+            height: 85px;
+            width: 140px;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .description {
+            width: 200px;
+        }
+    }
+}
+
+.btn-primary {
+    width: 124.8px;
+    height: 36px;
+}
+
+p {
+    line-height: 1;
+}
+
+.btn-close {
+    right: 20px;
+    top: 20px;
+}
+
+::ng-deep {
+    perfect-scrollbar.pay-confirmation-scroll {
+        .ps-content {
+            max-height: 65vh;
+        }
+
+    }
+}

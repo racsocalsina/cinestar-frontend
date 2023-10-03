@@ -1,0 +1,20 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+h5 {
+    color: $primary;
+    font-size: $ft-20;
+    line-height: 1
+}
+
+.sub-text {
+    max-width: 659px;
+    /*height: 171px;*/
+    line-height: 1.2;
+}
+
+.btn-primary {
+    width: 190px;
+    height: 50px;
+}

@@ -1,0 +1,55 @@
+<app-header-home></app-header-home>
+<app-carousel-banner [banners]="banners" class="d-sm-none" [class.d-sm-block]="type() == 'banners_desktop'"></app-carousel-banner>
+<div class="py-5">
+    <div class="container-fluid">
+        <div class="section-title">
+            <h1> Promociones</h1>
+        </div>
+
+        <div class="row text-center m-3">
+            <div class="col-md-4"></div>
+            <div class="col-md-2 option">
+                <a href="scripts:;" class="color-title text-decoration-none">
+                    <h3 class="text" [class.active]="option" (click)="option=true">Chocolatería</h3>
+                </a>
+            </div>
+
+            <div class="col-md-2 option">
+                <a href="scripts:;" class="color-title  text-decoration-none">
+                    <h3 class="text" [class.active]="!option" (click)="option=false">Boletería</h3>
+                </a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <div class="cards-container row">
+            <ng-container *ngIf="!option">
+                <div class="col-md-4" *ngFor="let item of tickets"  (click)="showDetail(item)">
+                    <div class="card cursor-pointer">
+                        <div class="card-body">
+                            <img [src]="item.image ? item.image : 'assets/images/promotion.png'" class="w-100">
+                            <div class="texto">
+                                <h4>{{item.name}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="option">
+                <div class="col-md-4" *ngFor="let item of chocos"  (click)="showDetail(item)">
+                    <div class="card cursor-pointer">
+                        <div class="card-body">
+                            <img [src]="item.image ? item.image : 'assets/images/promotion.png'" class="w-100">
+                            <div class="texto">
+                                <h4>{{item.name}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+
+</div>
+
+<app-footer></app-footer>

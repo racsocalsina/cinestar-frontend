@@ -1,0 +1,13 @@
+<header class="container-fluid bg-primary d-flex align-items-center position-fixed"  *ngIf="!showBack">
+    <app-responsive-menu class="d-lg-none">
+    </app-responsive-menu>
+    <span class="text-secondary ft-25 font-helvetica-bold mb-0">{{title}}</span>
+</header>
+<header *ngIf="showBack" class="container-fluid bg-primary d-flex justify-content-between align-items-center position-fixed">
+    <img class="cursor-pointer" src="./assets/images/svg/arrow-left-white.svg" alt="back" id="back"
+         *ngIf="showBack" routerLink="/chocolateria">
+    <span class="font-helvetica-bold ft-18 text-white">{{title}}</span>
+    <div class="btn-container">
+        <button class="btn btn-default text-secondary ft-15" *ngIf="showBack" (click)="cancel()">Cancelar</button>
+    </div>
+</header>

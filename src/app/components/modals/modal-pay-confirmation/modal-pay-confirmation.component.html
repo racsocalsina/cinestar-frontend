@@ -1,0 +1,199 @@
+<div class="modal-header border-bottom-0 pb-0 px-md-5 pt-sm-4">
+    <div class="d-flex flex-column">
+        <h3 class="font-helvetica-bold ft-25 color-title lh-1">Compra exitosa</h3>
+        <ng-container *ngIf="data">
+            <p class="color-gray ft-15 lh-1" *ngIf="data.ticket_data">
+                ¡Sin colas! muestra el código QR desde tu celular, para recoger tu combo en la zona de reparto online e ingresar a la sala. No necesitas pasar por boletería ni imprimir este documento.
+            </p>
+            <p class="color-gray ft-15 lh-1" *ngIf="!data.ticket_data">
+                Hemos enviado el siguiente detalle a su correo electrónico con el código QR podrá canjear sus productos.
+            </p>
+        </ng-container>
+    </div>
+    <img class="close cursor-pointer pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body pt-0 px-md-5 pb-md-4">
+    <perfect-scrollbar class="pay-confirmation-scroll">
+        <ng-container *ngIf="data">
+            <div class="info d-flex justify-content-center justify-content-sm-start flex-wrap" *ngIf="data.ticket_data">
+                <div class="qr d-flex justify-content-center align-items-center position-relative">
+                    <img class="img-fluid" [src]="data.ticket_data.qr_url" alt="QR" *ngIf="data.ticket_data.qr_url">
+                    <img class="img-fluid" src="./assets/images/qr-code.png" alt="QR" *ngIf="data.ticket_data.qr_url === null">
+                    <div class="bg d-flex justify-content-center align-items-center position-absolute w-100 h-100" *ngIf="data.ticket_data.qr_url === null">
+                        <span class="font-helvetica-bold ft-16 text-white">No disponible</span>
+                    </div>
+                </div>
+
+                <div class="data d-flex flex-column">
+                    <h3 class="color-title ft-20 font-helvetica-bold lh-1">{{data.ticket_data.movie.name}}</h3>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex flex-column">
+                            <span class="text-primary ft-12 font-helvetica-bold">Butacas</span>
+                            <span class="color-gray ft-15">{{data.ticket_data.seats}}</span>
+                        </div>
+                        <div class="ft-20 font-helvetica-medium text-primary">Sala<span class="color-title ml-2">{{data.ticket_data.room}}</span></div>
+                    </div>
+
+                    <div class="d-flex flex-column mt-2">
+                        <span class="text-primary ft-12 font-helvetica-bold">Cantidad y tipo de entradas</span>
+                        <span class="color-gray ft-15" *ngFor="let ticket of data.ticket_data.ticket_types">
+                            {{ticket.quantity}} {{ticket.name}}
+                        </span>
+                    </div>
+
+                    <div class="d-flex mt-2">
+                        <div class="d-flex flex-column mr-5">
+                            <span class="text-primary ft-12 font-helvetica-bold">Fecha</span>
+                            <span class="color-gray ft-15">{{data.ticket_data.start_at_name}}</span>
+                        </div>
+
+                        <div class="d-flex flex-column mr-5">
+                            <span class="text-primary ft-12 font-helvetica-bold">Hora</span>
+                            <span class="color-gray ft-15">{{data.ticket_data.start_at | timeToDate}} </span>
+                        </div>
+
+                        <div class="d-flex flex-column">
+                            <span class="text-primary ft-12 font-helvetica-bold">Puntos acumulados</span>
+                            <span class="color-gray ft-15">
+                                {{data.ticket_data.points}} {{Utils.isSingular( data.ticket_data.points ) ? 'punto' : 'puntos'}}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Dulcería-->
+            <ng-container *ngIf="data.sweet_data">
+                <p class="font-helvetica-bold color-title ft-25 mt-3 mb-1" *ngIf="data.ticket_data">Chocolatería</p>
+
+                <div class="info d-flex justify-content-center justify-content-sm-start flex-wrap">
+                    <div class="qr d-flex justify-content-center align-items-center position-relative">
+                        <img class="img-fluid" [src]="data.sweet_data.qr_url" alt="QR" *ngIf="data.sweet_data.qr_url">
+                        <img class="img-fluid" src="./assets/images/qr-code.png" alt="QR" *ngIf="data.sweet_data.qr_url === null">
+                        <div class="bg d-flex justify-content-center align-items-center position-absolute w-100 h-100" *ngIf="data.sweet_data.qr_url === null">
+                            <span class="font-helvetica-bold ft-16 text-white">No disponible</span>
+                        </div>
+                    </div>
+
+                    <div class="data d-flex flex-column">
+                        <h3 class="color-title ft-20 font-helvetica-bold lh-1 mb-3">Compra en chocolatería</h3>
+
+                        <div class="d-flex mb-2">
+                            <div class="d-flex flex-column mr-5">
+                                <span class="text-primary ft-15 font-helvetica-bold">Fecha de recojo</span>
+                                <span class="color-gray ft-15">{{data.sweet_data.date_name}}</span>
+                            </div>
+
+<!--                            <div class="d-flex flex-column">-->
+<!--                                <span class="text-primary ft-12 font-helvetica-bold">Hora</span>-->
+<!--                                <span class="color-gray ft-15">{{data.sweet_data.date | timeToDate}}</span>-->
+<!--                            </div>-->
+                        </div>
+
+                        <div class="d-flex flex-column mb-2">
+                            <span class="text-primary ft-12 font-helvetica-bold">Puntos acumulados</span>
+                            <span class="color-gray ft-15">
+                                {{data.sweet_data.points}} {{Utils.isSingular( data.sweet_data.points ) ? 'punto' : 'puntos'}}
+                            </span>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex flex-column">
+                                <span class="text-primary ft-12 font-helvetica-bold">Sede a retirar</span>
+                                <div class="d-flex flex-wrap">
+                                    <img class="mr-1" src="./assets/images/svg/cine-icon.svg" alt="">
+                                    <span class="color-title ft-15 font-helvetica-bold mr-1">{{data.headquarter.name}},</span>
+                                    <span class="color-gray ft-15 font-helvetica">{{data.headquarter.address}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="items">
+                    <div class="item d-flex align-items-center mr-3 py-2 pb-2" *ngFor="let item of data.sweet_data.items">
+                        <div class="img text-center mr-2">
+                            <img class="img-fluid"
+                                 [src]="item.image"
+                                 onError="this.src='./assets/images/svg/no-product.svg';"
+                                 alt="">
+                        </div>
+
+                        <div>
+                            <div class="description color-gray ft-13 lh-1 mb-2 pt-2">
+                                {{item.name}}
+                            </div>
+
+                            <div class="ft-15 font-helvetica-bold d-flex justify-content-between">
+                                <span>S/ {{item.price | number: '.2'}}</span>
+                                <span>Cant. {{item.quantity}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <!--/Dulcería-->
+
+            <div class="d-flex flex-column mt-2">
+                <span class="color-title ft-12 font-helvetica-bold">Dirección</span>
+                <div class="d-flex font-helvetica-bold color-title ft-15">
+                    <img class="mr-1" src="./assets/images/svg/cine-icon.svg" alt="">
+                    {{data.headquarter.name}},
+                </div>
+                <span class="color-gray ft-15">{{data.headquarter.address}}</span>
+            </div>
+
+            <div class="d-flex flex-column flex-sm-row">
+                <div class="d-flex flex-column mt-2 mr-sm-5">
+                    <span class="color-title ft-12 font-helvetica-bold">Tipo de pago</span>
+                    <span class="color-gray ft-15">Tarjeta {{data.payment_data.type | titlecase}}</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center flex-sm-grow-1 pl-sm-3">
+                    <div class="d-flex flex-column mt-2">
+                        <span class="color-title ft-12 font-helvetica-bold">Total</span>
+                        <span class="color-gray ft-15">{{data.payment_data.currency}} {{data.payment_data.total}}</span>
+                    </div>
+
+                    <div class="d-flex flex-column" *ngIf="!data.download_url">
+                        <span>Comprobante no disponible:</span>
+                        <span class="font-italic">{{data.message}}</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="d-flex mt-2">
+                <div class="d-flex flex-column mr-3 mr-sm-5">
+                    <span class="color-title ft-12 font-helvetica-bold">Nombre</span>
+                    <span class="color-gray ft-15">{{data.payment_data.full_name}}</span>
+                </div>
+
+                <div class="d-flex flex-column mr-3 mr-sm-5">
+                    <span class="color-title ft-12 font-helvetica-bold">Tarjeta</span>
+                    <span class="color-gray ft-15">{{data.payment_data.card}}</span>
+                </div>
+            </div>
+
+            <div class="d-flex mt-2">
+                <div class="d-flex flex-column mr-3 mr-sm-5">
+                    <span class="color-title ft-12 font-helvetica-bold">Fecha y Hora del pedido</span>
+                    <span class="color-gray ft-15" *ngIf="!isSafari">{{data.payment_data.datetime | date: 'dd/MM/yyyy'}} {{data.payment_data.datetime  | date: 'hh:mm a'}}</span>
+                    <span class="color-gray ft-15" *ngIf="isSafari">{{ data.payment_data.datetime }}</span>
+                </div>
+
+                <div class="d-flex flex-column mr-3 mr-sm-5">
+                    <span class="color-title ft-12 font-helvetica-bold">Nro. Pedido</span>
+                    <span class="color-gray ft-15">{{data.id}}</span>
+                </div>
+            </div>
+            <div class="mt-3 text-center">
+                <button *ngIf="data.download_url"
+                        (click)="downloadTicket(data.download_url)" class="btn btn-primary px-5 lh-1">Descargar
+                </button>
+            </div>
+        </ng-container>
+    </perfect-scrollbar>
+</div>

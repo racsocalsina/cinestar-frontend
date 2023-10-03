@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="17.201" height="17.201" viewBox="0 0 17.201 17.201">
+    <defs>
+        <style>
+            .cls-2{fill:none;stroke:#ffd400;stroke-linecap:round;stroke-linejoin:round}
+        </style>
+    </defs>
+    <g id="Grupo_4508" transform="translate(-5790 -3853)">
+        <g id="Grupo_4171" transform="translate(5790 3853)">
+            <path id="Trazado_1092" fill="none" d="M0 0h17.2v17.2H0z"/>
+            <rect id="Rectángulo_308" width="12" height="12" class="cls-2" rx="2" transform="translate(3 3)"/>
+            <path id="Línea_4" d="M0 0L0 3" class="cls-2" transform="translate(11 2)"/>
+            <path id="Línea_5" d="M0 0L0 3" class="cls-2" transform="translate(6 2)"/>
+            <path id="Línea_6" d="M0 0L12 0" class="cls-2" transform="translate(3 8)"/>
+            <path id="Línea_7" d="M0 0L4 0" class="cls-2" transform="translate(7 11)"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,200 @@
+.modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 9999999;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-backdrop.show {
+    opacity: 0.9;
+    z-index: 9999999;
+}
+
+.btn_comprar
+{
+    display: block;
+    border-radius: 22px;
+    background-color: #D91D1C;
+    border-color: #D91D1C;
+    color: #fff;
+    padding: 5px 30px 5px 30px;
+    width: 100%;
+    margin-top: 10px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 24px;
+    margin-bottom: 10px;
+    border: 0px;
+    font-family: HelveticaNeue-Bold,sans-serif;
+}
+.btn_comprar:hover 
+{
+    background-color: #b3000b;
+    border-color: #a6000a;
+}
+.btn_omitir
+{
+    text-decoration: underline; 
+    font-style: normal; 
+    font-weight: 400; 
+    font-size: 1rem; 
+    line-height: 24px;
+    font-family: HelveticaNeue-Bold,sans-serif;
+}
+
+.titulo_banner
+{
+    color: #FFD400; 
+    font-size: 1.5rem; 
+    font-style: normal; 
+    font-weight: 900; 
+    line-height: 23px; 
+    margin: 0px 0px 8px 0px;
+    font-family: HelveticaNeue-Bold,sans-serif;
+}
+.subtitulo_banner
+{
+    color: #ffffff; 
+    font-size: 1.3rem; 
+    font-style: normal; 
+    font-weight: 600; 
+    line-height: 24px; 
+    margin: 0px 0px 16px 0px;
+    font-family: HelveticaNeue-Bold,sans-serif;
+}
+
+.modal-home > .modal-content {
+    background-color: transparent !important;
+}
+.modal-content {
+    border-radius: 25px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.ModalSignUp {
+    @include min-width-992 {
+        width: 100%;
+        max-width: 895px;
+        height: 577px;
+    }
+    border-radius: 25px;
+
+    .modal-content {
+        @include min-width-992 {
+            width: 895px;
+            height: 577px;
+        }
+    }
+}
+
+.ModalLogin {
+    @include min-width-768 {
+        width: 100%;
+        max-width: 721px;
+        //height: 465px;
+    }
+    border-radius: 32px;
+
+    .modal-content {
+        overflow: hidden;
+        @include min-width-768 {
+            width: 721px;
+            //height: 465px;
+        }
+    }
+}
+
+.ModalRecoverPassword {
+
+    @include min-width-768 {
+        width: 100%;
+        max-width: 417px;
+        //height: 465px;
+    }
+    border-radius: 32px;
+
+    .modal-content {
+        @include min-width-768 {
+            width: 417px;
+            //height: 465px;
+            overflow: hidden;
+            position: relative;
+        }
+    }
+}
+
+.ModalTicketDetail {
+    @include min-width-768 {
+        width: 100%;
+        max-width: 561px;
+        height: 454px;
+    }
+    border-radius: 32px;
+
+    .modal-content {
+        @include min-width-768 {
+            width: 561px;
+            height: 454px;
+        }
+    }
+}
+
+.modal-youtube-trailer {
+    min-width: 65%;
+
+    .modal-content {
+        border-radius: 0;
+    }
+}
+
+.modal-cinema-details {
+    width: 100%;
+    max-width: 455px;
+}
+
+.modal-promotional-code {
+    width: 100%;
+    max-width: 380px;
+}
+
+.modal-points-expire,
+.modal-points-expire {
+    width: 100%;
+    max-width: 284px;
+}
+
+.modal-responsive-purchase-confirmation {
+    width: 100%;
+    //max-width: 455px;
+}
+
+.modal-desktop-purchase-confirmation {
+    width: 100%;
+    max-width: 733px;
+}
+
+
+.modal-terms,
+.modal-pay-confirmation {
+    width: 100%;
+    max-width: 734px;
+}
+
+.modal-pay-denied {
+    width: 100%;
+    max-width: 500px;
+}
+
+.modal-cancel-buy {
+    width: 100%;
+    max-width: 428px;
+}
+
+.modal-cvv {
+    max-width: 328px;
+}

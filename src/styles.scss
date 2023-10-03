@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+
+//@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import '~ngx-bootstrap/datepicker/bs-datepicker.css';
+@import "assets/scss/variables";
+@import "~assets/scss/bootstrap";
+@import "assets/fonts/index.css";
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/buttons";
+@import "~assets/scss/carousel";
+@import "~assets/scss/modals";
+@import "~assets/scss/forms";
+@import "~assets/scss/md-input";
+@import "~assets/scss/checks";
+@import "~assets/scss/perfect-scrollbar";
+@import "assets/icons/icomoon/style.css";
+@import "~assets/scss/ng-select";
+@import "~assets/scss/utils";
+@import "~assets/scss/movie-info";
+@import "~assets/scss/custom-forms";
+@import "~assets/scss/grid-columns";
+@import "~assets/scss/loading";
+@import "~assets/scss/animate";
+
+
+body {
+    font-family: 'HelveticaNeue', sans-serif;
+}
+
+bs-datepicker-container, bs-daterangepicker-container {
+    z-index: 9999999 !important;
+}
+
+.custom-auth-calendar {
+    font-family: 'HelveticaNeue-Medium', sans-serif;
+
+    .bs-datepicker-head {
+        background-color: $primary;
+    }
+
+    .bs-datepicker-body table td.week span {
+        color: $primary;
+    }
+
+    .bs-datepicker-body table td span.selected,
+    .bs-datepicker-body table td.selected span,
+    .bs-datepicker-body table td span[class*="select-"]:after,
+    .bs-datepicker-body table td[class*="select-"] span:after {
+        background-color: $primary !important;
+    }
+}
+
+.pay-iframe {
+    border: 0;
+    position: absolute;
+    top: -5000px
+}
+@media (min-width: 768px){
+    .md-min-width{
+        min-width: 450px;
+    }
+}
+

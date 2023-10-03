@@ -1,0 +1,134 @@
+<ng-container *ngIf="!screenService.isResponsive">
+    <div class="cards">
+        <div *ngIf="isLoggedIn" class="accordion mt-lg-3" id="accordionPoints">
+            <div class="card border-0">
+                <div class="card-header p-2 bg-white border-0" id="headingPoints">
+                    <div class="d-flex align-items-center">
+                        <ng-container *ngIf="type === 'ticket'">
+                            <div class="color-yellow ft-25 pr-3 font-helvetica-bold">{{accumulatedPoints - buyTicketService.ticketAwardsUsedPoints}}</div>
+                            <div class="flex-grow-1 color-title font-helvetica-bold ft-15 d-flex flex-column lh-1">
+                                <span>{{Utils.isSingular( accumulatedPoints - buyTicketService.ticketAwardsUsedPoints ) ? 'Punto' : 'Puntos'}}</span>
+                                <span>{{Utils.isSingular( accumulatedPoints - buyTicketService.ticketAwardsUsedPoints ) ? 'Acumulado' : 'Acumulados'}}</span>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngIf="type === 'choco'">
+                            <div class="color-yellow ft-25 pr-3 font-helvetica-bold">{{accumulatedPoints - candyService.chocoAwardsUsedPoints}}</div>
+                            <div class="flex-grow-1 color-title font-helvetica-bold ft-15 d-flex flex-column lh-1">
+                                <span>{{Utils.isSingular( accumulatedPoints - candyService.chocoAwardsUsedPoints ) ? 'Punto' : 'Puntos'}}</span>
+                                <span>{{Utils.isSingular( accumulatedPoints - candyService.chocoAwardsUsedPoints ) ? 'Acumulado' : 'Acumulados'}}</span>
+                            </div>
+                        </ng-container>
+                        <button class="btn btn-link collapsed pl-lg-0 ft-15 color-title d-flex align-items-center text-decoration-none"
+                                type="button" data-toggle="collapse" data-target="#collapsePoints" aria-expanded="true"
+                                aria-controls="collapsePoints">
+                            <span class="text-nowrap font-helvetica-bold ft-10 text-primary">Mis premios</span>
+                            <img class="ml-2 rotate" width="10" src="./assets/images/svg/arrow_down_red.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+
+                <div id="collapsePoints" class="collapse" aria-labelledby="headingPoints" data-parent="#accordionPoints">
+                    <div class="card-body px-0 codes" *ngIf="type === 'ticket'">
+                        <div class="code d-flex align-items-center px-1 px-xl-3" *ngFor="let item of buyTicketService.ticketAwards">
+                            <div class="points mr-2 color-yellow font-helvetica-bold ft-14">
+                                {{item.points}}
+                                <span class="ft-11">
+                                    {{Utils.isSingular( item.points ) ? 'pto' : 'ptos'}}
+                                </span>
+                            </div>
+                            <div class="flex-grow-1 lh-1">
+                                <span class="color-black ft-11">
+                                    {{item.name}}
+                                </span>
+                            </div>
+
+                            <app-quantity-picker [sm]="true"
+                                                 [disabled]="buyTicketService.ticketAwardsUsedPoints + item.points > accumulatedPoints || buyTicketService.tickets_number >= MAX_TICKETS || buyTicketService.tickets_number + item.tickets_number > MAX_TICKETS"
+                                                 [(ngModel)]="item.quantity"
+                                                 (ngModelChange)="onChange()">
+                            </app-quantity-picker>
+                        </div>
+
+                        <div class="d-flex flex-wrap justify-content-center align-items-center mt-3 w-100">
+                            <div class="color-title font-helvetica-bold ft-20 mr-3" *ngIf="buyTicketService.ticketAwardsUsedPoints > 0">
+                                -{{buyTicketService.ticketAwardsUsedPoints}} <span class="ft-10">Total de puntos a usar</span>
+                            </div>
+                            <!--                            <button class="btn btn-secondary lh-1 ft-12 font-helvetica-medium" (click)="exchange()">Canjear</button>-->
+                        </div>
+                    </div>
+
+                    <div class="card-body px-0 codes" *ngIf="type === 'choco'">
+                        <div class="code d-flex align-items-center px-1 px-xl-3" *ngFor="let item of candyService.chocoAwards">
+                            <div class="points mr-2 color-yellow font-helvetica-bold ft-14">
+                                {{item.points}}
+                                <span class="ft-11">
+                                    {{Utils.isSingular( item.points ) ? 'pto' : 'ptos'}}
+                                </span>
+                            </div>
+                            <div class="flex-grow-1 lh-1">
+                                <span class="color-black ft-11">
+                                    {{item.name}}
+                                </span>
+                            </div>
+
+                            <app-quantity-picker [sm]="true"
+                                                 [disabled]="candyService.chocoAwardsUsedPoints + item.points > accumulatedPoints"
+                                                 [(ngModel)]="item.quantity"
+                                                 (ngModelChange)="onChange()">
+                            </app-quantity-picker>
+                        </div>
+
+                        <div class="d-flex flex-wrap justify-content-center align-items-center mt-3 w-100">
+                            <div class="color-title font-helvetica-bold ft-20 mr-3" *ngIf="candyService.chocoAwardsUsedPoints > 0">
+                                -{{candyService.chocoAwardsUsedPoints}} <span class="ft-10">Total de puntos a usar</span>
+                            </div>
+                            <!--                            <button class="btn btn-secondary lh-1 ft-12 font-helvetica-medium" (click)="exchange()">Canjear</button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion mt-3" id="accordionCodes" *ngIf="type === 'ticket'">
+            <div class="card border-0">
+                <div class="card-header p-2 bg-white border-0" id="headingCodes">
+                    <div class="d-flex flex-column">
+                        <label class="font-helvetica-bold ft-10 mb-1 color-title" for="codigo">¿Tienes un código promocional?</label>
+                        <div class="d-flex">
+                            <div class="input-group">
+                                <div class="input-group-prepend border-right-0">
+                                     <span class="input-group-text pr-2" id="basic-addon1">
+                                         <img width="20" src="./assets/images/svg/code-ticket_gray.svg" alt="">
+                                     </span>
+                                </div>
+                                <input [(ngModel)]="customCode" type="text" class="form-control border-left-0 pl-0" id="codigo" placeholder="Código promocional">
+                            </div>
+                            <button class="btn btn-secondary lh-1 validate ft-13 font-helvetica-medium mx-2 px-3" (click)="validateCode()" [disabled]="!customCode">
+                                Validar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body px-0 codes" *ngIf="codes.length">
+                    <div *ngFor="let code of codes" class="code d-flex justify-content-between align-items-center">
+                        <img class="mr-2" width="20" src="./assets/images/svg/code-ticket.svg" alt="">
+                        <div class="d-flex flex-column flex-grow-1 lh-1">
+                            <span class="font-helvetica-medium ft-12">{{code.name}} ({{code.code_promotion}})</span>
+                            <!--<span class="color-gray ft-12">50% de descuento en tus entradas</span>-->
+                        </div>
+                        <span class="font-helvetica-bold text-primary ft-10 cursor-pointer" (click)="useCode(code)">USAR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</ng-container>
+
+
+<div *ngIf="screenService.isResponsive" (click)="openModalPromotionalCode()"
+     class="promotional-code d-flex justify-content-center text-primary ft-12 font-helvetica-medium m-auto py-2 px-3 cursor-pointer">
+    Usar código promocional o puntos
+    <img class="ml-2" width="7" src="./assets/images/svg/arrow_right.svg" alt="">
+</div>

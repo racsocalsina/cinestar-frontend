@@ -1,0 +1,85 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/fonts";
+@import "~assets/scss/breakpoints";
+
+.cinemas {
+    padding-bottom: 80px;
+
+    @include min-width-992 {
+        padding-bottom: 0;
+    }
+}
+
+.cinema {
+    border-bottom: solid 1px #d5d5d5;
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    .info {
+        .name {
+            line-height: 1.1;
+
+            h3 {
+                @include min-width-576 {
+                    font-size: $ft-20;
+                }
+            }
+
+            span {
+                @include min-width-576 {
+                    font-size: $ft-15;
+                }
+            }
+        }
+
+        .formats {
+
+            .options {
+                span {
+                    color: #dddddd;
+
+                    &.active {
+                        color: #000000;
+                        border-bottom: 2px solid $primary;
+                    }
+                }
+            }
+        }
+
+        .schedule {
+            span {
+                border: solid 1px #d5d5d5;
+                border-radius: 14px;
+                padding: 3px 7px;
+                margin-bottom: 5px;
+                margin-right: 5px;
+
+                @include min-width-576 {
+                    font-size: $ft-12;
+                }
+
+                &.active {
+                    background-color: $secondary;
+                    border-color: $secondary;
+                    color: $color-title;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.loading {
+
+    width: 100%;
+    height: 100vh;
+
+    .bouncingLoader > span,
+    .bouncingLoader:before,
+    .bouncingLoader:after {
+        background: $primary;
+    }
+}
+

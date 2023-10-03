@@ -1,0 +1,80 @@
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+
+.container-fluid {
+    margin-bottom: 50px;
+
+    @include min-width-992 {
+        padding: 0 30px;
+    }
+
+    @include min-width-1200 {
+        padding: 0 66px;
+    }
+}
+
+
+.option {
+    width: 50%;
+    @include min-width-768 {
+        & {
+            flex: 0 0 16.6666666667%;
+            max-width: 16.6666666667%;
+        }
+    }
+
+    .text {
+        @include min-width-768 {
+            &.active,
+            &:hover {
+                &::after {
+                    width: 60% !important;
+                    margin: 0 20%;
+                }
+            }
+        }
+
+
+        &::after {
+            content: "";
+            display: block;
+            width: 0;
+            height: 3px;
+            background: #d9000d;
+            //transition: width 0.3s;
+        }
+
+        &.active,
+        &:hover {
+            &::after {
+                width: 100%;
+            }
+        }
+
+    }
+}
+
+
+.card {
+    box-shadow: 0 0 14px 0 rgba(27, 52, 142, 0.15);
+    border: 0;
+    border-radius: 23px;
+    //height: 238px;
+    margin: 15px;
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 0;
+
+        .texto {
+            padding: 1rem
+        }
+    }
+
+    img {
+        border-top-left-radius: 23px;
+        border-top-right-radius: 23px;
+    }
+}

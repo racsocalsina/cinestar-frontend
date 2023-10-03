@@ -1,0 +1,21 @@
+<div class="modal-header border-bottom-0 pb-0">
+    <img class="close pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body">
+    <h3 class="ft-30 color-title font-helvetica-bold text-center lh-1">
+        ¿Está seguro que desea cancelar su compra?
+    </h3>
+
+    <p class="color-gray ft-17 text-center lh-1 mt-2">
+        Si cancela la compra se perderá toda la información seleccionada
+    </p>
+
+    <div class="w-100 text-center">
+        <button class="btn btn-primary px-4" (click)="bsModalRef.hide()">Volver a mi compra</button>
+    </div>
+
+    <div class="w-100 text-center mt-2">
+        <button class="btn btn-default text-primary" (click)="cancel()">Si, cancelar</button>
+    </div>
+</div>

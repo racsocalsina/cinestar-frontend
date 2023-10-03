@@ -1,0 +1,116 @@
+<header class="container-fluid bg-primary d-flex justify-content-between align-items-center position-fixed">
+    <ng-container *ngIf="!onSearch; else search">
+        <div class="d-flex align-items-center">
+
+            <app-responsive-menu class="d-lg-none"></app-responsive-menu>
+
+            <h3 class="text-secondary ft-25 font-helvetica-bold mb-0">{{title}}</h3>
+        </div>
+
+        <div class="d-flex align-items-center">
+            <span class="icon-search text-white ft-19 cursor-pointer mr-3" [class.d-lg-none]="fromCinemas" (click)="onSearch = true"></span>
+            <img *ngIf="showFilters" src="./assets/images/svg/filter.svg" alt="filtrar" (click)="toggleFilter('0')">
+        </div>
+    </ng-container>
+
+    <ng-template #search>
+        <div class="input-group">
+            <input id="responsive-movie-search" type="text" class="form-control" [placeholder]="placeholder" [(ngModel)]="searchTerm" (ngModelChange)="searchMovie()">
+            <div class="input-group-append">
+                <img src="./assets/images/svg/close.svg" alt="close" (click)="closeSearch()">
+            </div>
+        </div>
+    </ng-template>
+</header>
+
+<div class="responsive-movies-filter w-100 h-100 position-fixed" id="responsive-movies-filter">
+    <div class="d-flex justify-content-end">
+        <img class="cursor-pointer" src="./assets/images/svg/close_black.svg" alt="close" (click)="toggleFilter('-100%')">
+    </div>
+
+    <div class="row" [formGroup]="form">
+        <div class="col-12 text-primary ft-25 font-helvetica-bold title">
+            Filtrar próximos estrenos
+        </div>
+
+        <div class="col-12 mt-4">
+            <ng-select formControlName="to_begin" class="custom filter clock" placeholder="Por empezar"
+                       [items]="toBegin" bindLabel="name" bindValue="value"
+                       [searchable]="false">
+                <ng-template ng-option-tmp let-item="item">
+                    <div class="template">
+                        <img src="./assets/images/svg/clock.svg" alt="clock">
+                        <div class="d-flex flex-column">
+                            <span class="bank">{{item.name}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-select>
+        </div>
+
+        <div class="col-12">
+            <ng-select formControlName="city_id" class="custom filter map" placeholder="Ciudad"
+                       [items]="cities" bindLabel="name" bindValue="id"
+                       [searchable]="false">
+                <ng-template ng-option-tmp let-item="item">
+                    <div class="template">
+                        <img src="./assets/images/svg/map-marker.svg" alt="map">
+                        <div class="d-flex flex-column">
+                            <span class="bank">{{item.name}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-select>
+        </div>
+
+        <div class="col-12">
+            <ng-select formControlName="headquarter_id" class="custom filter cine" placeholder="Cine"
+                       [items]="cinemas" bindLabel="name" bindValue="id"
+                       [searchable]="false">
+                <ng-template ng-option-tmp let-item="item">
+                    <div class="template">
+                        <img src="./assets/images/svg/cine.svg" alt="cine">
+                        <div class="d-flex flex-column">
+                            <span class="bank">{{item.name}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-select>
+        </div>
+
+        <div class="col-12">
+            <ng-select formControlName="movie_gender_id" class="custom filter genero" placeholder="Género"
+                       [items]="genres" bindLabel="short" bindValue="id"
+                       [searchable]="false">
+                <ng-template ng-option-tmp let-item="item">
+                    <div class="template">
+                        <img src="./assets/images/svg/genero.svg" alt="genero">
+                        <div class="d-flex flex-column">
+                            <span class="bank">{{item.short}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-select>
+        </div>
+
+        <div class="col-12">
+            <ng-select formControlName="date" class="custom filter fecha" placeholder="Fecha"
+                       [items]="billboardDates" bindValue="date" bindLabel="name"
+                       [searchable]="false">
+                <ng-template ng-option-tmp let-item="item">
+                    <div class="template">
+                        <img src="./assets/images/svg/fecha.svg" alt="fecha">
+                        <div class="d-flex flex-column">
+                            <span class="bank">{{item.name}}</span>
+                        </div>
+                    </div>
+                </ng-template>
+            </ng-select>
+        </div>
+
+        <div class="col-12 buttons d-flex flex-column align-items-center">
+            <button (click)="filter()" class="btn btn-primary px-5">Aplicar Filtros</button>
+            <button class="btn btn-default text-primary mt-2" (click)="form.reset()">Borrar filtros</button>
+        </div>
+    </div>
+</div>

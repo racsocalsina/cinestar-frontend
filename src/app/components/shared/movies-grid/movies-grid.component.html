@@ -1,0 +1,15 @@
+<perfect-scrollbar class="scroll d-none d-lg-block">
+    <div class="movies-container" id="movies-container">
+        <app-movie-card *ngFor="let movie of movies; let i = index; trackBy:trackByFn" [movie]="movie"
+                        [cinemaId]="cinemaId">
+        </app-movie-card>
+    </div>
+</perfect-scrollbar>
+
+<div class="d-lg-none">
+    <div class="movies-container">
+        <app-movie-card *ngFor="let movie of movies; let i = index; trackBy:trackByFn" [movie]="movie"
+                        [cinemaId]="cinemaId">
+        </app-movie-card>
+    </div>
+</div>

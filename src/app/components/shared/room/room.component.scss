@@ -1,0 +1,30 @@
+
+.room {
+    //max-width: 460px;
+}
+
+.screen {
+    img {
+        width: 80%;
+    }
+}
+
+.seats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 2px;
+
+    .seat {
+        min-height: 8px;
+
+        img {
+            width: 100%;
+            max-width: 30px;
+        }
+    }
+}
+
+.min-size {
+    min-width: 12px;
+    min-height: 11px;
+}

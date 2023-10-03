@@ -1,0 +1,98 @@
+<div class="container-fluid" *ngIf="movie">
+    <div class="sidebar">
+        <span class="cursor-pointer color-title ft-20 font-helvetica-bold" (click)="back()">
+            <img class="mr-1" src="./assets/images/svg/arrow-left-yellow.svg" alt="back">
+            <span *ngIf="!movie.is_release">Volver a la cartelera</span>
+            <span *ngIf="movie.is_release">Volver a próx. extrenos</span>
+        </span>
+
+        <div class="poster ml-3">
+            <img class="img-fluid"
+                 [src]="movie?.image"
+                 onError="this.src='./assets/images/no-image-movie.png';"
+                 [alt]="movie?.name">
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="font-helvetica-bold ft-15">Descripción</span>
+                <button *ngIf="movie.url_trailer" class="btn btn-primary ft-14" (click)="showTrailerModal(Utils.getYouTubeId(movie.url_trailer))">
+                    <img src="./assets/images/svg/play-mini.svg" alt="">
+                    Ver Trailer
+                </button>
+            </div>
+        </div>
+
+
+        <div class="movie-info px-0">
+            <div class="row px-0 mb-2">
+                <div class="col-xl-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/svg/info-genero.svg" alt="genero">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Género</span>
+                        <span class="description font-helvetica-medium ft-12">{{movie?.gender_name}}</span>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/svg/info-clock.svg" alt="clock">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Duración</span>
+                        <span class="description font-helvetica-medium ft-12">{{movie?.duration_in_minutes}} Minutos</span>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/svg/info-fecha.svg" alt="fecha">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Fecha de Estreno</span>
+                        <span class="description font-helvetica-medium ft-12">{{movie?.premier_date | date: 'dd/MM/yy'}}</span>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/svg/info-flag.svg" alt="flag">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">País</span>
+                        <span class="description font-helvetica-medium ft-12">{{movie?.country_name}}</span>
+                    </div>
+                </div>
+
+                <!--<div class="col-xl-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/info-formato.png" alt="formato">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Formato</span>
+                        <span class="description font-helvetica-medium ft-12">{{movie?.formats}}</span>
+                    </div>
+                </div>-->
+
+                <div class="col-xl-6 feature d-flex align-items-center mt-3">
+                    <img class="pr-2" src="./assets/images/svg/info-clasificacion.svg" alt="clasificacion">
+                    <div class="d-flex flex-column">
+                        <span class="title font-helvetica-bold ft-12">Clasificación</span>
+                        <span class="description font-helvetica-medium ft-12">{{movie?.type_of_censorship}}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="movie-info">
+            <h3 class="title font-helvetica-bold mb-3 ft-30">{{movie?.name}}</h3>
+
+            <p class="text-primary ft-15 font-helvetica-bold mb-1">Sinopsis</p>
+
+            <input type="checkbox" class="view-more-state" id="view-more-desktop"/>
+            <div class="sinopsis ft-15 d-lg-none" [innerHTML]="Utils.viewMore(movie.summary, 200)"></div>
+            <div class="sinopsis ft-15 d-none d-lg-block" [innerHTML]="Utils.viewMore(movie.summary, 300)"></div>
+
+            <label *ngIf="movie.summary && movie.summary.length > 200" for="view-more-desktop" class="view-more-trigger d-lg-none"></label>
+            <label *ngIf="movie.summary && movie.summary.length > 300" for="view-more-desktop" class="view-more-trigger d-none d-lg-block"></label>
+
+            <app-select-cinema [movie]="movie"></app-select-cinema>
+        </div>
+    </div>
+
+</div>
+
+

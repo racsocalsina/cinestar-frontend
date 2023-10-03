@@ -1,0 +1,66 @@
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+@import "~assets/scss/breakpoints";
+
+.container-fluid {
+    margin-bottom: 50px;
+
+    @include min-width-992 {
+        padding: 0 30px;
+    }
+
+    @include min-width-1200 {
+        padding: 0 66px;
+    }
+}
+
+.movies-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5px 5px;
+
+    @include min-width-576 {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    @include min-width-768 {
+        gap: 15px 15px;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-areas:
+        "featured featured . . . "
+        "featured featured . . . "
+        ". . . . .";
+    }
+
+    @include min-width-992 {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    @include for-min-width(1366px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    @include for-min-width(1550px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    @include for-min-width(1750px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+
+    @include for-min-width(1950px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}
+
+.featured {
+    @include min-width-768 {
+        grid-area: featured;
+    }
+}
+
+.bouncingLoader > span,
+.bouncingLoader:before,
+.bouncingLoader:after {
+    background: $primary;
+}

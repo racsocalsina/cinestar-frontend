@@ -1,0 +1,36 @@
+<div class="modal-header border-bottom-0">
+    <div class="d-flex flex-column">
+        <h3 class="font-helvetica-bold ft-25 text-primary lh-1"  style="margin: 10px;">Confirmación de pedido</h3>
+        <p class="color-gray ft-15 lh-1" style="margin: 10px;">Una vez confirmada la compra no hay cambio de fecha ni de sede de recojo.</p>
+    </div>
+    <img class="close pt-4" src="./assets/images/svg/icon-close-modal.svg" alt="close" (click)="bsModalRef.hide()">
+</div>
+
+<div class="modal-body pt-0 px-4">
+    <div>
+        <div class="d-flex flex-column lh-1 mt-3">
+            <span class="text-primary ft-13 font-helvetica-bold" style="margin-bottom: 10px;">Sede de recojo</span>
+            <span class="color-gray ft-15">{{this.name_headquarter}}</span>
+        </div>
+        <div class="d-flex flex-column lh-1 mt-3">
+            <span class="text-primary ft-13 font-helvetica-bold" style="margin-bottom: 10px;">Fecha de recojo</span>
+            <span class="color-gray ft-15">{{candyService.day}}, {{candyService.day_number}} de {{this.candyService.month}} de {{candyService.year}}</span>
+        </div>
+        <div class="d-flex flex-column lh-1 mt-3">
+            <span class="total font-helvetica-bold ft-20 text-secondary" style="margin-bottom: 10px;">Total</span>
+            <span class="amount color-title ft-20" style="margin-bottom: 10px;">S/ {{candyService.paymentAmount | number: '.2'}}</span>
+        </div>
+    </div>
+    <div>
+        <div class="w-100 d-flex justify-content-center align-items-center flex-column mt-4">
+            <button class="btn btn-primary px-5" (click)="continue()" [disabled]="isLoading">
+                    <span class="bouncingLoader" *ngIf="isLoading">
+                        <span></span>
+                    </span>
+                <span *ngIf="!isLoading">Confirmar</span>
+            </button>
+            <button class="btn btn-default text-primary" [disabled]="isLoading" (click)="bsModalRef.hide()">Cancelar
+            </button>
+        </div>
+    </div>
+</div>

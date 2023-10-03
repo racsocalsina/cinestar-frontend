@@ -1,0 +1,26 @@
+.credit-cards {
+    .credit-card-container {
+        border: solid 1px rgba(112, 112, 112, 0.2);
+        padding: 20px 20px 20px 5px;
+        margin-bottom: 10px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-icon {
+            width: 45px;
+        }
+
+        .delete {
+            width: 10px;
+        }
+    }
+
+    .btn {
+        width: 85px;
+        height: 31px;
+        line-height: 1;
+        font-size: 11px
+    }
+}

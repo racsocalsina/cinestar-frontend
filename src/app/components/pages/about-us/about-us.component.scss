@@ -1,0 +1,32 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+.content-about-us {
+    padding-top: 120px;
+}
+.section-title {
+    h1 {
+        font-size: $ft-40;
+        text-align: center;
+        margin: auto;
+        @include min-width-768 {
+            font-size: $ft-50;
+            text-align: left;
+            margin: 0;
+        }
+    }
+}
+
+.content {
+    width: 100%;
+    max-width: 546px;
+    font-size: 18px;
+    color: $gray;
+}
+.content-img {
+    width: 100%;
+    max-width: 428px;
+    height: 468px;
+    border-radius: 28px;
+}

@@ -1,0 +1,20 @@
+<ng-container *ngIf="buyService.selectedOption && movie">
+
+    <app-buy-ticket-responsive-layout *ngIf="screenService.isResponsive"
+                                      [step]="step"
+                                      [movie]="movie"
+                                      [movieTime]="movieTime"
+                                      [showTime]="showTime"
+                                      [totalPayment]="totalPayment"
+                                      [seats]="seats">
+    </app-buy-ticket-responsive-layout>
+
+    <app-buy-ticket-desktop-layout *ngIf="!screenService.isResponsive"
+                                   [step]="step"
+                                   [movie]="movie"
+                                   [movieTime]="movieTime"
+                                   [showTime]="showTime"
+                                   [totalPayment]="totalPayment"
+                                   [seats]="seats">
+    </app-buy-ticket-desktop-layout>
+</ng-container>

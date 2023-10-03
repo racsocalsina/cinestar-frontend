@@ -1,0 +1,113 @@
+<app-header-home></app-header-home>
+<div class="content-partner-star">
+    <app-carousel-banner [banners]="banners" class="d-sm-none"
+                         [class.d-sm-block]="type() == 'banners_desktop'"></app-carousel-banner>
+       <!-- <app-carousel-banner [banners]="carouselDesktop" class="d-none d-sm-block"></app-carousel-banner> -->
+<!--
+            <div class="content-socio-movie">
+                <div class="container text-center">
+                    <h1 class="color-title ft-40 mb-1">Muy pronto</h1>
+                    <span class="color-gray ft-20 lh-1">Podrás acumular puntos y canjear super premios</span>
+                </div>
+            </div> -->
+
+   <ng-container *ngIf="content">
+       <div class="content-socio-movie">
+           <div class="container">
+               <div class="row align-items-center">
+                   <div class="col-md-6 text-center text-md-right">
+                       <div class="pl-md-5 pr-md-5">
+                           <img [src]="content.image" class="img-fluid img-socio-start" alt="">
+                       </div>
+                   </div>
+                   <div class="col-md-6">
+                       <div class="section-title mt-4 mt-md-0 mb-2">
+                           <h1 class="m-auto m-md-0 color-title">{{content.title}}</h1>
+                       </div>
+                       <h5 class="font-helvetica-medium text-center text-md-left mb-1 text-primary ft-20">{{content.sub_title}}</h5>
+                       <p class="font-helvetica mx-auto mx-md-0 text-center text-md-left color-gray ft-18 w-100">
+                           {{content.description}}
+                       </p>
+
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <div class="content-benefits background-style w-100">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12 mb-4">
+                       <div class="section-title d-block text-center">
+                           <h1 class="color-title">Beneficios</h1>
+                           <div class="line bg-primary text-center m-auto"></div>
+                       </div>
+                   </div>
+                   <div class="col-md-4" *ngFor="let item of content.benefits">
+                       <div class="box">
+                           <img [src]="item.image" class="img-fluid d-block mx-auto my-4" alt="">
+                           <p class="w-100 text-center font-helvetica-bold m-auto color-title">{{item.title}}</p>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <div class="content-awards">
+           <div class="container">
+               <div class="row">
+                   <div class="col-md-12 mb-5">
+                       <div class="section-title d-block text-center">
+                           <h1 class="color-title">Premios</h1>
+                           <div class="line bg-secondary text-center m-auto"></div>
+                           <div class="row justify-content-center justify-content-center align-items-center">
+                               <div class="col-12 col-lg-5">
+                                   <div class="card-box m-auto">
+                                       <div class="content-img background-style p-5 m-auto"
+                                            [style.background-image]="'url(' + './assets/images/chocolateria.png' + ')'"></div>
+                                       <div class="description bg-white">
+                                           <ng-container *ngFor="let item of content.choco_awards">
+                                               <div class="d-flex flex-column">
+                                                   <h5 class="font-helvetica-bold mb-0 ft-20 color-title">{{item.points}}
+                                                       puntos</h5>
+                                                   <p class="font-helvetica mb-0 ft-18 color-gray">{{item.name}}</p>
+                                               </div>
+                                               <hr>
+                                           </ng-container>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div class="col-12 col-lg-5">
+                                   <div class="card-box m-auto">
+                                       <div class="content-img background-style p-5 m-auto"
+                                            [style.background-image]="'url(' + './assets/images/boleteria.png' + ')'"></div>
+                                       <div class="description">
+                                           <ng-container *ngFor="let item of content.ticket_awards">
+                                               <div class="d-flex flex-column">
+                                                   <h5 class="font-helvetica-bold mb-0 ft-20 color-title">{{item.points}}
+                                                       puntos</h5>
+                                                   <p class="font-helvetica mb-0 ft-18 color-gray">{{item.name}}</p>
+                                               </div>
+                                               <hr>
+                                           </ng-container>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-md-12 mt-5 mb-5">
+                       <div class="section-title d-block text-center">
+                           <h1 class="color-title">Condiciones</h1>
+                           <div class="line bg-secondary text-center m-auto"></div>
+                           <div class="text-conditions font-helvetica text-center mt-4 ft-18 color-gray">
+                               {{content.terms}}<br>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </ng-container>
+</div>
+<app-footer></app-footer>

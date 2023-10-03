@@ -1,0 +1,141 @@
+@import "~assets/scss/breakpoints";
+@import "~assets/scss/fonts";
+@import "~assets/scss/variables";
+
+.container-fluid {
+    padding-top: 67px;
+    height: 100vh;
+
+    @include min-width-1200 {
+        padding-left: 3vw;
+    }
+}
+
+.sidebar {
+    min-width: 180px;
+    box-shadow: 3px -3px 6px -2px rgba(0, 0, 0, 0.16);
+    padding-top: 120px;
+
+    @include min-width-1200 {
+        width: 215px;
+    }
+
+    .options {
+        margin-bottom: 20px;
+
+        h3 {
+            font-size: $ft-25;
+            color: $color-title;
+            opacity: 0.23;
+            line-height: 1;
+
+            &:hover,
+            &.active {
+                opacity: 1;
+
+                img {
+                    visibility: visible;
+                }
+            }
+
+            img {
+                visibility: hidden;
+            }
+
+            @include min-width-992 {
+                margin-bottom: 20px;
+            }
+        }
+
+        .products {
+            transition: all .5s;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+    }
+}
+
+.content {
+
+    .products {
+        display: grid;
+        //grid-template-columns: 1fr;
+        gap: 10px;
+        justify-content: center;
+
+        @include for-min-width(1000px) {
+            grid-template-columns: 1fr 1fr;
+
+        }
+    }
+}
+
+.sidebar-right {
+    width: 34vw;
+    min-width: 165px;
+    max-width: 300px;
+    box-shadow: -7px 3px 13px -7px rgba(0, 0, 0, 0.16);
+    padding-top: 15px;
+    padding-left: 2vw;
+
+    @include min-width-1200 {
+        max-width: 362px;
+    }
+
+}
+
+.no-content {
+    height: 45vh;
+
+    p {
+        opacity: 0.68;
+    }
+}
+
+::ng-deep {
+    perfect-scrollbar.products-scroll {
+        .ps-content {
+            @include min-width-1200 {
+                //max-height: calc(100vh - 330px);
+                padding-right: 30px;
+            }
+
+        }
+    }
+
+    perfect-scrollbar.sidebar-right-scroll {
+        //.ps-content {
+        //max-height: 50vh;
+        height: calc(100vh - 340px);
+        //padding-right: 30px;
+        //}
+    }
+
+    .icon-calendar {
+        right: 12px;
+        top: 15px;
+    }
+
+    .md-input input:not(:placeholder-shown) + label, .md-input input:focus + label {
+        top: 6px;
+        left: 40px;
+        color: #161615;
+        padding: 0 12px;
+        font-size: 0.75rem !important;
+        font-family: "HelveticaNeue-Bold", sans-serif;
+    }
+
+}
+
+.md-input label {
+    font-family: "HelveticaNeue-Medium", sans-serif;
+    font-size: 0.9375rem;
+    color: #161615;
+    padding-left: 25px;
+}
+.md-input input:not(:placeholder-shown) + label, .md-input input:focus + label {
+    left: 25px;
+}

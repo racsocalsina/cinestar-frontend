@@ -1,0 +1,19 @@
+<div class="room mx-auto">
+    <ng-container *ngIf="room">
+        <div class="seats mt-2" id="columns">
+            <div class="seat d-flex justify-content-center align-items-center" *ngFor="let seat of room.seats; let i = index; trackBy:trackByFn"
+                 [class.cursor-pointer]="seat.cursor && clickable" [class.min-size]="minSize">
+                <ng-container *ngIf="seat.icon">
+                    <img *ngIf="seat.cursor; else noSelect" src="./assets/images/svg/{{seat.icon}}" alt="" (click)="toggleSelection(seat, i)">
+                    <ng-template #noSelect>
+                        <img src="./assets/images/svg/{{seat.icon}}" alt="">
+                    </ng-template>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+
+    <div class="screen text-center mt-3">
+        <img src="./assets/images/svg/screen.svg" alt="pantalla">
+    </div>
+</div>

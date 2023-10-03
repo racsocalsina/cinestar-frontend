@@ -1,0 +1,101 @@
+<!--<div class="modal-header p-0 d-block position-relative">
+    <img class="close cursor-pointer" src="./assets/images/svg/circle-close.svg" alt="close" (click)="bsModalRef.hide()">
+    <div class="slider">
+        <carousel [isAnimated]="true" [interval]="2000">
+            <slide *ngFor="let image of cinema.headquarter_images; let i = index">
+                <div class="image" [ngStyle]="{'background-image': 'url(' + image.path + ')'}">
+                </div>
+            </slide>
+        </carousel>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="w-100 d-flex justify-content-end align-items-center">
+        <span class="text-secondary font-helvetica-bold ft-12 mr-2">Favorito</span>
+        <span class="icon-star"
+              [class.favorite]="cinema.is_favorite"
+              [title]="cinema.is_favorite ? 'Agregado a mis favoritos' : ''"></span>
+    </div>
+
+    <perfect-scrollbar class="scroll-cinema-details">
+        <div class="d-flex align-items-center color-title font-helvetica-bold ft-20">
+            <img class="mr-2" src="./assets/images/svg/cine-icon.svg" alt="cinestar">
+            {{cinema.name}}
+        </div>
+
+        <div class="d-flex flex-column mt-2">
+            <span class="text-primary font-helvetica-bold ft-12">Salas</span>
+
+            <div class="d-flex">
+                <span class="color-title ft-15 font-helvetica-medium mr-2" *ngFor="let format of cinema.movie_formats">{{format.short}}</span>
+            </div>
+        </div>
+
+        <div class="d-flex flex-column mt-2">
+            <span class="text-primary font-helvetica-bold ft-12">Descripción</span>
+
+            <input type="checkbox" class="view-more-state" id="view-more-desktop"/>-->
+<!--            <div class="sinopsis color-gray ft-15" [innerHTML]="Utils.viewMore(cinema.description, 100) "-->
+<!--                 style="white-space: pre-line; display: grid"></div>-->
+            <!--<div class="sinopsis color-gray ft-15" style="white-space: pre-line; display: grid">
+                {{cinema.description}}
+            </div>-->
+<!--            <label for="view-more-desktop" class="view-more-trigger"></label>-->
+       <!-- </div>
+
+        <div class="d-flex flex-column mt-2">
+            <span class="text-primary font-helvetica-bold ft-12">Ubicación</span>
+
+            <div class="color-gray ft-15 font-helvetica-medium">{{cinema.address}}</div>
+
+            <agm-map [latitude]="cinema.latitude" [longitude]="cinema.longitude" [zoom]="15">
+                <agm-marker [latitude]="cinema.latitude" [longitude]="cinema.longitude"></agm-marker>
+            </agm-map>
+        </div>
+    </perfect-scrollbar>
+
+
+
+    <div class="w-100 text-center mt-3 d-md-none">
+        <button class="btn btn-primary px-5 font-helvetica-medium" (click)="showMovies()">Ver cartelera</button>
+    </div>
+</div>
+-->
+
+  
+  <div class="modal-wrapper">
+    <div class="card">
+        <div class="card-container">
+            <div class="cinema-name">{{cinema.name}}</div>
+            <div class="cinema-image">
+                <agm-map [latitude]="cinema.latitude" [longitude]="cinema.longitude" [zoom]="15">
+                    <agm-marker [latitude]="cinema.latitude" [longitude]="cinema.longitude"></agm-marker>
+                </agm-map>
+            </div>
+            <div class="cinema-location">
+              <div class="title">Ubicación</div>
+              <div class="text">{{cinema.address}}</div>
+            </div>
+            <div class="cinema-salas">
+              <div class="title">6 Salas</div>
+              <ng-container *ngIf="cinema.movie_formats && cinema.movie_formats.length > 0">
+                <div class="format" *ngFor="let format of cinema.movie_formats">{{ format.short }}</div>
+              </ng-container>
+              <ng-container *ngIf="!cinema.movie_formats || cinema.movie_formats.length === 0">
+                <div class="format">2D</div>
+              </ng-container>
+            </div>
+            <div class="cinema-tarifa">
+              <div class="title">Tarifa</div>
+              <div class="prices">
+                <div class="price">{{cinema.description}}</div>
+              </div>
+            </div>
+            <div class="cinema-icon">
+                <img class="close cursor-pointer" src="./assets/images/svg/cancel.svg" alt="close" (click)="bsModalRef.hide()">
+            </div>
+          </div>
+      </div>
+  </div>
+  

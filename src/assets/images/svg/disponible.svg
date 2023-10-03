@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="12.556" height="10.07" viewBox="0 0 12.556 10.07">
+    <defs>
+        <style>
+            .cls-2{fill:#e8e8e8}
+        </style>
+    </defs>
+    <g id="Grupo_5073" transform="translate(-100.243 -82.59)">
+        <g id="Grupo_5070" transform="translate(48 -466)">
+            <g id="Grupo_5067">
+                <g id="Grupo_5063">
+                    <g id="Grupo_5054" transform="translate(-77)">
+                        <g id="Grupo_5053" transform="translate(129.743 548.59)">
+                            <path id="Rectángulo_1809" fill="#c9c8c8" d="M89.038-106.578h4.523a1.488 1.488 0 0 1 1.508 1.468v5.87a1.487 1.487 0 0 1-1.508 1.467h-4.523a1.488 1.488 0 0 1-1.508-1.467v-5.87a1.489 1.489 0 0 1 1.508-1.468z" transform="translate(-85.516 106.578)"/>
+                            <rect id="Rectángulo_1844" width="1.953" height="7.96" class="cls-2" rx=".976" transform="translate(9.472 .743)"/>
+                            <rect id="Rectángulo_1845" width="1.953" height="7.96" class="cls-2" rx=".976" transform="translate(.168 .743)"/>
+                            <path id="Unión_1" fill="#dbdbdb" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" d="M-7155.92-11304.705a.824.824 0 0 1-.823-.823.819.819 0 0 1 .172-.5l.111-.231a5.27 5.27 0 0 1 1.868-1.246l7.163-.082c.264.082.238.082 1.141.743l.849.707a.851.851 0 0 1 .1.128.823.823 0 0 1 .157.484.821.821 0 0 1-.82.823z" transform="translate(7156.743 11314.275)"/>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

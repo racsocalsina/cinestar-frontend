@@ -1,0 +1,112 @@
+<div class="" [formGroup]="form">
+    <div class="mb-3">
+        <h5 class="font-helvetica-bold mb-0">Zona donde se registró el caso</h5>
+        <p class="font-helvetica text-selection">Selecciona los datos exactos donde se registró el caso</p>
+
+        <div class="row">
+            <div class="col-md-4 col-lg-3 mb-2">
+                <app-control-messages [control]="form.get('departments')">
+                    <ng-select class="custom ubigeo" formControlName="departments"
+                               placeholder="Departamento (*)" [items]="departments"
+                               [clearable]="false" bindLabel="name" bindValue="id" (change)="onChangeDepartment($event)">
+                    </ng-select>
+                </app-control-messages>
+            </div>
+
+            <div class="col-md-4 col-lg-3 mb-2">
+                <app-control-messages [control]="form.get('province')">
+                    <ng-select class="custom ubigeo" formControlName="province"
+                               placeholder="Provincia (*)" [items]="provinces"
+                               [clearable]="false" bindLabel="name" bindValue="id" (change)="onChangeProvince($event)">
+                    </ng-select>
+                </app-control-messages>
+            </div>
+
+            <div class="col-md-4 col-lg-3 mb-2">
+                <app-control-messages [control]="form.get('sede_district_id')">
+                    <ng-select class="custom ubigeo" formControlName="sede_district_id"
+                               placeholder="Distrito (*)" [items]="districts"
+                               [clearable]="false" bindLabel="name" bindValue="id">
+                    </ng-select>
+                </app-control-messages>
+            </div>
+        </div>
+    </div>
+    <div class="hr"></div>
+
+
+    <div class="mb-3">
+        <h5 class="font-helvetica-bold mb-4">Detalle de su reclamo</h5>
+
+        <app-control-messages [control]="form.get('claim_type_id')" [showBorder]="false">
+            <div class="form-group form-group2 form-check pl-0 mb-3" *ngFor="let type of claimParameters.types">
+                <input formControlName="claim_type_id" type="radio" name="claim_type_id" class="form-check-input"
+                       [id]="type.id" [value]="type.id">
+                <label class="form-check-label d-flex"
+                       [for]="type.id">
+                    <span class="mt-2 mr-3"></span>
+                    <div class="">
+                        <p class="mb-0 font-helvetica-bold">{{type.name}}</p>
+                        <p class="mb-0 font-helvetica color-gray select-text">{{type.description}}</p>
+                    </div>
+                </label>
+            </div>
+        </app-control-messages>
+
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="mb-5">
+        <h5 class="font-helvetica-bold mb-4">Identificación del bien contratado</h5>
+
+        <app-control-messages [control]="form.get('identification_type_id')" [showBorder]="false">
+            <div class="form-group form-check pl-0 mb-3" *ngFor="let type of claimParameters.identification_types">
+                <input formControlName="identification_type_id" type="radio" name="identification_type_id" class="form-check-input"
+                       [id]="'identification-'+type.id" [value]="type.id">
+                <label class="form-check-label d-flex align-items-center"
+                       [for]="'identification-'+type.id">
+                    <span class="mr-3"></span>
+                    <div class="">
+                        <p class="mb-0 font-helvetica-bold">{{type.name}}</p>
+                    </div>
+                </label>
+            </div>
+        </app-control-messages>
+
+    </div>
+
+    <div class="mb-5">
+        <h5 class="font-helvetica-bold mb-4">Detalle del reclamo</h5>
+
+        <div class="form-group textarea position-relative">
+            <app-control-messages [control]="form.get('detail')">
+                <textarea formControlName="detail" class="form-control" id="exampleFormControlTextarea1" [maxLength]="5000"></textarea>
+            </app-control-messages>
+            <!--  <span
+                  class="text-cant text-right d-block mr-3 mt-2">Máximo {{form.get( 'comments' ).value ? form.get( 'comments' ).value.length : 0}} / 5000 caracteres
+                      </span>-->
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4">
+            <h5 class="font-helvetica-bold mb-4">Monto del reclamo</h5>
+
+            <app-control-messages [control]="form.get('amount')" [showBorder]="false">
+                <div class="input-group mb-2">
+
+                    <div class="input-group-prepend">
+                        <span class="input-group-text font-helvetica-bold" id="basic-addon1">S/</span>
+                    </div>
+                    <input formControlName="amount" type="number" class="form-control" placeholder="00.00" aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+            </app-control-messages>
+
+        </div>
+
+        <div class="col-md-12 d-flex justify-content-center align-items-center mt-4 mb-4">
+            <button class="btn btn-primary" (click)="onClickNext()">Continuar</button>
+        </div>
+    </div>
+</div>
